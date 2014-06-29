@@ -11,10 +11,67 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140629055215) do
+ActiveRecord::Schema.define(version: 20140629233330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "gold_standard_identities", force: true do |t|
+    t.integer  "household_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "alternate_name"
+    t.string   "sex"
+    t.date     "date_of_birth"
+    t.integer  "village_id"
+    t.integer  "group_id"
+    t.integer  "collective_id"
+    t.integer  "territory_id"
+    t.integer  "province_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "recorded_in_village_id"
+    t.string   "recorded_by"
+  end
+
+  add_index "gold_standard_identities", ["first_name"], name: "index_gold_standard_identities_on_first_name", using: :btree
+  add_index "gold_standard_identities", ["household_id"], name: "index_gold_standard_identities_on_household_id", using: :btree
+  add_index "gold_standard_identities", ["last_name"], name: "index_gold_standard_identities_on_last_name", using: :btree
+
+  create_table "gold_standard_matches", force: true do |t|
+    t.integer  "gold_standard_identity_id"
+    t.integer  "iom_identity_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "gold_standard_matches", ["gold_standard_identity_id"], name: "index_gold_standard_matches_on_gold_standard_identity_id", using: :btree
+  add_index "gold_standard_matches", ["iom_identity_id"], name: "index_gold_standard_matches_on_iom_identity_id", using: :btree
+
+  create_table "households", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "iom_identities", force: true do |t|
+    t.integer  "household_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "alternate_name"
+    t.string   "sex"
+    t.date     "date_of_birth"
+    t.integer  "village_id"
+    t.integer  "group_id"
+    t.integer  "collective_id"
+    t.integer  "territory_id"
+    t.integer  "province_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "iom_identities", ["first_name"], name: "index_iom_identities_on_first_name", using: :btree
+  add_index "iom_identities", ["household_id"], name: "index_iom_identities_on_household_id", using: :btree
+  add_index "iom_identities", ["last_name"], name: "index_iom_identities_on_last_name", using: :btree
 
   create_table "reconciled_matches", force: true do |t|
     t.integer  "master_dataset_id"
