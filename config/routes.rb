@@ -9,4 +9,6 @@ IDPApp::Application.routes.draw do
   get '/enter_record', to: 'static_pages#enter_record', as: 'enter_record'
   
   post '/create_record', to: 'static_pages#create_record', as: 'create_record'
+  
+  resources :test_idps, only: [:create, :new]
 end

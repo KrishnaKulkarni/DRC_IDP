@@ -1,5 +1,13 @@
-
+<%= render 'layouts/navbar' %>
 <h1>Enter Record</h1>
+
+<%= simple_form_for @test_idp do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :age %>
+  <%= f.input :sex %>
+
+<% end %>
 
 <div>
   First Name: <%= @first_name %>

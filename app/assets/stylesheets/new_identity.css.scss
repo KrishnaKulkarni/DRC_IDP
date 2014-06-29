@@ -1,0 +1,37 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+main.new-identity-page {
+  border: 1px solid #999;
+  padding: 15px;  
+ 
+  section.form-container {
+    border: 1px solid #999;
+    background: #ccc;
+    width: 280px;
+    min-height: 250px;
+    
+    div.inputs-container {
+      
+      div.input {
+       float: left; 
+       margin-left: 5px;
+              
+       label {
+        display: block; 
+       }
+       
+       input {
+         margin: 0;
+       }
+      
+      }
+    }
+
+  }
+ 
+ 
+ 
+  
+}

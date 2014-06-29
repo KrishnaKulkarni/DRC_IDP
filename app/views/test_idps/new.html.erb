@@ -1,0 +1,31 @@
+<%= stylesheet_link_tag "new_identity", media: "all", "data-turbolinks-track" => true %>
+  <%= render 'layouts/navbar' %>
+
+<main class="new-identity-page">
+  <h1>Enter New Test_IDP Record</h1>
+
+  <section class="form-container">
+  <%= simple_form_for @test_idp, url: test_idps_url  do |f| %>
+   <div class="inputs-container clearfix">
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <%= f.input :age %>
+      <%= f.input :sex %>
+    </div>
+    <%= f.button :submit %>
+  <% end %>  
+  </section>
+  
+  <% if flash[:new_record_status] %>
+    <section>
+      <h2><%= flash[:new_record_status] %></h2>
+      <% if @last_test_idp %>
+      <h3><%= @last_test_idp.first_name + " " + @last_test_idp.last_name %></h3>
+      <ul>
+        <li>Age: <%= @last_test_idp.age %></li>
+        <li>Sex: <%= @last_test_idp.sex %></li>
+      </ul>
+      <% end %>
+    </section>
+  <% end %>
+</main>
