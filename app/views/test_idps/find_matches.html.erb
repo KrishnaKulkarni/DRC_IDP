@@ -1,0 +1,16 @@
+<%= stylesheet_link_tag "find_matches", media: "all", "data-turbolinks-track" => true %>
+  <%= render 'layouts/navbar' %>
+<main>
+  <section class="form-container">
+  <%= simple_form_for @test_idp, url: test_idps_url  do |f| %>
+   <div class="inputs-container clearfix">
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <%= f.input :age %>
+      <%= f.input :sex %>
+      <%= f.input :village %>
+    </div>
+    <%= f.button :submit %>
+  <% end %>  
+  </section>
+</main>

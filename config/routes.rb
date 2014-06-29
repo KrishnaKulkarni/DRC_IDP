@@ -10,5 +10,7 @@ IDPApp::Application.routes.draw do
   
   post '/create_record', to: 'static_pages#create_record', as: 'create_record'
   
-  resources :test_idps, only: [:create, :new]
+  resources :test_idps, only: [:create, :new,]
+  get '/find_matches', to: 'test_idps#find_matches', as: 'find_matches'
+  
 end
