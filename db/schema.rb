@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140629233330) do
+ActiveRecord::Schema.define(version: 20140630000546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "collectives", force: true do |t|
+    t.integer  "territory_id"
+    t.string   "code"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "gold_standard_identities", force: true do |t|
     t.integer  "household_id"
@@ -48,6 +56,14 @@ ActiveRecord::Schema.define(version: 20140629233330) do
   add_index "gold_standard_matches", ["gold_standard_identity_id"], name: "index_gold_standard_matches_on_gold_standard_identity_id", using: :btree
   add_index "gold_standard_matches", ["iom_identity_id"], name: "index_gold_standard_matches_on_iom_identity_id", using: :btree
 
+  create_table "groups", force: true do |t|
+    t.integer  "collective_id"
+    t.string   "code"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "households", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -73,6 +89,13 @@ ActiveRecord::Schema.define(version: 20140629233330) do
   add_index "iom_identities", ["household_id"], name: "index_iom_identities_on_household_id", using: :btree
   add_index "iom_identities", ["last_name"], name: "index_iom_identities_on_last_name", using: :btree
 
+  create_table "provinces", force: true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "reconciled_matches", force: true do |t|
     t.integer  "master_dataset_id"
     t.string   "satellite_dataset"
@@ -84,6 +107,14 @@ ActiveRecord::Schema.define(version: 20140629233330) do
   add_index "reconciled_matches", ["master_dataset_id"], name: "index_reconciled_matches_on_master_dataset_id", using: :btree
   add_index "reconciled_matches", ["satellite_dataset"], name: "index_reconciled_matches_on_satellite_dataset", using: :btree
   add_index "reconciled_matches", ["satellite_dataset_id"], name: "index_reconciled_matches_on_satellite_dataset_id", using: :btree
+
+  create_table "territories", force: true do |t|
+    t.integer  "province_id"
+    t.string   "code"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "test_idps", force: true do |t|
     t.string   "first_name"
@@ -109,5 +140,13 @@ ActiveRecord::Schema.define(version: 20140629233330) do
 
   add_index "unreconciled_matches", ["satellite_dataset"], name: "index_unreconciled_matches_on_satellite_dataset", using: :btree
   add_index "unreconciled_matches", ["satellite_dataset_id"], name: "index_unreconciled_matches_on_satellite_dataset_id", using: :btree
+
+  create_table "villages", force: true do |t|
+    t.integer  "group_id"
+    t.string   "code"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
