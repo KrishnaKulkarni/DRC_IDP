@@ -1,0 +1,23 @@
+<%= render "layouts/navbar" %>
+<%= stylesheet_link_tag "find_matches", media: "all", "data-turbolinks-track" => true %>
+
+<main class="find-matches-page">
+  <section class="search-column">
+    <%= simple_form_for @gold_standard_identity, url: test_idps_url  do |f| %>
+      <%= f.button :submit, value: "Search" %>
+     <div class="inputs-container clearfix">
+        <%= f.input :first_name %>
+        <%= f.input :last_name %>
+        <%= f.input :alternate_name %>
+        <%= f.input :sex %>
+        <%= f.input :date_of_birth %>
+        <%= f.input :village %>
+      </div>
+    <% end %>
+    
+  </section>
+
+  <section class="display-info-column"></section>
+
+  <section class="household-and-submit-column"></section>
+</main>
