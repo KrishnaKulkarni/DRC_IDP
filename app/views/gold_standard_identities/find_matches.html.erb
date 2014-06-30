@@ -3,8 +3,8 @@
 
 <main class="find-matches-page">
   <section class="search-column">
-    <%= simple_form_for @gold_standard_identity, url: test_idps_url  do |f| %>
-      <%= f.button :submit, value: "Search" %>
+    <button id="search-for-matches">Search</button>
+    <%= simple_form_for @gold_standard_identity, url: gold_standards_url  do |f| %>
      <div class="inputs-container clearfix">
         <%= f.input :first_name %>
         <%= f.input :last_name %>
@@ -12,6 +12,8 @@
         <%= f.input :sex %>
         <%= f.input :date_of_birth %>
         <%= f.input :village %>
+        
+      <%= f.button :submit, value: "Submit results" %>
       </div>
     <% end %>
     

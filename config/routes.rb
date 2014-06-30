@@ -13,6 +13,7 @@ IDPApp::Application.routes.draw do
   resources :test_idps, only: [:create, :new,]
   # get '/find_matches', to: 'test_idps#find_matches', as: 'find_matches'
   
+  resources :gold_standard_identities, only: [:create]
   get '/find_matches', to: 'gold_standard_identities#find_matches', as: 'find_matches'
   
 
