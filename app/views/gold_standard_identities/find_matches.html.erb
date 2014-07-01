@@ -3,8 +3,9 @@
 
 <main class="find-matches-page">
   <section class="search-column">
+    <section class="search-bar">
     <button id="search-for-matches">Search</button>
-    <%= simple_form_for @gold_standard_identity, url: gold_standards_url  do |f| %>
+    <%= simple_form_for @gold_standard_identity, url: gold_standard_identities_url  do |f| %>
      <div class="inputs-container clearfix">
         <%= f.input :first_name %>
         <%= f.input :last_name %>
@@ -16,10 +17,16 @@
       <%= f.button :submit, value: "Submit results" %>
       </div>
     <% end %>
+    </section>
     
+    <section class="matching-results">
+      <ul></ul>
+    </section>
   </section>
 
-  <section class="display-info-column"></section>
+  <section class="display-info-column">
+    
+  </section>
 
   <section class="household-and-submit-column"></section>
 </main>
