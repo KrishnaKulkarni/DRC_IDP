@@ -1,8 +1,9 @@
 window.IdentityMatches = {
   Models: {},
+  Collections: {},
   
   initialize: function() {
-    alert("Does it work?!");
+    // alert("Does it work?!");
   }
 };
 

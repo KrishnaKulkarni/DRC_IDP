@@ -13,6 +13,18 @@ class GoldStandardIdentitiesController < ApplicationController
     end
   end
   
+  def show
+    @gold_standard_identity = IomIdentity.find(params[:id])
+    render json: @gold_standard_identity
+  end
+  
+  def index
+    @gold_standard_identities = GoldStandardIdentity.all
+    
+    render json: @gold_standard_identities
+  end
+  
+  
   # def create
 #     @gold_standard_identity = GoldStandardIdentity.new(gold_standard_identity_params)
 #

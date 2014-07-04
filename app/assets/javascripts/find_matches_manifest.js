@@ -11,4 +11,3 @@
 // about supported directives.
 //
 //= require find_matches.js
-//= require ./models/iom_identities.js
