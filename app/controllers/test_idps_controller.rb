@@ -18,6 +18,12 @@ class TestIdpsController < ApplicationController
     render :new
   end
   
+  def find_matches
+    @test_idp = TestIdp.new
+    
+    render :find_matches
+  end
+  
   private
   def test_idp_params
     params.require(:test_idp).permit(:first_name, :last_name, :age, :sex)

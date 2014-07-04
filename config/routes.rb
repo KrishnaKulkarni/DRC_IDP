@@ -7,8 +7,13 @@ IDPApp::Application.routes.draw do
   # you're only requesting to read a page, and post when you're actually sending information up to the server.
   post '/read_csv', to: 'static_pages#read_csv', as: 'read_csv'
   get '/enter_record', to: 'static_pages#enter_record', as: 'enter_record'
-  
   post '/create_record', to: 'static_pages#create_record', as: 'create_record'
   
-  resources :test_idps, only: [:create, :new]
+  get '/find_matches', to: 'gold_standard_identities#find_matches', as: 'find_matches'
+  namespace :api, defaults: { format: :json } do
+    resources :iom_identities, only: [:create, :destroy, :update, :show]
+    resources :gold_standard_identities, only: [:create] do
+      resources :iom_identities, only: [:index]
+    end
+  end
 end

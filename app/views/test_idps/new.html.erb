@@ -11,6 +11,7 @@
       <%= f.input :last_name %>
       <%= f.input :age %>
       <%= f.input :sex %>
+      <%= f.input :village %>
     </div>
     <%= f.button :submit %>
   <% end %>  
@@ -28,4 +29,66 @@
       <% end %>
     </section>
   <% end %>
+  
+  
+  <!-- <form action="new_submit" method="get" accept-charset="utf-8">
+
+    <div>
+      <label>First Name</label>
+      <input type="text" name="idp[first_name]"></input>
+    </div>
+
+
+    <p><input type="submit" value="Continue &rarr;"></p>
+  </form>
+
+   -->
+  
+  
 </main>
+
+<style>
+::-webkit-input-placeholder {
+   color: red;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: red;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: red;  
+}
+
+:-ms-input-placeholder {  
+   color: red;  
+}
+</style>
+
+<script>
+$(document).ready(function(){
+	
+  console.log($($(".error")).parent());
+  
+  $(".error").each(function(index, elem){
+    // console.log(index, elem);
+    // console.log("parent: ", );
+    var errorText = $(elem).text();
+    $(elem).parent().children("input").attr("placeholder", errorText);
+    $(elem).text("");
+  });
+  
+  // var errorText = $(".error").text();
+  //   $(".error").text("");
+  //   $("#test_idp_first_name").attr("placeholder", errorText);
+  //
+	// $("#modal").on("click", function(event){
+	// 	if(event.target.id == this.id){
+	// 		event.preventDefault();
+	// 		$("#modal").removeClass("is-active");
+	// 	};
+	// });
+	
+});
+  
+</script>
