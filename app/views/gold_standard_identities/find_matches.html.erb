@@ -5,7 +5,7 @@
   <section class="search-column">
     <section class="search-bar">
     <button id="search-for-matches">Search</button>
-    <%= simple_form_for @gold_standard_identity, url: gold_standard_identities_url  do |f| %>
+    <%= simple_form_for @gold_standard_identity, url: api_gold_standard_identities_url  do |f| %>
      <div class="inputs-container clearfix">
         <%= f.input :first_name %>
         <%= f.input :last_name %>
@@ -30,3 +30,5 @@
 
   <section class="household-and-submit-column"></section>
 </main>
+
+<%= javascript_include_tag "find_matches_manifest", "data-turbolinks-track" => true %>
