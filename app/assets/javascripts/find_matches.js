@@ -10,7 +10,7 @@ window.IdentityMatches = {
 
     IdentityMatches.Collections.iomIdentities.fetch({
       success: function() {
-        $("body").append(view.render().$el)
+        $("#found-matches").html(view.render().$el)
       }
     });
   }
