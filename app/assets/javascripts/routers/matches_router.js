@@ -7,6 +7,8 @@ IdentityMatches.Routers.MatchesRouter = Backbone.Router.extend({
   
   searchMatchesForm: function() {
     console.log("Put the form in!");
+    var searchView = new IdentityMatches.Views.IomIdentitiesSearch({});
+    $(".search-bar").html(searchView.render().$el);
   },
   
   // Should I be separating fetching from rendering, as they do in the demo?

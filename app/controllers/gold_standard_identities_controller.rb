@@ -4,6 +4,11 @@ class GoldStandardIdentitiesController < ApplicationController
     render :find_matches
   end
   
+  def search_form
+    @gold_standard_identity = GoldStandardIdentity.new
+    render :search_form, :layout => false
+  end
+  
   def create
     @gold_standard_identity = GoldStandardIdentity.new(gold_standard_identity_params)
 
