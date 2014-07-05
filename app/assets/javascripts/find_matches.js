@@ -1,10 +1,20 @@
 window.IdentityMatches = {
   Models: {},
   Collections: {},
+  Views: {},
   
-  initialize: function() {
-    // alert("Does it work?!");
+  initialize: function() {    
+    var view = new IdentityMatches.Views.IomIdentitiesIndex({
+      collection: IdentityMatches.Collections.iomIdentities
+    });
+
+    IdentityMatches.Collections.iomIdentities.fetch({
+      success: function() {
+        $("body").append(view.render().$el)
+      }
+    });
   }
+  
 };
 
-$(Identity_Matches.initialize());
+$(IdentityMatches.initialize);

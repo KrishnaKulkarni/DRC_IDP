@@ -15,4 +15,3 @@
 //= require turbolinks
 //= require underscore
 //= require backbone
-//= require find_matches_manifest
