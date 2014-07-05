@@ -13,8 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
 //= require underscore
 //= require backbone
-//= require_tree ./models
-//= require_tree ./collections
+//= require find_matches_manifest
