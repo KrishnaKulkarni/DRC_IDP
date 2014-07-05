@@ -1,6 +1,8 @@
 <ul class="matches-list">
-  <% iom_identities.each(function(iom_identity){ %>
-    <li><%= iom_identity.get("first_name") %> : <%= iom_identity.get("sex") %></li>
+  <% iom_identities.each(function(iomIdentity){ %>
+    <a href="#/iom_identities/<%= iomIdentity.id %>">
+      <li><%= iomIdentity.get("first_name") %> : <%= iomIdentity.get("sex") %></li>
+    </a>
   <% }); %>
 </ul>
 

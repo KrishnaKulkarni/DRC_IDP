@@ -4,7 +4,9 @@
 <main class="find-matches-page">
   <section class="search-column">
     <section class="search-bar">
-    <button id="search-for-matches">Search</button>
+    <a href="#/iom_identities">
+      <button id="search-for-matches">Search</button>
+    </a>
     <%= simple_form_for @gold_standard_identity, url: api_gold_standard_identities_url  do |f| %>
      <div class="inputs-container clearfix">
         <%= f.input :first_name %>
@@ -25,7 +27,7 @@
   </section>
 
   <section class="display-info-column">
-    
+    <section id="featured-identity"></section>
   </section>
 
   <section class="household-and-submit-column"></section>
