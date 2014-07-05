@@ -5,6 +5,14 @@ IdentityMatches.Views.IomIdentitiesIndex = Backbone.View.extend({
     "click button.refresh" : "refresh"
   },
   
+  initialize: function(options) {
+    
+  },
+  
+  searchMatches: function() {
+   console.log("Clicked Search button!");
+  },
+  
   refresh: function() {
     this.collection.fetch({
       success: this.render.bind(this)
