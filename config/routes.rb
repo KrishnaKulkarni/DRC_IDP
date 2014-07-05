@@ -15,5 +15,7 @@ IDPApp::Application.routes.draw do
     resources :gold_standard_identities, only: [:create] do
       resources :iom_identities, only: [:index]
     end
+    
+    get '/iom_identities', to: 'iom_identities#temp_index', as: 'iom_identities_temp'
   end
 end

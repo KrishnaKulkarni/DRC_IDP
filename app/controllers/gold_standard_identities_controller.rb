@@ -5,38 +5,17 @@ class GoldStandardIdentitiesController < ApplicationController
   end
   
   def create
-    @gold_standard_identity = IomIdentity.new
+    @gold_standard_identity = GoldStandardIdentity.new(gold_standard_identity_params)
+
     if @gold_standard_identity.save
-      render json: @gold_standard_identity
+      flash.now[:new_record_status] = "New gold_standard_identity Saved Successfully!"
+      @gold_standard_identity = GoldStandardIdentity.new
     else
-      render json: @gold_standard_identity.errors
+      flash.now[:new_record_status] = "There was an error with your entry."
     end
+
+    render :find_matches
   end
-  
-  def show
-    @gold_standard_identity = IomIdentity.find(params[:id])
-    render json: @gold_standard_identity
-  end
-  
-  def index
-    @gold_standard_identities = GoldStandardIdentity.all
-    
-    render json: @gold_standard_identities
-  end
-  
-  
-  # def create
-#     @gold_standard_identity = GoldStandardIdentity.new(gold_standard_identity_params)
-#
-#     if @gold_standard_identity.save
-#       flash.now[:new_record_status] = "New gold_standard_identity Saved Successfully!"
-#       @gold_standard_identity = GoldStandardIdentity.new
-#     else
-#       flash.now[:new_record_status] = "There was an error with your entry."
-#     end
-#
-#     render :find_matches
-#   end
 
   private
   def gold_standard_identity_params
