@@ -1,4 +1,5 @@
 class GoldStandardIdentity < ActiveRecord::Base
+  
   belongs_to :household, inverse_of: :gold_standard_identities
   has_many :gold_standard_matches, inverse_of: :gold_standard_identity
   belongs_to :village, inverse_of: :gold_standard_identities
@@ -6,6 +7,10 @@ class GoldStandardIdentity < ActiveRecord::Base
   has_one :collective, through: :group, source: :collective
   has_one :territory, through: :collective, source: :territory
   has_one :province, through: :territory, source: :province
+  
+  # Toggle true/false to turn off/on the validation
+  validates :first_name, :last_name, :sex, presence: true, if: "true"
+  validates_format_of :first_name, :last_name, :alternate_name, with: /[a-z]/, message: "lettres uniquement"
   
   attr_accessor :alternate_village_status
   

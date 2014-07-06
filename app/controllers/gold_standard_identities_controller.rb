@@ -19,9 +19,11 @@ class GoldStandardIdentitiesController < ApplicationController
 
     if @gold_standard_identity.save
       flash.now[:new_record_status] = "Your registration of #{@gold_standard_identity.first_name} #{@gold_standard_identity.last_name} was successful."
+      flash.now[:status_color] = "success-green"
       @gold_standard_identity = GoldStandardIdentity.new
     else
       flash.now[:new_record_status] = "There was an error with your entry."
+      flash.now[:status_color] = "failure-red"
     end
 
     render :new

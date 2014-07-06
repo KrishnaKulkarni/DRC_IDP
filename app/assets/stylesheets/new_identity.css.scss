@@ -9,6 +9,7 @@ main.new-gold-standard {
     text-align: center;
     font-size: 26px;
     margin-bottom: 10px;
+    font-weight: normal;
   }
   
   section.status-message {
@@ -23,6 +24,14 @@ main.new-gold-standard {
       font-size: 18px;
       font-weight: 100;
     }
+  }
+  
+  section.success-green {
+    background: #77CF61;
+  }
+  
+  section.failure-red {
+    background: red;
   }
   
   form {
@@ -47,6 +56,10 @@ main.new-gold-standard {
          
          input {
            margin: 0;
+         }
+         
+         input[type="checkbox"] {
+           margin-right: 5px;
          }
          
          select {
