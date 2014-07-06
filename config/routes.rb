@@ -11,7 +11,7 @@ IDPApp::Application.routes.draw do
   
   get '/find_matches', to: 'gold_standard_identities#find_matches', as: 'find_matches'
   get '/search_form', to: 'gold_standard_identities#search_form', as: 'search_form'
-  resources :gold_standard_identities, only: [:new, :create, :index]
+  resources :gold_standard_identities, only: [:new, :create, :index, :show]
 
   namespace :api, defaults: { format: :json } do
     resources :iom_identities, only: [:create, :destroy, :update, :show]

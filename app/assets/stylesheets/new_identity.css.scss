@@ -111,4 +111,28 @@ main.new-gold-standard {
     }
     
   }
+  
+  a.back-to-registration {
+    text-decoration: none;
+    display: block;
+    width: 300px;
+    margin: auto;
+  }
+  
+  section.back-to-registration {
+    margin-top: 50px;
+    background: #ccc;
+    text-align: center;
+    padding: 15px;
+  }
+  
+  a.back-to-registration:hover {
+    color: #fff;
+    font-weight: 100;
+    text-decoration: underline;
+  }
+
+  section.back-to-registration:hover {
+    background: #666;
+  }  
 }

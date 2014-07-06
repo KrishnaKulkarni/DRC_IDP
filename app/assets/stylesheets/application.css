@@ -22,6 +22,7 @@ body, main, section, h1, h2, h3, ul, li {
 
 body {
   background: #eee;
+  min-width: 970px;
 }
   
 
