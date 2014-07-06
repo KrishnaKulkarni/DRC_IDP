@@ -7,7 +7,9 @@
     </div>
     <div class="row clearfix" id="row2">
       <%= f.input :sex, collection: ["Male", "Female"] %>
-      <%= f.input :date_of_birth %>
+      <%= f.input :date_of_birth,  as: :date, start_year: Date.today.year - 90,
+                              end_year: Date.today.year, discard_day: false,
+                              order: [:year, :month, :day] %>
     </div>
     <div class="row clearfix" id="row3">
       <%= f.input :province_id, collection: Province.all, label_method: :name, value_method: :id, label: "Province" ,:include_blank => true %>
@@ -18,7 +20,7 @@
     </div>
     <div class="row clearfix" id="row4">
       <%= f.input :alternate_village_status, label: "The village is not listed", as: :boolean  %>
-      <%= f.input :alternate_village %>
+      <%= f.input :alternate_village, disabled: true, wrapper_html: { class: 'blurred' } %>
     </div>
     <%#= f.collection_select :village_id, Village.all, :id, :name, include_blank: true %>
     

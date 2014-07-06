@@ -47,3 +47,7 @@ a.navlink:hover {
   text-decoration: underline;
   background: #ccc;
 }
+
+.blurred {
+  -webkit-filter: blur(0.8px);
+}
