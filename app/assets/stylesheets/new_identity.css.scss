@@ -2,36 +2,63 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-main.new-identity-page {
-  border: 1px solid #999;
-  padding: 15px;  
- 
-  section.form-container {
-    border: 1px solid #999;
-    background: #ccc;
-    width: 280px;
-    min-height: 250px;
+main.new-gold-standard {
+  padding: 20px 50px 20px 50px;
+  
+  h1 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+  
+  form {
     
     div.inputs-container {
+      border: 2px solid #777;
+      padding: 10px;
+      min-width: 600px;
       
-      div.input {
-       float: left; 
-       margin-left: 5px;
-              
-       label {
-        display: block; 
-       }
-       
-       input {
-         margin: 0;
-       }
+      div.row {
       
-      }
-    }
+        margin-bottom: 15px;
+      
+        div.input {          
+         float: left; 
+         margin-right: 20px;
+        
+        
+         label {
+           display: block;
+         }
+         
+         input {
+           margin: 0;
+         }
+         
+         select {
+           margin-left: 0;
+         }
 
+        
+        }
+        
+        div.gold_standard_identity_alternate_village {
+          label {
+           display: inline;
+           margin-right: 5px;
+          }
+      
+        }
+        
+      }
+    
+    
+      input.btn {
+        float: right;
+        font-size: 18px;
+      }
+    
+    }
+    
   }
- 
- 
- 
-  
 }

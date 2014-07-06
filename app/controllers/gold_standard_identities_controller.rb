@@ -6,7 +6,12 @@ class GoldStandardIdentitiesController < ApplicationController
   
   def search_form
     @gold_standard_identity = GoldStandardIdentity.new
-    render :search_form, :layout => false
+    render "_search_form", :layout => false
+  end
+  
+  def new
+    @gold_standard_identity = GoldStandardIdentity.new
+    render :new
   end
   
   def create
