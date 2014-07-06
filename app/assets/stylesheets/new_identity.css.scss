@@ -39,8 +39,8 @@ main.new-gold-standard {
     div.inputs-container {
       border: 2px solid #777;
       padding: 10px;
-      min-width: 600px;
-      
+      width: 860px;
+      margin: auto;
       div.row {
       
         margin-bottom: 15px;
@@ -69,14 +69,37 @@ main.new-gold-standard {
         
         }
         
-        div.gold_standard_identity_alternate_village {
+        div.gold_standard_identity_alternate_village,
+        div.gold_standard_identity_village_of_origin {
           label {
            display: inline;
            margin-right: 5px;
           }
-      
         }
         
+        div.gold_standard_identity_alternate_village {
+          margin-right: 120px;
+        }
+      }
+      
+      section.more-identity-information {
+        border-top: 1px solid #777;
+        padding-top: 10px;
+        
+        section.household-info {
+         float: left; 
+         width: 50%;
+         border-right: 1px solid #777;
+        
+         div.gold_standard_identity_head_of_household_last_name {
+          margin-top: 18px; 
+         }
+        
+        }
+        section.arrival-info {
+          float: left;
+          padding-left: 15px;
+        }
       }
     
     
@@ -88,4 +111,28 @@ main.new-gold-standard {
     }
     
   }
+  
+  a.back-to-registration {
+    text-decoration: none;
+    display: block;
+    width: 300px;
+    margin: auto;
+  }
+  
+  section.back-to-registration {
+    margin-top: 50px;
+    background: #ccc;
+    text-align: center;
+    padding: 15px;
+  }
+  
+  a.back-to-registration:hover {
+    color: #fff;
+    font-weight: 100;
+    text-decoration: underline;
+  }
+
+  section.back-to-registration:hover {
+    background: #666;
+  }  
 }
