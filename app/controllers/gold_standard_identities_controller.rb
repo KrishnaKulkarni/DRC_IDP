@@ -21,12 +21,23 @@ class GoldStandardIdentitiesController < ApplicationController
       flash.now[:new_record_status] = "Your registration of #{@gold_standard_identity.first_name} #{@gold_standard_identity.last_name} was successful."
       flash.now[:status_color] = "success-green"
       @gold_standard_identity = GoldStandardIdentity.new
+      
+      # These lines update today's csv
+      @gold_standard_identities = GoldStandardIdentity.all
+      File.open("exports/registered_identities_#{Date.today}.csv", 'w') { |file| file.write(@gold_standard_identities.as_csv) }
     else
       flash.now[:new_record_status] = "There was an error with your entry."
       flash.now[:status_color] = "failure-red"
     end
 
     render :new
+  end
+  
+  def index
+    @gold_standard_identities = GoldStandardIdentity.all
+    File.open("exports/registered_identities#{Date.today}.csv", 'w') { |file| file.write(@gold_standard_identities.as_csv) }
+    # redirect_to new_gold_standard_identity_url
+    send_data @gold_standard_identities.as_csv
   end
 
   private
