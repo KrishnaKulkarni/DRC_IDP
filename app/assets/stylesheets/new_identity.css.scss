@@ -69,13 +69,19 @@ main.new-gold-standard {
         
         }
         
-        div.gold_standard_identity_alternate_village {
+        div.gold_standard_identity_alternate_village,
+        div.gold_standard_identity_village_of_origin {
           label {
            display: inline;
            margin-right: 5px;
           }
-      
         }
+        
+        div.gold_standard_identity_alternate_village {
+          margin-right: 120px;
+        }
+        
+        
         
       }
     

@@ -21,8 +21,9 @@
     <div class="row clearfix" id="row4">
       <%= f.input :alternate_village_status, label: "The village is not listed", as: :boolean  %>
       <%= f.input :alternate_village, disabled: true, wrapper_html: { class: 'blurred' } %>
+      
+      <%= f.input :village_of_origin %>
     </div>
-    <%#= f.collection_select :village_id, Village.all, :id, :name, include_blank: true %>
     
     
     <%= f.button :submit, value: "REGISTER" %>
