@@ -11,6 +11,20 @@ main.new-gold-standard {
     margin-bottom: 10px;
   }
   
+  section.status-message {
+    display: block;
+    width: 400px;
+    margin: 10px auto;
+    background: #ccc;
+    padding: 10px;
+    
+    h2 {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 100;
+    }
+  }
+  
   form {
     
     div.inputs-container {

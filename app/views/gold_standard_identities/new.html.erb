@@ -1,4 +1,10 @@
 <main class="new-gold-standard">
   <h1>Register a New Identity</h1>
+  <% if flash[:new_record_status] %>
+    <section class="status-message">
+      <h2><%= flash[:new_record_status] %></h2>
+    </section>
+  <% end %>
+  
   <%= render 'search_form' %>  
 </main>

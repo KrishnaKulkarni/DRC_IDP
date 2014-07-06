@@ -18,13 +18,13 @@ class GoldStandardIdentitiesController < ApplicationController
     @gold_standard_identity = GoldStandardIdentity.new(gold_standard_identity_params)
 
     if @gold_standard_identity.save
-      flash.now[:new_record_status] = "New gold_standard_identity Saved Successfully!"
+      flash.now[:new_record_status] = "Your registration of #{@gold_standard_identity.first_name} #{@gold_standard_identity.last_name} was successful."
       @gold_standard_identity = GoldStandardIdentity.new
     else
       flash.now[:new_record_status] = "There was an error with your entry."
     end
 
-    render :find_matches
+    render :new
   end
 
   private
