@@ -21,10 +21,13 @@ class Api::IomIdentitiesController < ApplicationController
   end
   
   def index
-    @iom_identities = GoldStandardIdentity
-    .find(params[:gold_standard_identity_id])
-    .iom_identity_matches
+    @iom_identities = GoldStandardIdentity.find(params[:gold_standard_identity_id]).iom_identity_matches
     
+    render json: @iom_identities
+  end
+  
+  def temp_index
+    @iom_identities = IomIdentity.all
     render json: @iom_identities
   end
   

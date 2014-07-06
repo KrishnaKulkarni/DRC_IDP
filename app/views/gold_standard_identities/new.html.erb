@@ -1,0 +1,13 @@
+<main class="new-gold-standard">
+  <h1>Register a New Identity</h1>
+  <% if flash[:new_record_status] %>
+    <section class="status-message <%= flash[:status_color] %>">
+      <h2><%= flash[:new_record_status] %></h2>
+    </section>
+  <% end %>
+  
+  <%= render 'search_form' %>  
+</main>
+
+
+<%= javascript_include_tag "page_specific/gold_standard_new", "data-turbolinks-track" => true %>

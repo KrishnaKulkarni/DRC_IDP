@@ -1,0 +1,10 @@
+<ul class="matches-list">
+  <% iom_identities.each(function(iomIdentity){ %>
+    <a href="#/iom_identities/<%= iomIdentity.id %>">
+      <li><%= iomIdentity.get("first_name") %> : <%= iomIdentity.get("sex") %></li>
+    </a>
+  <% }); %>
+</ul>
+
+
+<button class="refresh">Refresh</button>

@@ -10,5 +10,9 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require find_matches.js
-//= require ./models/iom_identities.js
+//= require identity_matches.js
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ../templates
+//= require_tree ./views
+//= require_tree ./routers

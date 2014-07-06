@@ -1,0 +1,30 @@
+<%= simple_form_for @gold_standard_identity, url: gold_standard_identities_url  do |f| %>
+  <div class="inputs-container clearfix">
+    <div class="row clearfix" id="row1">
+      <%= f.input :first_name, label: "Prenom" %>
+      <%= f.input :last_name %>
+      <%= f.input :alternate_name %>
+    </div>
+    <div class="row clearfix" id="row2">
+      <%= f.input :sex, collection: ["Male", "Female"] %>
+      <%= f.input :date_of_birth,  as: :date, start_year: Date.today.year - 90,
+                              end_year: Date.today.year, discard_day: false,
+                              order: [:year, :month, :day] %>
+    </div>
+    <div class="row clearfix" id="row3">
+      <%= f.input :province_id, collection: Province.all, label_method: :name, value_method: :id, label: "Province" ,:include_blank => true %>
+      <%= f.input :territory_id, collection: Territory.all, label_method: :name, value_method: :id, label: "Territoire" ,:include_blank => true %>
+      <%= f.input :collective_id, collection: Collective.all, label_method: :name, value_method: :id, label: "Collectivite" ,:include_blank => true %>  
+      <%= f.input :territory_id, collection: Group.all, label_method: :name, value_method: :id, label: "Groupement" ,:include_blank => true %>
+      <%= f.input :village_id, collection: Village.all, label_method: :name, value_method: :id, label: "Village" ,:include_blank => true %>      
+    </div>
+    <div class="row clearfix" id="row4">
+      <%= f.input :alternate_village_status, label: "The village is not listed", as: :boolean  %>
+      <%= f.input :alternate_village, disabled: true, wrapper_html: { class: 'blurred' } %>
+    </div>
+    <%#= f.collection_select :village_id, Village.all, :id, :name, include_blank: true %>
+    
+    
+    <%= f.button :submit, value: "REGISTER" %>
+  </div>
+<% end %>

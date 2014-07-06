@@ -49,9 +49,11 @@ end
 group :development do
   gem 'binding_of_caller'
   gem 'better_errors'
+  gem 'pry-rails'
 end
 
 
 # Makes creating forms way simpler 
 # https://github.com/plataformatec/simple_form
 gem 'simple_form'
+gem 'ejs'

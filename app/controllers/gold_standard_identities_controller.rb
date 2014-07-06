@@ -4,27 +4,30 @@ class GoldStandardIdentitiesController < ApplicationController
     render :find_matches
   end
   
-  def create
-    @gold_standard_identity = IomIdentity.new
-    if @gold_standard_identity.save
-      render json: @gold_standard_identity
-    else
-      render json: @gold_standard_identity.errors
-    end
+  def search_form
+    @gold_standard_identity = GoldStandardIdentity.new
+    render "_search_form", :layout => false
   end
   
-  # def create
-#     @gold_standard_identity = GoldStandardIdentity.new(gold_standard_identity_params)
-#
-#     if @gold_standard_identity.save
-#       flash.now[:new_record_status] = "New gold_standard_identity Saved Successfully!"
-#       @gold_standard_identity = GoldStandardIdentity.new
-#     else
-#       flash.now[:new_record_status] = "There was an error with your entry."
-#     end
-#
-#     render :find_matches
-#   end
+  def new
+    @gold_standard_identity = GoldStandardIdentity.new
+    render :new
+  end
+  
+  def create
+    @gold_standard_identity = GoldStandardIdentity.new(gold_standard_identity_params)
+
+    if @gold_standard_identity.save
+      flash.now[:new_record_status] = "Your registration of #{@gold_standard_identity.first_name} #{@gold_standard_identity.last_name} was successful."
+      flash.now[:status_color] = "success-green"
+      @gold_standard_identity = GoldStandardIdentity.new
+    else
+      flash.now[:new_record_status] = "There was an error with your entry."
+      flash.now[:status_color] = "failure-red"
+    end
+
+    render :new
+  end
 
   private
   def gold_standard_identity_params
