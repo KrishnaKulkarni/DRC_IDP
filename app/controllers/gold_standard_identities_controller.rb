@@ -34,6 +34,8 @@ class GoldStandardIdentitiesController < ApplicationController
     params.require(:gold_standard_identity).permit(
     :first_name, :last_name, :alternate_name, :sex, :date_of_birth, 
     :village_id, :group_id, :collective_id, :territory_id, :province_id,
-    :recorded_in_village_id, :recorded_by, :alternate_village, :village_of_origin)
+    :recorded_in_village_id, :recorded_by, :alternate_village, :village_of_origin,
+    :head_of_household_first_name, :head_of_household_last_name, :relation_to_head_of_household,
+    :household_size, :arrival_date, :arrival_from_village)
   end
 end

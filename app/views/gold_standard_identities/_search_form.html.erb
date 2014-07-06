@@ -2,7 +2,7 @@
   <div class="inputs-container clearfix">
     <div class="row clearfix" id="row1">
       <%= f.input :first_name, label: "Prenom" %>
-      <%= f.input :last_name %>
+      <%= f.input :last_name, label: "Nom du Famille" %>
       <%= f.input :alternate_name %>
     </div>
     <div class="row clearfix" id="row2">
@@ -25,6 +25,29 @@
       <%= f.input :village_of_origin %>
     </div>
     
+    <section class="more-identity-information clearfix">
+      <section class="household-info">
+        <div class="row clearfix">
+          <%= f.input :head_of_household_first_name, label: "Chef Menage", input_html: { placeholder: "Prenom" } %>
+          <%= f.input :head_of_household_last_name, label: false, input_html: { placeholder: "Nom du Famille" } %>
+        </div>
+        <div class="row clearfix">
+          <%= f.input :relation_to_head_of_household, label: "Relation Chef Menage", collection: [ "Mother", "Father", "Brother", "Sister", "Grandmother", "Grandfather", "Aunt", "Uncle", "Cousin" ] %>
+        </div>
+        <div class="row clearfix">
+          <%= f.input :household_size, label: "Taille Menage", input_html: { max: 20, min: 1 }  %>
+        </div>
+      </section>
+      <section class="arrival-info">
+        <div class="row clearfix">
+          <%= f.input :arrival_date %>
+        </div>
+        <div class="row clearfix">
+          <%= f.input :arrival_from_village %>
+        </div>
+      </section>
+    </section>
+
     
     <%= f.button :submit, value: "REGISTER" %>
   </div>
