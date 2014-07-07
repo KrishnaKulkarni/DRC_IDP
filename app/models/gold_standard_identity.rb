@@ -1,6 +1,6 @@
 class GoldStandardIdentity < ActiveRecord::Base
   require 'csv'
-  
+  require 'fileutils'
   belongs_to :household, inverse_of: :gold_standard_identities
   has_many :gold_standard_matches, inverse_of: :gold_standard_identity
   belongs_to :village, inverse_of: :gold_standard_identities
@@ -36,6 +36,8 @@ class GoldStandardIdentity < ActiveRecord::Base
       succeeded = GoldStandardIdentity.import!(file)
       failed_csvs << csv_file unless succeeded
       file.close
+      
+      FileUtils.mv("imports/#{csv_filename}", "imported/#{csv_filename}") if succeeded
     end
     
     failed_csvs
