@@ -1,0 +1,35 @@
+<main class="sign-in">
+	<% if flash[:status] %>
+    <section class="status-message %>">
+      <h2><%= flash[:status] %></h2>
+    </section>
+  <% end %>
+  <form class="sign-in-form" action="<%= session_url %>" method="post">
+	  <h1>Sign In</h1>
+	  <%= authenticity_token %>
+
+		<div class="input">
+		 <label for="username">Nom</label>
+		 <select id="username" name="username">
+		   <option value=" ">S'il vous plaît choisir</option>
+       <% @users.each do |user| %>
+        <option value="<%= user.id %>"><%= user.username %></option>
+       <% end %>
+		 </select>
+		</div>
+	
+		<div class="input">
+		  <label for="computer">Nombre d'ordinateurs</label>
+    	 <select id="computer_number" name="computer_number">
+	       <option value=" ">S'il vous plaît choisir</option>
+         <% 6.times do |i| %>
+           <option value="<%= i + 1 %>">Ordinateur #<%= i + 1 %></option>
+         <% end %>
+    	 </select>
+	   	</div>
+
+		<div class="submit">	
+			  <input type="submit" value="Se connecter">
+		</div>	
+	</form>
+</main>

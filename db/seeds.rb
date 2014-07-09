@@ -22,6 +22,7 @@
 
 require 'csv'
 
+# -- LOCATIONS --
 LOCATIONS = {
  'Village'      => 'Village',
  'Groupement'   => 'Group',
@@ -64,3 +65,9 @@ LOCATIONS.each do |(french_loc, english_loc)|
 end
 
 File.open('db/location_seeding_errors.txt', 'w') { |file| file.write(failure_text) }
+
+# -- LOCATIONS END --
+
+# -- USERS ---
+User.create!(username: "Andrew Bergman")
+User.create!(username: "Toly Rinberg")

@@ -1,0 +1,52 @@
+main.sign-in {
+  
+  
+  section.status-message {
+    display: block;
+    width: 400px;
+    margin: 25px auto;
+    background: #ccc;
+    padding: 10px;
+    
+    h2 {
+      text-align: center;
+      font-size: 20px;
+      font-weight: normal;
+    }
+  }
+  
+  form.sign-in-form {
+    width: 300px;
+    height: 250px;
+    margin: auto;
+    margin-top: 25px;
+    border: 3px solid #777;
+    position: relative;
+    
+    h1 {
+     margin-top: 10px;
+     margin-bottom: 20px;
+     text-align: center; 
+    }
+    
+    div.input {
+      width: 200px;
+      margin: 15px auto;
+    }
+    
+    label {
+     display: block; 
+     margin-bottom: 5px;
+    }
+    
+    div.submit {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+    }
+
+
+  }
+  
+  
+}

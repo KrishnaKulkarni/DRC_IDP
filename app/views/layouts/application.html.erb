@@ -9,7 +9,12 @@
 <body>
 
 <%= render 'layouts/navbar' %>
-
+<% if session[:signed_in] %>
+<section class="current-status">
+  <p>Current User: <%= session[:username] %></p>
+  <p>Ordinateur Nombre: <%= session[:computer_number] %></p>
+</section>
+<% end %>
 <%= yield %>
 
 </body>

@@ -1,6 +1,6 @@
 IDPApp::Application.routes.draw do
   #Root is for your home page; 'root' is not actually an HTTP action
-  root to: "static_pages#process_data"
+  root to: "sessions#new"
   
   #Post and get are HTTP actions. In some sense, 'post' and 'get' are arbitrary
   #names for syntactically identical parameters. By convention, use 'get' when
@@ -12,8 +12,10 @@ IDPApp::Application.routes.draw do
   get '/find_matches', to: 'gold_standard_identities#find_matches', as: 'find_matches'
   get '/search_form', to: 'gold_standard_identities#search_form', as: 'search_form'
   resources :gold_standard_identities, only: [:new, :create, :index, :show]
+  
   resource  :session, only: [:new, :create, :destroy]
-
+  get '/sign_out', to: 'sessions#destroy', as: 'sign_out'
+  
   namespace :api, defaults: { format: :json } do
     resources :iom_identities, only: [:create, :destroy, :update, :show]
     resources :gold_standard_identities, only: [:create] do

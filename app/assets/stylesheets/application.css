@@ -71,3 +71,9 @@ a.navlink:hover {
   -webkit-font-smoothing: antialiased;
   line-height: 1.5em;
 }
+
+section.current-status {
+  position: absolute;
+  top: 35px;
+  left: 10px;
+}

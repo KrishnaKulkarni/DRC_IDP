@@ -1,4 +1,6 @@
 class GoldStandardIdentitiesController < ApplicationController
+  before_filter :ensure_signed_in!
+  
   def find_matches
     @gold_standard_identity = GoldStandardIdentity.new
     render :find_matches
@@ -16,14 +18,15 @@ class GoldStandardIdentitiesController < ApplicationController
   
   def create
     @gold_standard_identity = GoldStandardIdentity.new(gold_standard_identity_params)
-
+    @gold_standard_identity.recorded_by = session[:username]
+  
     if @gold_standard_identity.save
       flash[:status] = "Your registration of #{@gold_standard_identity.first_name} #{@gold_standard_identity.last_name} was successful."
       flash[:status_color] = "success-green"
       
       # These lines update today's csv
       @gold_standard_identities = GoldStandardIdentity.where("created_at > ?", Date.today)
-      File.open("exports/registered_identities_#{Date.today}.csv", 'w') { |file| file.write(@gold_standard_identities.as_csv) }
+      File.open("exports/registered_identities_C#{session[:computer_number]}_#{Date.today}.csv", 'w') { |file| file.write(@gold_standard_identities.as_csv) }
       redirect_to gold_standard_identity_url(@gold_standard_identity)
     else
       flash.now[:status] = "There was an error with your entry."
