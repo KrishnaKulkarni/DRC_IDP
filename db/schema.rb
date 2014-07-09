@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140706202316) do
+ActiveRecord::Schema.define(version: 20140709042126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -156,6 +156,16 @@ ActiveRecord::Schema.define(version: 20140706202316) do
 
   add_index "unreconciled_matches", ["satellite_dataset"], name: "index_unreconciled_matches_on_satellite_dataset", using: :btree
   add_index "unreconciled_matches", ["satellite_dataset_id"], name: "index_unreconciled_matches_on_satellite_dataset_id", using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "username"
+    t.string   "computer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["computer"], name: "index_users_on_computer", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "villages", force: true do |t|
     t.integer  "group_id"
