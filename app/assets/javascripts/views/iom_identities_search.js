@@ -1,24 +1,32 @@
 IdentityMatches.Views.IomIdentitiesSearch = Backbone.View.extend({
   template: JST["iom_identities/search"],
-  
+  tagName: "div",
+
   events: {
-    "click button#search-for-matches" : "searchMatches"
+    "submit form" : "searchMatches"
   },
-  
+
   initialize: function(options) {
-    
+
   },
-  
-  searchMatches: function() {
+
+  searchMatches: function(event) {
+   event.preventDefault();
    console.log("Clicked Search button!");
+    var params = $(event.currentTarget).serializeJSON();
+    console.log(params);
   },
-  
+
   render: function() {
+    console.log("Search#render called");
+    var renderedContent = this.template({});
+    this.$el.html(renderedContent);
     var that = this;
-    
-    $.get( "search_form", function( data ) {
-      that.$el.html(data);
+
+    $.get( "search_fields", function( data ) {
+      that.$el.children('form').append(data);
     });
+
     return this;
   }
 });

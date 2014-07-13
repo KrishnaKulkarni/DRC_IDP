@@ -6,20 +6,20 @@
     <a href="#/iom_identities">
       <button id="search-for-matches">Search</button>
     </a>
-    <%= simple_form_for @gold_standard_identity, url: api_gold_standard_identities_url  do |f| %>
-     <div class="inputs-container clearfix">
-        <%= f.input :first_name %>
-        <%= f.input :last_name %>
-        <%= f.input :alternate_name %>
-        <%= f.input :sex %>
-        <%= f.input :date_of_birth %>
-        <%= f.input :village %>
-        
-      <%= f.button :submit, value: "Submit results" %>
-      </div>
-    <% end %>
+    <%#= simple_form_for @gold_standard_identity, url: api_gold_standard_identities_url  do |f| %>
+     <!-- <div class="inputs-container clearfix"> -->
+        <%#= f.input :first_name %>
+        <%#= f.input :last_name %>
+        <%#= f.input :alternate_name %>
+        <%#= f.input :sex %>
+        <%#= f.input :date_of_birth %>
+        <%#= f.input :village %>
+
+      <%#= f.button :submit, value: "Submit results" %>
+      <!-- </div> -->
+    <%# end %>
     </section>
-    
+
     <section class="matching-results" id="found-matches">
       <ul></ul>
     </section>

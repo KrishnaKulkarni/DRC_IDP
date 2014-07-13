@@ -1,32 +1,36 @@
 main.find-matches-page {
   width: 900px;
   height: 500px;
-  border: 3px solid #777; 
-  
+  border: 3px solid #777;
+  margin: 80px auto;
+
   section.search-column,
   section.display-info-column,
   section.household-and-submit {
     height: 100%;
-    border: 1px solid #777; 
     float: left;
   }
-  
+
+  section.search-column,
+  section.display-info-column {
+    border-right: 1px solid #777;
+  }
+
   section.search-column {
     width: 328px;
-    
+
     section.search-bar,
     section.matching-results {
-     border: 1px solid green;
-     height: 50%; 
-    }  
+     height: 50%;
+    }
   }
-  
+
   section.display-info-column {
     width: 328px;
   }
-  
+
   section.household-and-submit-column {
     width: 238px;
   }
-  
+
 }
