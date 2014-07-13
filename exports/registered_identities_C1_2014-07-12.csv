@@ -1,0 +1,4 @@
+id,household_id,first_name,last_name,alternate_name,sex,date_of_birth,village_id,group_id,collective_id,territory_id,province_id,created_at,updated_at,recorded_in_village_id,recorded_by,alternate_village,village_of_origin,head_of_household_first_name,head_of_household_last_name,relation_to_head_of_household,household_size,arrival_date,arrival_from_village
+1,,Andrew,Bergman,"",Male,1988-12-05,,,,,,2014-07-12 08:40:04 UTC,2014-07-12 08:40:04 UTC,,Andrew Bergman,"","","","","",,2014-07-12,""
+2,,Andrew,Bergman,Michael,Male,1988-12-05,,,8,53,1,2014-07-12 09:42:02 UTC,2014-07-12 09:42:02 UTC,,Andrew Bergman,Kyondo,"","","","",8,2014-01-12,Kyondo
+3,,Andrew,Bergman,"",Male,2014-07-12,,,,,,2014-07-12 09:44:10 UTC,2014-07-12 09:44:10 UTC,,Andrew Bergman,,"","","","",,2014-07-12,""
