@@ -17,19 +17,19 @@
        <% end %>
 		 </select>
 		</div>
-	
+
 		<div class="input">
 		  <label for="computer">Nombre d'ordinateurs</label>
     	 <select id="computer_number" name="computer_number">
 	       <option value=" ">S'il vous plaît choisir</option>
-         <% 6.times do |i| %>
+         <% 8.times do |i| %>
            <option value="<%= i + 1 %>">Ordinateur #<%= i + 1 %></option>
          <% end %>
     	 </select>
 	   	</div>
 
-		<div class="submit">	
+		<div class="submit">
 			  <input type="submit" value="Se connecter">
-		</div>	
+		</div>
 	</form>
 </main>
