@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   def ensure_signed_in!
-    flash[:status] = "Vous devez vous connecter d'abord"
-    redirect_to new_session_url unless session[:signed_in]
+  	unless session[:signed_in]
+	    flash[:status] = "Vous devez vous connecter d'abord"
+	    redirect_to new_session_url unless session[:signed_in]
+   	end
   end
 end
