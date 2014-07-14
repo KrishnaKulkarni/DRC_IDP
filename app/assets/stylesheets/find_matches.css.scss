@@ -41,15 +41,24 @@ main.find-matches-page {
           }
         }
       }
-
-      input {
-/*        height: 70%;
-        width: 70%;*/
-      }
     }
 
     section.matching-results {
-      background: tan;
+      border-top: 1px solid #777;
+
+      ul.matches-list {
+       overflow: hidden;
+       overflow-y:scroll;
+       max-height: 275px;
+
+       li:hover {
+         background: #ccc;
+       }
+
+       li.featured {
+         background: #6698FF;
+       }
+      }
     }
   }
 

@@ -6,11 +6,6 @@ IdentityMatches.Views.IomIdentitiesIndex = Backbone.View.extend({
   },
   
   initialize: function(options) {
-    
-  },
-  
-  searchMatches: function() {
-   console.log("Clicked Search button!");
   },
   
   refresh: function() {
@@ -20,7 +15,9 @@ IdentityMatches.Views.IomIdentitiesIndex = Backbone.View.extend({
   },
   
   render: function() {
-    var renderedContent = this.template({ iom_identities: this.collection });
+    console.log("index#render");
+    console.log("coll", this.collection);
+    var renderedContent = this.template({ iomIdentities: this.collection });
     this.$el.html(renderedContent);
     
     return this;

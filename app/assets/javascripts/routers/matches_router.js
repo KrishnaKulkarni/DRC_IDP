@@ -12,16 +12,18 @@ IdentityMatches.Routers.MatchesRouter = Backbone.Router.extend({
   },
   
   // Should I be separating fetching from rendering, as they do in the demo?
-  iomIdentitiesIndex: function() {    
+  iomIdentitiesIndex: function(matches) {    
     var indexView = new IdentityMatches.Views.IomIdentitiesIndex({
-      collection: IdentityMatches.Collections.iomIdentities
+      collection: matches
     });    
 
-    IdentityMatches.Collections.iomIdentities.fetch({
-      success: function() {
-        $("#found-matches").html(indexView.render().$el)
-      }
-    });    
+    $("#found-matches").html(indexView.render().$el)
+
+    // IdentityMatches.Collections.iomIdentities.fetch({
+    //   success: function() {
+    //     $("#found-matches").html(indexView.render().$el)
+    //   }
+    // });    
   },
   
   iomIdentitiesShow: function(id) {

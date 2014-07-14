@@ -25,8 +25,12 @@ IdentityMatches.Views.IomIdentitiesSearch = Backbone.View.extend({
      url: "match_results",
      data: $( "#search-matches-form" ).serialize(),
      success: function(resp){
-       console.log("Response ::", resp);
-     },
+      console.log("Response ::", resp);
+      var indexView = new IdentityMatches.Views.IomIdentitiesIndex({
+        collection: new IdentityMatches.Collections.IomIdentities(resp)
+      });    
+      $("#found-matches").html(indexView.render().$el)
+     }
    });
 
   },

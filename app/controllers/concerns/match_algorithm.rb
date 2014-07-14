@@ -14,11 +14,9 @@ module MatchAlgorithm
   	score = 0
 
     score += 2 if matches_by("sex", base_identity_attrs, candidate_identity)
-    score += 2 if matches_by("age", base_identity_attrs, candidate_identity) do |base, cand|
-    	(base.to_i - cand).abs <= 2
-    end
-    score += 1 if (match_first = matches_by("first_name", base_identity_attrs, candidate_identity))
-    score += 1 if (match_last = matches_by("last_name", base_identity_attrs, candidate_identity))
+
+    score += 2 if (match_first = matches_by("first_name", base_identity_attrs, candidate_identity))
+    score += 2 if (match_last = matches_by("last_name", base_identity_attrs, candidate_identity))
     score += 2 if match_first && match_last
 
     score
