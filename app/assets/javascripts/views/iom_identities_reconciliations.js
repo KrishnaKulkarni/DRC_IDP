@@ -19,12 +19,12 @@ IdentityMatches.Views.IomIdentitiesReconciliations = Backbone.View.extend({
     console.log("Single click works");
 
     $("li.featured").removeClass("featured");
-    $(event.target).addClass("featured");
+    $(event.target).closest("li").addClass("featured");
   },
 
   removeMatch: function(event) {
  //   $(event.target).parent("a").addClass("move");
-    var li = $(event.target);
+    var li = $(event.target).closest("li");
     li.parent("a").prependTo("#matches-list");
 
     var id = li.prop('id');

@@ -1,6 +1,9 @@
 <%= stylesheet_link_tag "find_matches", media: "all", "data-turbolinks-track" => true %>
 
-<section id="recon" class="status-message"></section>
+<section id="recon" class="status-message <%= flash[:status_color] %>">
+  <%= flash[:status] %>
+</section>
+
 <main class="find-matches-page">
   <section class="search-column">
     <section class="search-bar">
@@ -23,8 +26,10 @@
     <h1>Household Members</h1>
     <section id="household"></section>
     <section id="reconcile">
-      <form action="<%= gold_standard_identities_url %>" method="post" id="create-reconciliations">
+      <form action="<%= gold_standard_matches_url %>" method="post" id="create-reconciliations">
+        <%= authenticity_token %>
         <div id="base-gold-identity"></div>
+        <p>Remember: Before clicking 'Submit Matches', make sure you registered the new identity!</p>
         <p><input type="submit" value="SUBMIT MATCHES" class="submit-button"></p>
       </form>
     </section>

@@ -1,3 +1,22 @@
-<h1>First Name: <%= iomIdentity.get("first_name") %></h1>
-<h1>Last Name: <%= iomIdentity.get("last_name") %></h1>
-<h2>Sex: <%= iomIdentity.get("sex") %></h2>
+<h2>First Name: <%= iomIdentity.get("first_name") %></h2>
+<h2>Last Name: <%= iomIdentity.get("last_name") %></h2>
+
+<div class="left-bio">
+  <div>Sex: <%= iomIdentity.get("sex") %></div>
+  <div>Date-of-Birth: <%= iomIdentity.get("date_of_birth") %></div>
+  <div>Alternate Name: <%= iomIdentity.get("alternate_name") %></div>
+   <div>Head of Household: <%= iomIdentity.get("head_of_household_first_name") + " " + iomIdentity.get("head_of_household_last_name") %></div>
+   <div>Relation to Head: <%= iomIdentity.get("relation_to_head_of_household") %></div>
+   <div>Household Size: <%= iomIdentity.get("household_size") %></div>
+
+
+
+</div>
+<div class="right-bio">
+   <div>Province id: <%= iomIdentity.get("province_id") %></div>
+   <div>Territory id: <%= iomIdentity.get("territory_id") %></div>
+   <div>Group id: <%= iomIdentity.get("group_id") %></div>
+   <div>Collective id: <%= iomIdentity.get("collective_id") %></div>
+   <div>Village id: <%= iomIdentity.get("village_id") %></div>
+   <div>Alternate Village: <%= iomIdentity.get("alternate_village") %></div>
+</div>

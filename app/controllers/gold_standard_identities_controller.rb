@@ -58,7 +58,7 @@ class GoldStandardIdentitiesController < ApplicationController
   end
 
   def match_results
-    candidates = GoldStandardIdentity.all
+    candidates = IomIdentity.all
     matches = generate_matches_list(gold_standard_identity_params, candidates)
     render json: matches
   end

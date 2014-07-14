@@ -20,12 +20,12 @@ IdentityMatches.Views.IomIdentitiesIndex = Backbone.View.extend({
     console.log("Single click works");
 
     $("li.featured").removeClass("featured");
-    $(event.target).addClass("featured");
+    $(event.target).closest("li").addClass("featured");
   },
 
   createMatch: function(event) {
     console.log("Double click works");
-    var li = $(event.target);
+    var li = $(event.target).closest("li");
     li.parent("a").appendTo("#reconciliations-list");
     var id = li.prop('id');
     var matchInput = "<input type='hidden' id='" + id +"' name='gold_standard_matches[" + id + "]'>";

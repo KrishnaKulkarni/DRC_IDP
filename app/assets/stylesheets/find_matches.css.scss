@@ -1,15 +1,23 @@
-  section.status-message#recon {
-    display: block;
-    width: 400px;
-    margin: 10px auto;
-    padding: 10px;
-  }
+section.status-message#recon {
+  display: block;
+  width: 400px;
+  margin: 30px auto;
+  padding: 10px;
+}
+
+section.success-green#recon{
+  background: #77CF61;
+}
+
+section.failure-red#recon  {
+  background: red;
+}
 
 main.find-matches-page {
   width: 900px;
   height: 550px;
   border: 3px solid #777;
-  margin: 80px auto;
+  margin: 40px auto;
 
 
 
@@ -23,7 +31,26 @@ main.find-matches-page {
 
   h1 {
     margin-left: 5px;
-    font-size: 14px
+    font-size: 15px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  ul#matches-list,
+  ul#reconciliations-list{
+    a {
+     text-decoration: none;
+     color: #000;
+    }
+
+    li {
+      border-bottom: 1px solid #ccc;
+      h3 {
+        font-size: 16px;
+      }
+
+      font-size: 14px;
+    }
   }
 
   section.search-column,
@@ -107,6 +134,20 @@ main.find-matches-page {
     section#featured-identity {
       height: 50%;
       border-bottom: 1px solid #777;
+      font-size: 14px;
+
+      h2 {
+       font-size: 16px;
+      }
+
+
+      div.left-bio {
+        float: left;
+      }
+
+      div.right-bio {
+        float: left;
+      }
     }
 
     section#matches {
@@ -139,7 +180,19 @@ main.find-matches-page {
     }
 
     section#reconcile {
-      border-top: 1px solid #777
+      border-top: 1px solid #777;
+      position: relative;
+      font-size: 13px;
+      p {
+        margin-top: 0;
+       margin-left: 5px;
+      }
+
+      input.submit-button {
+        position: absolute;
+        top: 50px;
+        left: 60px;
+      }
     }
 
   }
