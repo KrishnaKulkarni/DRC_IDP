@@ -12,6 +12,9 @@ IDPApp::Application.routes.draw do
   get '/find_matches', to: 'gold_standard_identities#find_matches', as: 'find_matches'
   get '/search_form', to: 'gold_standard_identities#search_form', as: 'search_form'
   get '/search_fields', to: 'gold_standard_identities#search_fields', as: 'search_fields'
+  post '/match_results', to: 'gold_standard_identities#match_results', as: 'match_results'
+  get '/test_page', to: 'gold_standard_identities#test_page'
+
 
   resources :gold_standard_identities, only: [:new, :create, :index, :show]
 

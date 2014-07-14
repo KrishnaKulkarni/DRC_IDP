@@ -1,4 +1,6 @@
 class GoldStandardIdentitiesController < ApplicationController
+  include MatchAlgorithm
+
   before_filter :ensure_signed_in!
 
   def find_matches
@@ -48,6 +50,17 @@ class GoldStandardIdentitiesController < ApplicationController
 
   def show
     render :show
+  end
+
+  def test_page
+    @gold_standard_identity = GoldStandardIdentity.new
+    render '_search_form'
+  end
+
+  def match_results
+    candidates = GoldStandardIdentity.all
+    matches = generate_matches_list(gold_standard_identity_params, candidates)
+    render json: matches
   end
 
   private

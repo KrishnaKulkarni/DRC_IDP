@@ -1,6 +1,6 @@
 main.find-matches-page {
   width: 900px;
-  height: 500px;
+  height: 550px;
   border: 3px solid #777;
   margin: 80px auto;
 
@@ -22,6 +22,34 @@ main.find-matches-page {
     section.search-bar,
     section.matching-results {
      height: 50%;
+    }
+
+    section.search-bar{
+      font-size: 70%;
+      div.row {
+        margin-left: 5px;
+        div.input {
+          float: left;
+          margin-right: 5px;
+
+          label {
+            display: block;
+          }
+          input, select {
+            margin-left: 0;
+            max-width: 90px;
+          }
+        }
+      }
+
+      input {
+/*        height: 70%;
+        width: 70%;*/
+      }
+    }
+
+    section.matching-results {
+      background: tan;
     }
   }
 
