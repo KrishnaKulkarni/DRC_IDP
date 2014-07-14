@@ -5,8 +5,10 @@ IdentityMatches.Collections.IomIdentities = Backbone.Collection.extend({
   //   return this.goldStandardIdentity.url() + "/iom_identities";
   // },
   
-  url: "api/iom_identities",
+//  url: "api/iom_identities",
+  url: "api/gold_standard_identities",
   
+
   initialize: function(models, options) {
   // this.goldStandardIdentity = options.goldStandardIdentity;
   }

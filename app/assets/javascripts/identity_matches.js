@@ -10,7 +10,11 @@ window.IdentityMatches = {
     // Search sub-view construction
     // var searchView = new IdentityMatches.Views.IomIdentitiesSearch();
     // $(".display-info-column").html(searchView.render().$el);
-  
+    IdentityMatches.Collections.iomIdentities.fetch({
+      success: function() {
+        console.log("Successfully fetched current stored identities.")
+      }
+    });
     new IdentityMatches.Routers.MatchesRouter();
     Backbone.history.start();
   }

@@ -23,7 +23,7 @@ IDPApp::Application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :iom_identities, only: [:create, :destroy, :update, :show]
-    resources :gold_standard_identities, only: [:create] do
+    resources :gold_standard_identities, only: [:create, :show, :index] do
       resources :iom_identities, only: [:index]
     end
 
