@@ -15,6 +15,7 @@ IDPApp::Application.routes.draw do
   post '/match_results', to: 'gold_standard_identities#match_results', as: 'match_results'
   get '/test_page', to: 'gold_standard_identities#test_page'
 
+  resources :gold_standard_matches, only: [:create]
 
   resources :gold_standard_identities, only: [:new, :create, :index, :show]
 

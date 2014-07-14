@@ -1,12 +1,34 @@
+  section.status-message#recon {
+    display: block;
+    width: 400px;
+    margin: 10px auto;
+    padding: 10px;
+  }
+
 main.find-matches-page {
   width: 900px;
   height: 550px;
   border: 3px solid #777;
   margin: 80px auto;
 
+
+
+  section.success-green {
+    background: #77CF61;
+  }
+
+  section.failure-red {
+    background: red;
+  }
+
+  h1 {
+    margin-left: 5px;
+    font-size: 14px
+  }
+
   section.search-column,
   section.display-info-column,
-  section.household-and-submit {
+  section.household-and-submit-column {
     height: 100%;
     float: left;
   }
@@ -26,11 +48,14 @@ main.find-matches-page {
 
     section.search-bar{
       font-size: 70%;
+      position: relative;
+
       div.row {
         margin-left: 5px;
         div.input {
           float: left;
           margin-right: 5px;
+          margin-bottom: 5px;
 
           label {
             display: block;
@@ -40,13 +65,28 @@ main.find-matches-page {
             max-width: 90px;
           }
         }
+
+      }
+
+      input.search-button {
+        position: absolute;
+        width: 60px;
+        bottom: 5px;
+        right: 5px;
+      }
+
+      input.register-button {
+        position: absolute;
+        width: 70px;
+        bottom: 5px;
+        left: 5px;
       }
     }
 
-    section.matching-results {
+    section#found-matches {
       border-top: 1px solid #777;
 
-      ul.matches-list {
+      ul#matches-list {
        overflow: hidden;
        overflow-y:scroll;
        max-height: 275px;
@@ -64,10 +104,44 @@ main.find-matches-page {
 
   section.display-info-column {
     width: 328px;
+    section#featured-identity {
+      height: 50%;
+      border-bottom: 1px solid #777;
+    }
+
+    section#matches {
+
+
+      ul {
+        overflow: hidden;
+        overflow-y:scroll;
+        height: 240px;
+
+        li:hover {
+          background: #ccc;
+        }
+
+        li.featured {
+          background: #6698FF;
+        }
+      }
+
+    }
   }
+
+
 
   section.household-and-submit-column {
     width: 238px;
+
+    section#household {
+      height: 75%;
+    }
+
+    section#reconcile {
+      border-top: 1px solid #777
+    }
+
   }
 
 }

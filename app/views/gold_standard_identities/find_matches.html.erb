@@ -1,23 +1,9 @@
 <%= stylesheet_link_tag "find_matches", media: "all", "data-turbolinks-track" => true %>
 
+<section id="recon" class="status-message"></section>
 <main class="find-matches-page">
   <section class="search-column">
     <section class="search-bar">
-    <a href="#/iom_identities">
-      <button id="search-for-matches">Search</button>
-    </a>
-    <%#= simple_form_for @gold_standard_identity, url: api_gold_standard_identities_url  do |f| %>
-     <!-- <div class="inputs-container clearfix"> -->
-        <%#= f.input :first_name %>
-        <%#= f.input :last_name %>
-        <%#= f.input :alternate_name %>
-        <%#= f.input :sex %>
-        <%#= f.input :date_of_birth %>
-        <%#= f.input :village %>
-
-      <%#= f.button :submit, value: "Submit results" %>
-      <!-- </div> -->
-    <%# end %>
     </section>
 
     <section class="matching-results" id="found-matches">
@@ -26,10 +12,23 @@
   </section>
 
   <section class="display-info-column">
+    <h1>Individual Info</h1>
     <section id="featured-identity"></section>
+    <h1>Matched Persons</h1>
+    <section id="matches">
+    </section>
   </section>
 
-  <section class="household-and-submit-column"></section>
+  <section class="household-and-submit-column">
+    <h1>Household Members</h1>
+    <section id="household"></section>
+    <section id="reconcile">
+      <form action="<%= gold_standard_identities_url %>" method="post" id="create-reconciliations">
+        <div id="base-gold-identity"></div>
+        <p><input type="submit" value="SUBMIT MATCHES" class="submit-button"></p>
+      </form>
+    </section>
+  </section>
 </main>
 
 <%= javascript_include_tag "identity_matches_manifest", "data-turbolinks-track" => true %>

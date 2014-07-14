@@ -1,8 +1,13 @@
 class Api::GoldStandardIdentitiesController < ApplicationController
 
   def create
-    @gold_standard_identity = GoldStandardIdentity.new
+    @gold_standard_identity = GoldStandardIdentity.new(gold_standard_identity_params)
+    @gold_standard_identity.recorded_by = session[:username]
     if @gold_standard_identity.save
+      # @gold_standard_identities = GoldStandardIdentity.where("created_at > ?", Date.today)
+      # File.open("exports/registered_identities_#{session[:username]}_C#{session[:computer_number]}_#{Date.today}.csv",
+      #  'w') { |file| file.write(@gold_standard_identities.as_csv) }
+
       render json: @gold_standard_identity
     else
       render json: @gold_standard_identity.errors

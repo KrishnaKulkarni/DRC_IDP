@@ -1,7 +1,7 @@
-<ul class="matches-list">
+<ul id="matches-list">
   <% iomIdentities.forEach(function(iomIdentity){ %>
     <a href="#/iom_identities/<%= iomIdentity.id %>">
-      <li><%= iomIdentity.get("first_name") + " " + iomIdentity.get("last_name") %> : <%= iomIdentity.get("sex") %></li>
+      <li id="<%= iomIdentity.id %>"><%= iomIdentity.get("first_name") + " " + iomIdentity.get("last_name") %> : <%= iomIdentity.get("sex") %></li>
     </a>
   <% }); %>
 </ul>
