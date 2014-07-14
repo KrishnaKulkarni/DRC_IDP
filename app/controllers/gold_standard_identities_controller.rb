@@ -47,10 +47,11 @@ class GoldStandardIdentitiesController < ApplicationController
   private
   def gold_standard_identity_params
     params.require(:gold_standard_identity).permit(
-    :first_name, :last_name, :alternate_name, :nickname, :sex, :date_of_birth, 
+    :first_name, :last_name, :alternate_name, :nick_name, :sex, :date_of_birth, 
+    :other_first_name, :other_last_name, :other_alternate_name,
     :village_id, :group_id, :collective_id, :territory_id, :province_id,
     :recorded_in_village_id, :recorded_by, :alternate_village, :village_of_origin,
-    :head_of_household_first_name, :head_of_household_last_name, :relation_to_head_of_household,
-    :household_size, :arrival_date, :arrival_from_village)
+    :head_of_household_first_name, :head_of_household_last_name, :head_of_household_alternate_name, 
+    :relation_to_head_of_household, :household_size, :arrival_date, :arrival_from_village)
   end
 end

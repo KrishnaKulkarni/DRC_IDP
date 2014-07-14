@@ -23,7 +23,7 @@ class Api::GoldStandardIdentitiesController < ApplicationController
   private
   def gold_standard_identity_params
     params.require(:gold_standard_identity).permit(
-    :first_name, :last_name, :alternate_name, :nickname, :sex, :date_of_birth, 
+    :first_name, :last_name, :alternate_name, :sex, :date_of_birth, 
     :village_id, :group_id, :collective_id, :territory_id, :province_id,
     :recorded_in_village_id, :recorded_by)
   end
