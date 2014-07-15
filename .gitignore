@@ -17,3 +17,9 @@
 
 #Ignore database configuration
 /config/database.yml
+
+
+#Ignore csvs
+/exports/*.csv
+/imports/*.csv
+/imported/*.csv
