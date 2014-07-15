@@ -5,6 +5,7 @@
       <%= f.input :last_name, label: "Postnom" %>
       <%= f.input :alternate_name, label: "Prenom" %>
       <%= f.input :nick_name, label: "Surnom" %>
+      <%= f.input :identity_card, label: "Carte identite" %>
     </div>
     <div class="row clearfix" id="row2">
       <%= f.input :other_first_name, label: false, input_html: { placeholder: "Autre Nom"} %>
@@ -35,12 +36,23 @@
     <section class="more-identity-information clearfix">
       <section class="household-info">
         <div class="row clearfix">
-          <%= f.input :head_of_household_first_name, label: "Chef de menage", input_html: { placeholder: "Nom", class: "menage" } %>
+          <%= f.input :head_of_household_status, label: "Are you one of the two household heads?", as: :boolean  %>
+        </div>
+        <div class="row clearfix">
+          <%= f.input :head_of_household_first_name, label: "Chef menage 1", input_html: { placeholder: "Nom", class: "menage" } %>
           <%= f.input :head_of_household_last_name, label: false, input_html: { placeholder: "Postnom", class: "menage" } %>
           <%= f.input :head_of_household_alternate_name, label: false, input_html: { placeholder: "Prenom", class: "menage" } %>
         </div>
         <div class="row clearfix">
-          <%= f.input :relation_to_head_of_household, label: "Relation familiale", collection: [ "Soi", "Mere", "Pere", "Soeur", "Frere", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine" ] %>
+          <%= f.input :relation_to_head_of_household, label: "Relation familiale", collection: [ "Mere", "Pere", "Soeur", "Frere", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine" ] %>
+        </div>
+        <div class="row clearfix">
+          <%= f.input :head_of_household_two_first_name, label: "Chef menage 2", input_html: { placeholder: "Nom", class: "menage" } %>
+          <%= f.input :head_of_household_two_last_name, label: false, input_html: { placeholder: "Postnom", class: "menage" } %>
+          <%= f.input :head_of_household_two_alternate_name, label: false, input_html: { placeholder: "Prenom", class: "menage" } %>
+        </div>
+        <div class="row clearfix">
+          <%= f.input :relation_to_head_of_household_two, label: "Relation familiale", collection: [ "Mere", "Pere", "Soeur", "Frere", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine" ] %>
         </div>
         <div class="row clearfix">
           <%= f.input :household_size, label: "Taille de menage", input_html: { max: 20, min: 1 }  %>

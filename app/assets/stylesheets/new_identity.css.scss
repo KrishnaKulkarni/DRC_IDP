@@ -68,6 +68,10 @@ main.new-gold-standard {
            max-width: 110px;
          }
 
+         input[type="number"] {
+           max-width: 90px;
+         } 
+
          select {
            margin-left: 0;
            max-width: 150px;
@@ -83,7 +87,8 @@ main.new-gold-standard {
         div.gold_standard_identity_alternate_village,
         div.gold_standard_identity_village_of_origin,
         div.gold_standard_identity_relation_to_head_of_household,
-        div.gold_standard_identity_household_size {
+        div.gold_standard_identity_relation_to_head_of_household_two,
+        div.gold_standard_identity_household_size{
           label {
            display: inline;
            margin-right: 5px;
@@ -92,6 +97,11 @@ main.new-gold-standard {
 
         div.gold_standard_identity_alternate_village {
           margin-right: 45px;
+        }
+
+        div.gold_standard_identity_identity_card {
+          margin-left: 150px;
+          
         }
       }
 
@@ -109,6 +119,14 @@ main.new-gold-standard {
          }
 
          div.gold_standard_identity_head_of_household_alternate_name {
+          margin-top: 18px;
+         } 
+
+         div.gold_standard_identity_head_of_household_two_last_name {
+          margin-top: 18px;
+         } 
+
+         div.gold_standard_identity_head_of_household_two_alternate_name {
           margin-top: 18px;
          } 
         }

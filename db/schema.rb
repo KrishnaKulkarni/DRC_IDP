@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715134528) do
+ActiveRecord::Schema.define(version: 20140715215029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,10 @@ ActiveRecord::Schema.define(version: 20140715134528) do
     t.string   "other_alternate_name"
     t.string   "head_of_household_alternate_name"
     t.integer  "identity_card"
+    t.string   "head_of_household_two_first_name"
+    t.string   "head_of_household_two_last_name"
+    t.string   "head_of_household_two_alternate_name"
+    t.string   "relation_to_head_of_household_two"
   end
 
   add_index "gold_standard_identities", ["first_name"], name: "index_gold_standard_identities_on_first_name", using: :btree
@@ -111,6 +115,10 @@ ActiveRecord::Schema.define(version: 20140715134528) do
     t.string   "other_alternate_name"
     t.string   "head_of_household_alternate_name"
     t.integer  "identity_card"
+    t.string   "head_of_household_two_first_name"
+    t.string   "head_of_household_two_last_name"
+    t.string   "head_of_household_two_alternate_name"
+    t.string   "relation_to_head_of_household_two"
   end
 
   add_index "iom_identities", ["first_name"], name: "index_iom_identities_on_first_name", using: :btree

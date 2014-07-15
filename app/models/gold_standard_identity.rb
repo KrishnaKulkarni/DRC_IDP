@@ -10,11 +10,12 @@ class GoldStandardIdentity < ActiveRecord::Base
   has_one :province, through: :territory, source: :province
   
   # Toggle true/false to turn off/on the validation
-  validates :first_name, :last_name, :sex, :date_of_birth, :head_of_household_first_name, 
-            :head_of_household_last_name, :relation_to_head_of_household, :household_size,
+  validates :first_name, :last_name, :sex, :date_of_birth, :household_size,
             :arrival_from_village, :arrival_date, :province_id, :territory_id, :village_of_origin, presence: true, if: "false"
   # validates :alternate_village, presence: true, if: "alternate_village_status"
   validates :village_id, presence: true, if: "!alternate_village_status"
+  validates :head_of_household_first_name, :head_of_household_last_name,
+            :relation_to_head_of_household, presence: true, if: "!head_of_household_status"
 
   validates_format_of :first_name, :last_name, :head_of_household_first_name, 
             :head_of_household_last_name, with: /[a-z]/, message: "lettres uniquement"
@@ -27,6 +28,7 @@ class GoldStandardIdentity < ActiveRecord::Base
   validates_format_of :head_of_household_alternate_name, with: /[a-z]/, message: "lettres uniquement", if: 'head_of_household_alternate_name.present?'
 
   attr_accessor :alternate_village_status
+  attr_accessor :head_of_household_status
   
   #Alter implementation appropriately later
   def iom_identity_matches
