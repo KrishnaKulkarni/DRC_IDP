@@ -26,7 +26,17 @@
            <option value="<%= i + 1 %>">Ordinateur #<%= i + 1 %></option>
          <% end %>
     	 </select>
-	   	</div>
+	  </div>
+
+		<div class="input">
+		  <label for="location">Emplacement</label>
+    	 <select id="location" name="location">
+	       <option value=" ">S'il vous plaît choisir</option>
+         <% ["Goma", "Kigali"].each do |location| %>
+           <option value="<%= location %>"><%= location %></option>
+         <% end %>
+    	 </select>
+	  </div>
 
 		<div class="submit">
 			  <input type="submit" value="Se connecter">

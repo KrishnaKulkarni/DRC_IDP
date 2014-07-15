@@ -24,7 +24,7 @@ body {
   background: #eee;
   min-width: 970px;
 }
-  
+
 
 .clearfix:after {
   content: "";
@@ -38,7 +38,7 @@ nav.navbar {
 }
 
 a.navlink {
-  display: block; 
+  display: block;
   float: left;
   padding: 5px 15px 5px 15px;
   border-right: 2px solid #777;
@@ -75,5 +75,10 @@ a.navlink:hover {
 section.current-status {
   position: absolute;
   top: 35px;
-  left: 10px;
+  left: 10px;s
+}
+
+.current-status p {
+  margin-top: 5px;
+  margin-bottom: 0;
 }
