@@ -26,6 +26,7 @@ class GoldStandardIdentitiesController < ApplicationController
   def create
     @gold_standard_identity = GoldStandardIdentity.new(gold_standard_identity_params)
     @gold_standard_identity.recorded_by = session[:username]
+    @gold_standard_identity.recorded_in_village = session[:location]
 
     if @gold_standard_identity.save
       flash[:status] = "Your registration of #{@gold_standard_identity.first_name} #{@gold_standard_identity.last_name} was successful."

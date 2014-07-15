@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140709042126) do
+ActiveRecord::Schema.define(version: 20140715043536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 20140709042126) do
     t.integer  "province_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "recorded_in_village_id"
     t.string   "recorded_by"
     t.string   "alternate_village"
     t.string   "village_of_origin"
@@ -48,6 +47,7 @@ ActiveRecord::Schema.define(version: 20140709042126) do
     t.integer  "household_size"
     t.date     "arrival_date"
     t.string   "arrival_from_village"
+    t.string   "recorded_in_village"
   end
 
   add_index "gold_standard_identities", ["first_name"], name: "index_gold_standard_identities_on_first_name", using: :btree
