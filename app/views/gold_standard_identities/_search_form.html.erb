@@ -33,8 +33,6 @@
         </div>
         <div class="row clearfix">
           <%= f.input :relation_to_head_of_household, label: "Relation Chef Menage", collection: [ "Mother", "Father", "Brother", "Sister", "Grandmother", "Grandfather", "Aunt", "Uncle", "Cousin" ] %>
-        </div>
-        <div class="row clearfix">
           <%= f.input :household_size, label: "Taille Menage", input_html: { max: 20, min: 1 }  %>
         </div>
       </section>
