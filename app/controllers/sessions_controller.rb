@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 
       redirect_to new_gold_standard_identity_url
     else
-      flash[:status] = "Choix valide"
+      flash[:status] = "Choix pas valide"
       redirect_to new_session_url
     end
   end

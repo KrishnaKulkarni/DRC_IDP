@@ -70,7 +70,7 @@ main.new-gold-standard {
 
          select {
            margin-left: 0;
-           max-width: 100px;
+           max-width: 150px;
          }
 
          input.menage {
@@ -81,7 +81,9 @@ main.new-gold-standard {
         }
 
         div.gold_standard_identity_alternate_village,
-        div.gold_standard_identity_village_of_origin {
+        div.gold_standard_identity_village_of_origin,
+        div.gold_standard_identity_relation_to_head_of_household,
+        div.gold_standard_identity_household_size {
           label {
            display: inline;
            margin-right: 5px;
@@ -106,6 +108,9 @@ main.new-gold-standard {
           margin-top: 18px;
          }
 
+         div.gold_standard_identity_head_of_household_alternate_name {
+          margin-top: 18px;
+         } 
         }
         section.arrival-info {
           float: left;
