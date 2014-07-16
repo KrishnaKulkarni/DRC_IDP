@@ -46,29 +46,43 @@ $(function() {
 //             .toggleClass('inactive', isChecked)
 //             .find('select.time-input').attr('disabled', isChecked ? "disabled" : false);
 //     });
-    
-    
-    //Toggle visibility which inputs are disabled based on the checkbox
-    $('#gold_standard_identity_alternate_village_status').change(function(){
-      
-        var isChecked = $(this).is(':checked');         
-        $('.gold_standard_identity_village_id').toggleClass('blurred');
-        $('.gold_standard_identity_alternate_village').toggleClass('blurred');                
+
+    var setVillageStatus = function(){
+
+        var isChecked = $("#gold_standard_identity_alternate_village_status").is(':checked');
+        if(isChecked){
+          $('.gold_standard_identity_village_id').addClass('blurred');
+          $('.gold_standard_identity_alternate_village').removeClass('blurred');
+        }
+        else {
+          $('.gold_standard_identity_village_id').removeClass('blurred');
+          $('.gold_standard_identity_alternate_village').addClass('blurred');
+        }
+
         $('#gold_standard_identity_village_id').attr('disabled', isChecked ? "disabled" : false);
         $('#gold_standard_identity_alternate_village').attr('disabled', isChecked ? false : "disabled");
-    });
-    
-    $('#gold_standard_identity_head_of_household_status').change(function(){
-      
-        var isChecked = $(this).is(':checked');         
-        $('.gold_standard_identity_head_of_household_first_name').toggleClass('blurred');               
-        $('#gold_standard_identity_head_of_household_first_name').attr('disabled', isChecked ? "disabled" : false);
-        $('.gold_standard_identity_head_of_household_last_name').toggleClass('blurred');               
-        $('#gold_standard_identity_head_of_household_last_name').attr('disabled', isChecked ? "disabled" : false);
-        $('.gold_standard_identity_head_of_household_alternate_name').toggleClass('blurred');               
-        $('#gold_standard_identity_head_of_household_alternate_name').attr('disabled', isChecked ? "disabled" : false);
-        $('.gold_standard_identity_relation_to_head_of_household').toggleClass('blurred');               
-        $('#gold_standard_identity_relation_to_head_of_household').attr('disabled', isChecked ? "disabled" : false);
-    });
+    }
+    //Toggle visibility which inputs are disabled based on the checkbox
+    $('#gold_standard_identity_alternate_village_status').change(setVillageStatus);
+    setVillageStatus();
 
+    var setHouseholdStatus = function(){
+
+        var isChecked = $('#gold_standard_identity_head_of_household_status').is(':checked');
+        if(isChecked){
+          $('.gold_standard_identity_head_of_household_first_name').addClass('blurred');
+          $('.gold_standard_identity_head_of_household_last_name').addClass('blurred');
+          $('.gold_standard_identity_head_of_household_alternate_name').addClass('blurred');
+          $('.gold_standard_identity_relation_to_head_of_household').addClass('blurred');
+        }
+        else {
+          $('.gold_standard_identity_head_of_household_first_name').removeClass('blurred');
+          $('.gold_standard_identity_head_of_household_last_name').removeClass('blurred');
+          $('.gold_standard_identity_head_of_household_alternate_name').removeClass('blurred');
+          $('.gold_standard_identity_relation_to_head_of_household').removeClass('blurred');
+        }
+    };
+
+    $('#gold_standard_identity_head_of_household_status').change(setHouseholdStatus);
+    setHouseholdStatus();
 });
