@@ -69,5 +69,13 @@ File.open('db/location_seeding_errors.txt', 'w') { |file| file.write(failure_tex
 # -- LOCATIONS END --
 
 # -- USERS ---
-User.create!(username: "Andrew Bergman")
-User.create!(username: "Toly Rinberg")
+User.create!(username: "Andrew")
+User.create!(username: "Toly")
+User.create!(username: "Hannah")
+User.create!(username: "Roger")
+User.create!(username: "Moise")
+User.create!(username: "Adelestine")
+User.create!(username: "Benoit")
+User.create!(username: "Esperance")
+User.create!(username: "Hermanie")
+User.create!(username: "Kennedy")

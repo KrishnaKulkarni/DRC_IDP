@@ -1,52 +1,74 @@
 <%= simple_form_for @gold_standard_identity, url: gold_standard_identities_url do |f| %>
   <div class="inputs-container clearfix">
     <div class="row clearfix" id="row1">
-      <%= f.input :first_name, label: "Prenom" %>
-      <%= f.input :last_name, label: "Nom du Famille" %>
-      <%= f.input :alternate_name %>
+      <%= f.input :first_name, label: "Nom" %>
+      <%= f.input :last_name, label: "Postnom" %>
+      <%= f.input :alternate_name, label: "Prenom" %>
+      <%= f.input :nick_name, label: "Surnom" %>
+      <%= f.input :identity_card, label: "Carte identite" %>
     </div>
     <div class="row clearfix" id="row2">
-      <%= f.input :sex, collection: ["Male", "Female"] %>
-      <%= f.input :date_of_birth,  as: :date, start_year: Date.today.year - 90,
-                              end_year: Date.today.year, discard_day: false,
-                              order: [:year, :month, :day] %>
+      <%= f.input :other_first_name, label: false, input_html: { placeholder: "Autre Nom"} %>
+      <%= f.input :other_last_name, label: false, input_html: { placeholder: "Autre Postnom"} %>
+      <%= f.input :other_alternate_name, label: false, input_html: { placeholder: "Autre Prenom",} %>
     </div>
     <div class="row clearfix" id="row3">
+      <%= f.input :sex, label: "Sexe", collection: ["Male", "Female"] %>
+      <%= f.input :date_of_birth,  as: :date, start_year: Date.today.year - 90,
+                              end_year: Date.today.year, discard_day: true,
+                              order: [:year, :month, :day], :include_blank => true,
+                              label: "Date de naissance" %>
+    </div>
+    <div class="row clearfix" id="row4">
       <%= f.input :province_id, collection: Province.all, label_method: :name, value_method: :id, label: "Province" ,:include_blank => true %>
       <%= f.input :territory_id, collection: Territory.all, label_method: :name, value_method: :id, label: "Territoire" ,:include_blank => true %>
       <%= f.input :collective_id, collection: Collective.all, label_method: :name, value_method: :id, label: "Collectivite" ,:include_blank => true %>
-      <%= f.input :territory_id, collection: Group.all, label_method: :name, value_method: :id, label: "Groupement" ,:include_blank => true %>
+      <%= f.input :group_id, collection: Group.all, label_method: :name, value_method: :id, label: "Groupement" ,:include_blank => true %>
       <%= f.input :village_id, collection: Village.all, label_method: :name, value_method: :id, label: "Village" ,:include_blank => true %>
     </div>
-    <div class="row clearfix" id="row4">
-      <%= f.input :alternate_village_status, label: "The village is not listed", as: :boolean  %>
-      <%= f.input :alternate_village, disabled: true, wrapper_html: { class: 'blurred' } %>
+    <div class="row clearfix" id="row5">
+      <%= f.input :alternate_village_status, label: "Ce village n'est pas sur la liste", as: :boolean  %>
+      <%= f.input :alternate_village, disabled: true, label: "Autre Village", wrapper_html: { class: 'blurred' } %>
 
-      <%= f.input :village_of_origin %>
+      <%= f.input :village_of_origin, label: "Village d'origine" %>
     </div>
 
     <section class="more-identity-information clearfix">
       <section class="household-info">
         <div class="row clearfix">
-          <%= f.input :head_of_household_first_name, label: "Chef Menage", input_html: { placeholder: "Prenom", class: "menage" } %>
-          <%= f.input :head_of_household_last_name, label: false, input_html: { placeholder: "Nom du Famille", class: "menage" } %>
+          <%= f.input :head_of_household_status, label: "Are you one of the two household heads?", as: :boolean  %>
         </div>
         <div class="row clearfix">
-          <%= f.input :relation_to_head_of_household, label: "Relation Chef Menage", collection: [ "Mother", "Father", "Brother", "Sister", "Grandmother", "Grandfather", "Aunt", "Uncle", "Cousin" ] %>
-          <%= f.input :household_size, label: "Taille Menage", input_html: { max: 20, min: 1 }  %>
+          <%= f.input :head_of_household_first_name, label: "Chef menage 1", input_html: { placeholder: "Nom", class: "menage" } %>
+          <%= f.input :head_of_household_last_name, label: false, input_html: { placeholder: "Postnom", class: "menage" } %>
+          <%= f.input :head_of_household_alternate_name, label: false, input_html: { placeholder: "Prenom", class: "menage" } %>
+        </div>
+        <div class="row clearfix">
+          <%= f.input :relation_to_head_of_household, label: "Relation familiale", collection: [ "Mere", "Pere", "Soeur", "Frere", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine" ] %>
+        </div>
+        <div class="row clearfix">
+          <%= f.input :head_of_household_two_first_name, label: "Chef menage 2", input_html: { placeholder: "Nom", class: "menage" } %>
+          <%= f.input :head_of_household_two_last_name, label: false, input_html: { placeholder: "Postnom", class: "menage" } %>
+          <%= f.input :head_of_household_two_alternate_name, label: false, input_html: { placeholder: "Prenom", class: "menage" } %>
+        </div>
+        <div class="row clearfix">
+          <%= f.input :relation_to_head_of_household_two, label: "Relation familiale", collection: [ "Mere", "Pere", "Soeur", "Frere", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine" ] %>
+        </div>
+        <div class="row clearfix">
+          <%= f.input :household_size, label: "Taille de menage", input_html: { max: 20, min: 1 }  %>
         </div>
       </section>
       <section class="arrival-info">
         <div class="row clearfix">
-          <%= f.input :arrival_date %>
+          <%= f.input :arrival_date, label: "Date d'arrivee", start_year: Date.today.year - 90, end_year: Date.today.year, :include_blank => true %>
         </div>
         <div class="row clearfix">
-          <%= f.input :arrival_from_village %>
+          <%= f.input :arrival_from_village, label: "Village/Camp de provenance le plus recent" %>
         </div>
       </section>
     </section>
 
 
-    <%= f.button :submit, value: "REGISTER" %>
+    <%= f.button :submit, value: "ENREGISTRER" %>
   </div>
 <% end %>

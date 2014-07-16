@@ -29,7 +29,7 @@ class GoldStandardIdentitiesController < ApplicationController
     @gold_standard_identity.recorded_in_village = session[:location]
 
     if @gold_standard_identity.save
-      flash[:status] = "Your registration of #{@gold_standard_identity.first_name} #{@gold_standard_identity.last_name} was successful."
+      flash[:status] = "Enregistrement reussi pour #{@gold_standard_identity.first_name} #{@gold_standard_identity.last_name}."
       flash[:status_color] = "success-green"
 
       # These lines update today's csv
@@ -38,7 +38,7 @@ class GoldStandardIdentitiesController < ApplicationController
        'w') { |file| file.write(@gold_standard_identities.as_csv) }
       redirect_to gold_standard_identity_url(@gold_standard_identity)
     else
-      flash.now[:status] = "There was an error with your entry."
+      flash.now[:status] = "Erreur d'enregistrement"
       flash.now[:status_color] = "failure-red"
       render :new
     end
@@ -67,10 +67,12 @@ class GoldStandardIdentitiesController < ApplicationController
   private
   def gold_standard_identity_params
     params.require(:gold_standard_identity).permit(
-    :first_name, :last_name, :alternate_name, :sex, :date_of_birth,
+    :first_name, :last_name, :alternate_name, :nick_name, :sex, :date_of_birth,
+    :other_first_name, :other_last_name, :other_alternate_name, :identity_card,
     :village_id, :group_id, :collective_id, :territory_id, :province_id,
     :recorded_in_village_id, :recorded_by, :alternate_village, :village_of_origin,
-    :head_of_household_first_name, :head_of_household_last_name, :relation_to_head_of_household,
+    :head_of_household_first_name, :head_of_household_last_name, 
+    :head_of_household_alternate_name, :relation_to_head_of_household,
     :household_size, :arrival_date, :arrival_from_village)
   end
 end
