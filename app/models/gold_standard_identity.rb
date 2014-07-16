@@ -1,6 +1,9 @@
 class GoldStandardIdentity < ActiveRecord::Base
   require 'csv'
   require 'fileutils'
+
+  attr_reader :age
+
   belongs_to :household, inverse_of: :gold_standard_identities
   has_many :gold_standard_matches, inverse_of: :gold_standard_identity
   belongs_to :village, inverse_of: :gold_standard_identities
@@ -10,8 +13,9 @@ class GoldStandardIdentity < ActiveRecord::Base
   has_one :province, through: :territory, source: :province
 
   # Toggle true/false to turn off/on the validation
-  validates_presence_of :first_name, :last_name, :sex, :date_of_birth, :household_size,
+  validates_presence_of :first_name, :last_name, :sex, :household_size,
             :arrival_from_village, :arrival_date, :province_id, :territory_id, :village_of_origin, message: "rempliseez cette case", if: "false"
+  validates_presence_of :date_of_birth, message: "rempliseez cette case"
   # validates :alternate_village, presence: true, if: "alternate_village_status"
   validates_presence_of :village_id, message: "rempliseez cette case", if: "!alternate_village_status"
   validates_presence_of :head_of_household_first_name, :head_of_household_last_name,
