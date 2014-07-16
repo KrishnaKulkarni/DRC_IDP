@@ -46,7 +46,7 @@
           <%= f.input :head_of_household_alternate_name, label: false, input_html: { placeholder: "Prenom", class: "menage" } %>
         </div>
         <div class="row clearfix">
-          <%= f.input :relation_to_head_of_household, label: "Relation familiale", collection: [ "Mere", "Pere", "Soeur", "Frere", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine" ] %>
+          <%= f.input :relation_to_head_of_household, label: "Relation familiale", collection: [ "Mere", "Pere", "Soeur", "Frere", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine", "Autre" ] %>
         </div>
         <div class="row clearfix">
           <%= f.input :head_of_household_two_first_name, label: "Chef menage 2", input_html: { placeholder: "Nom", class: "menage" } %>
@@ -54,7 +54,7 @@
           <%= f.input :head_of_household_two_alternate_name, label: false, input_html: { placeholder: "Prenom", class: "menage" } %>
         </div>
         <div class="row clearfix">
-          <%= f.input :relation_to_head_of_household_two, label: "Relation familiale", collection: [ "Mere", "Pere", "Soeur", "Frere", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine" ] %>
+          <%= f.input :relation_to_head_of_household_two, label: "Relation familiale", collection: [ "Mere", "Pere", "Soeur", "Frere", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine", "Autre" ] %>
         </div>
         <div class="row clearfix">
           <%= f.input :household_size, label: "Taille de menage", input_html: { max: 20, min: 1 }  %>
