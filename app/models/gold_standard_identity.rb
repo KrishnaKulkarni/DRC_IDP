@@ -18,14 +18,14 @@ class GoldStandardIdentity < ActiveRecord::Base
             :relation_to_head_of_household, message: "rempliseez cette case", if: "!head_of_household_status"
 
   validates_format_of :first_name, :last_name, :head_of_household_first_name,
-            :head_of_household_last_name, with: /[a-z]/, message: "lettres uniquement"
+            :head_of_household_last_name, with: /\A[a-zA-Z'\s]*\z/, message: "lettres uniquement"
 
-  validates_format_of :alternate_name, with: /[a-z]/, message: "lettres uniquement", if: 'alternate_name.present?'
-  validates_format_of :nick_name, with: /[a-z]/, message: "lettres uniquement", if: 'nick_name.present?'
-  validates_format_of :other_first_name, with: /[a-z]/, message: "lettres uniquement", if: 'other_first_name.present?'
-  validates_format_of :other_last_name, with: /[a-z]/, message: "lettres uniquement", if: 'other_last_name.present?'
-  validates_format_of :other_alternate_name, with: /[a-z]/, message: "lettres uniquement", if: 'other_alternate_name.present?'
-  validates_format_of :head_of_household_alternate_name, with: /[a-z]/, message: "lettres uniquement", if: 'head_of_household_alternate_name.present?'
+  validates_format_of :alternate_name, with: /\A[a-zA-Z'\s]*\z/, message: "lettres uniquement", if: 'alternate_name.present?'
+  validates_format_of :nick_name, with: /\A[a-zA-Z'\s]*\z/, message: "lettres uniquement", if: 'nick_name.present?'
+  validates_format_of :other_first_name, with: /\A[a-zA-Z'\s]*\z/, message: "lettres uniquement", if: 'other_first_name.present?'
+  validates_format_of :other_last_name, with: /\A[a-zA-Z'\s]*\z/, message: "lettres uniquement", if: 'other_last_name.present?'
+  validates_format_of :other_alternate_name, with: /\A[a-zA-Z'\s]*\z/, message: "lettres uniquement", if: 'other_alternate_name.present?'
+  validates_format_of :head_of_household_alternate_name, with: /\A[a-zA-Z'\s]*\z/, message: "lettres uniquement", if: 'head_of_household_alternate_name.present?'
 
   attr_accessor :alternate_village_status
   attr_accessor :head_of_household_status
