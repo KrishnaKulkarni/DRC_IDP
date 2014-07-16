@@ -24,6 +24,12 @@ class GoldStandardIdentitiesController < ApplicationController
   end
 
   def create
+    if params[:gold_standard_identity]["date_of_birth"].present?
+      params[:gold_standard_identity]["date_of_birth"] += "-01-01"
+    elsif (age = params[:gold_standard_identity]["age"]).present?
+      year = (2014 - age.to_i).to_s
+      params[:gold_standard_identity]["date_of_birth"] = year + "-01-01"
+    end
     @gold_standard_identity = GoldStandardIdentity.new(gold_standard_identity_params)
     @gold_standard_identity.recorded_by = session[:username]
     @gold_standard_identity.recorded_in_village = session[:location]
@@ -71,7 +77,7 @@ class GoldStandardIdentitiesController < ApplicationController
     :other_first_name, :other_last_name, :other_alternate_name, :identity_card,
     :village_id, :group_id, :collective_id, :territory_id, :province_id,
     :recorded_in_village_id, :recorded_by, :alternate_village, :village_of_origin,
-    :head_of_household_first_name, :head_of_household_last_name, 
+    :head_of_household_first_name, :head_of_household_last_name,
     :head_of_household_alternate_name, :relation_to_head_of_household,
     :household_size, :arrival_date, :arrival_from_village)
   end
