@@ -47,6 +47,14 @@ main.new-gold-standard {
 
         margin-bottom: 15px;
 
+        span#ou {
+         float: left;
+         margin-right: 15px;
+         padding-top: 10px;
+         font-size: 17px;
+         font-weight: bold;
+        }
+
         div.input {
          float: left;
          margin-right: 20px;
@@ -70,7 +78,7 @@ main.new-gold-standard {
 
          input[type="number"] {
            max-width: 90px;
-         } 
+         }
 
          select {
            margin-left: 0;
@@ -101,7 +109,7 @@ main.new-gold-standard {
 
         div.gold_standard_identity_identity_card {
           margin-left: 150px;
-          
+
         }
       }
 
@@ -120,15 +128,15 @@ main.new-gold-standard {
 
          div.gold_standard_identity_head_of_household_alternate_name {
           margin-top: 18px;
-         } 
+         }
 
          div.gold_standard_identity_head_of_household_two_last_name {
           margin-top: 18px;
-         } 
+         }
 
          div.gold_standard_identity_head_of_household_two_alternate_name {
           margin-top: 18px;
-         } 
+         }
         }
         section.arrival-info {
           float: left;

@@ -19,6 +19,7 @@
                           discard_day: true, discard_month: true,
                           order: [:year, :month, :day], :include_blank => true,
                           label: "Date de naissance" %>
+      <span id="ou">Ou</span>
       <%= f.input :age, as: :integer, input_html: { value: @age, max: 100, min: 0 }, label: "Age"  %>
     </div>
     <div class="row clearfix" id="row4">
