@@ -67,28 +67,104 @@ $(function() {
     setVillageStatus();
 
     var setHouseholdStatus = function(){
+      var isChecked = $('#gold_standard_identity_head_of_household_status').is(':checked');
+      if(isChecked){
+        $('.gold_standard_identity_head_of_household_first_name').addClass('blurred');
+        $('.gold_standard_identity_head_of_household_last_name').addClass('blurred');
+        $('.gold_standard_identity_head_of_household_alternate_name').addClass('blurred');
+        $('.gold_standard_identity_relation_to_head_of_household').addClass('blurred');
+      }
+      else {
+        $('.gold_standard_identity_head_of_household_first_name').removeClass('blurred');
+        $('.gold_standard_identity_head_of_household_last_name').removeClass('blurred');
+        $('.gold_standard_identity_head_of_household_alternate_name').removeClass('blurred');
+        $('.gold_standard_identity_relation_to_head_of_household').removeClass('blurred');
 
-        var isChecked = $('#gold_standard_identity_head_of_household_status').is(':checked');
-        if(isChecked){
-          $('.gold_standard_identity_head_of_household_first_name').addClass('blurred');
-          $('.gold_standard_identity_head_of_household_last_name').addClass('blurred');
-          $('.gold_standard_identity_head_of_household_alternate_name').addClass('blurred');
-          $('.gold_standard_identity_relation_to_head_of_household').addClass('blurred');
-        }
-        else {
-          $('.gold_standard_identity_head_of_household_first_name').removeClass('blurred');
-          $('.gold_standard_identity_head_of_household_last_name').removeClass('blurred');
-          $('.gold_standard_identity_head_of_household_alternate_name').removeClass('blurred');
-          $('.gold_standard_identity_relation_to_head_of_household').removeClass('blurred');
+      }
 
-        }
-
-        $('#gold_standard_identity_head_of_household_first_name').attr('disabled', isChecked ? "disabled" : false);
-        $('#gold_standard_identity_head_of_household_last_name').attr('disabled', isChecked ? "disabled" : false);
-        $('#gold_standard_identity_head_of_household_alternate_name').attr('disabled', isChecked ? "disabled" : false);
-        $('#gold_standard_identity_relation_to_head_of_household').attr('disabled', isChecked ? "disabled" : false);
+      $('#gold_standard_identity_head_of_household_first_name').attr('disabled', isChecked ? "disabled" : false);
+      $('#gold_standard_identity_head_of_household_last_name').attr('disabled', isChecked ? "disabled" : false);
+      $('#gold_standard_identity_head_of_household_alternate_name').attr('disabled', isChecked ? "disabled" : false);
+      $('#gold_standard_identity_relation_to_head_of_household').attr('disabled', isChecked ? "disabled" : false);
     };
 
     $('#gold_standard_identity_head_of_household_status').change(setHouseholdStatus);
     setHouseholdStatus();
+
+   	 $( "#gold_standard_identity_group_id" ).change(function () {
+   		    var value = $(this).val()
+   		  	$.ajax({
+   			     url: '/locations/groups/' + value,
+   			     type: 'GET',
+   			     success: function(data){
+   			 			 $("#gold_standard_identity_village_id").html(data);
+   			     }
+   		  	});
+   	   });
+
+     	 $( "#gold_standard_identity_collective_id" ).change(function () {
+            var value = $(this).val()
+            if(!value){
+              value = 0;
+            }
+     		  	$.ajax({
+     			     url: '/locations/collectives/' + value,
+     			     type: 'GET',
+     			     success: function(data){
+                 $data = $(data)
+                 var villageData = $data.closest("#villages").children('option');
+                 var groupData = $data.closest("#groups").children('option');
+     			 			 $("#gold_standard_identity_village_id").html(villageData);
+     			 			 $("#gold_standard_identity_group_id").html(groupData);
+     			     }
+     		  	});
+     	   });
+
+       	 $( "#gold_standard_identity_territory_id" ).change(function () {
+              var value = $(this).val()
+              if(!value){
+                value = 0;
+              }
+       		  	$.ajax({
+       			     url: '/locations/territories/' + value,
+       			     type: 'GET',
+       			     success: function(data){
+                   $data = $(data)
+                   var villageData = $data.closest("#villages").children('option');
+                   var groupData = $data.closest("#groups").children('option');
+                   var collectiveData = $data.closest("#collectives").children('option');
+
+
+                   $("#gold_standard_identity_village_id").html(villageData);
+       			 			 $("#gold_standard_identity_group_id").html(groupData);
+       			 			 $("#gold_standard_identity_collective_id").html(collectiveData);
+       			     }
+       		  	});
+       	   });
+
+         	 $( "#gold_standard_identity_province_id" ).change(function () {
+                var value = $(this).val()
+                if(!value){
+                  value = 0;
+                }
+         		  	$.ajax({
+         			     url: '/locations/provinces/' + value,
+         			     type: 'GET',
+         			     success: function(data){
+                     $data = $(data)
+                     var villageData = $data.closest("#villages").children('option');
+                     var groupData = $data.closest("#groups").children('option');
+                     var collectiveData = $data.closest("#collectives").children('option');
+                     var territoryData = $data.closest("#territories").children('option');
+
+
+                     $("#gold_standard_identity_village_id").html(villageData);
+         			 			 $("#gold_standard_identity_group_id").html(groupData);
+         			 			 $("#gold_standard_identity_collective_id").html(collectiveData);
+         			 			 $("#gold_standard_identity_territory_id").html(territoryData);
+
+         			     }
+         		  	});
+         	   });
+
 });

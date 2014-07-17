@@ -1,0 +1,8 @@
+<%= @locations.each do |(type, instances)| %>
+  <div id="<%= type %>">
+    <option></option>
+    <% instances.each do |instance| %>
+      <option value="<%= instance.id %>"><%= instance.name %></option>
+    <% end %>
+  </div>
+<% end %>

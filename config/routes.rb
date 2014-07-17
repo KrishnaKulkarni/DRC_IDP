@@ -22,6 +22,11 @@ IDPApp::Application.routes.draw do
   resource  :session, only: [:new, :create, :destroy]
   get '/sign_out', to: 'sessions#destroy', as: 'sign_out'
 
+  get 'locations/groups/:id', to: 'locations#groups'
+  get 'locations/collectives/:id', to: 'locations#collectives'
+  get 'locations/territories/:id', to: 'locations#territories'
+  get 'locations/provinces/:id', to: 'locations#provinces'
+
   namespace :api, defaults: { format: :json } do
     resources :iom_identities, only: [:create, :destroy, :update, :show]
     resources :gold_standard_identities, only: [:create, :show, :index] do
