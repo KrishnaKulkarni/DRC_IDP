@@ -35,7 +35,7 @@ class GoldStandardIdentitiesController < ApplicationController
 
       # These lines update today's csv
       @gold_standard_identities = GoldStandardIdentity.where("created_at > ?", Date.today)
-      File.open("exports/registered_identities_#{session[:username]}_C#{session[:computer_number]}_#{Date.today}.csv",
+      File.open("exports/registered_identities_#{session[:username]}_C#{session[:computer_number]}_#{session[:location]}_#{Date.today}.csv",
        'w') { |file| file.write(@gold_standard_identities.as_csv) }
       redirect_to gold_standard_identity_url(@gold_standard_identity)
     else
