@@ -26,7 +26,7 @@
       <%= f.input :province_id, collection: Province.all.order(:name), label_method: :name, value_method: :id, label: "Province" ,:include_blank => true %>
       <%= f.input :territory_id, collection: Territory.all.order(:name), label_method: :name, value_method: :id, label: "Territoire" ,:include_blank => true %>
       <%= f.input :collective_id, collection: Collective.all.order(:name), label_method: :name, value_method: :id, label: "Collectivite" ,:include_blank => true %>
-      <%= f.input :group_id, collection: Group.all.order(:name), label_method: :name, value_method: :id, label: "Groupement" ,:include_blank => true, disabled: true, wrapper_html: { class: 'blurred' } %>
+      <%= f.input :group_id, collection: Group.all.order(:name), label_method: :name, value_method: :id, label: "Groupement" ,:include_blank => true %>
       <%= f.input :village_id, collection: Village.all.order(:name), label_method: :name, value_method: :id, label: "Village" ,:include_blank => true %>
     </div>
     <div class="row clearfix" id="row5">

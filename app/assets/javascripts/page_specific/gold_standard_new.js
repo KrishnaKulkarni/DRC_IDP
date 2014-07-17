@@ -97,7 +97,9 @@ $(function() {
    			     url: '/locations/groups/' + value,
    			     type: 'GET',
    			     success: function(data){
-   			 			 $("#gold_standard_identity_village_id").html(data);
+               $data = $(data)
+               var villageData = $data.closest("#villages").children('option');
+   			 			 $("#gold_standard_identity_village_id").html(villageData);
    			     }
    		  	});
    	   });
