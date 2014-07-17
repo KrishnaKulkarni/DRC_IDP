@@ -82,7 +82,6 @@ main.new-gold-standard {
 
          select {
            margin-left: 0;
-           max-width: 150px;
          }
 
          input.menage {
@@ -101,6 +100,22 @@ main.new-gold-standard {
            display: inline;
            margin-right: 5px;
           }
+        }
+
+        div.gold_standard_identity_arrival_date{
+         select {
+           max-width: 130px;
+         }
+        }
+
+        div.gold_standard_identity_province_id,
+        div.gold_standard_identity_territory_id,
+        div.gold_standard_identity_collective_id,
+        div.gold_standard_identity_group_id,
+        div.gold_standard_identity_village_id{
+         select {
+           width: 130px;
+         }
         }
 
         div.gold_standard_identity_alternate_village {

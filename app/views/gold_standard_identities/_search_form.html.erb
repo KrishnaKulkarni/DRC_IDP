@@ -23,10 +23,10 @@
       <%= f.input :age, as: :integer, input_html: { value: @age, max: 100, min: 0 }, label: "Age"  %>
     </div>
     <div class="row clearfix" id="row4">
-      <%= f.input :province_id, collection: Province.all.order(:name).select {|p| p.villages.count != 0}, label_method: :name, value_method: :id, label: "Province" ,:include_blank => true %>
-      <%= f.input :territory_id, collection: Territory.all.order(:name).select {|t| t.villages.count != 0}, label_method: :name, value_method: :id, label: "Territoire" ,:include_blank => true %>
-      <%= f.input :collective_id, collection: Collective.all.order(:name).select {|c| c.villages.count != 0}, label_method: :name, value_method: :id, label: "Collectivite" ,:include_blank => true %>
-      <%= f.input :group_id, collection: Group.all.order(:name).select {|g| g.villages.count != 0}, label_method: :name, value_method: :id, label: "Groupement" ,:include_blank => true %>
+      <%= f.input :province_id, collection: Province.all.order(:name), label_method: :name, value_method: :id, label: "Province" ,:include_blank => true %>
+      <%= f.input :territory_id, collection: Territory.all.order(:name), label_method: :name, value_method: :id, label: "Territoire" ,:include_blank => true %>
+      <%= f.input :collective_id, collection: Collective.all.order(:name), label_method: :name, value_method: :id, label: "Collectivite" ,:include_blank => true %>
+      <%= f.input :group_id, collection: Group.all.order(:name), label_method: :name, value_method: :id, label: "Groupement" ,:include_blank => true, disabled: true, wrapper_html: { class: 'blurred' } %>
       <%= f.input :village_id, collection: Village.all.order(:name), label_method: :name, value_method: :id, label: "Village" ,:include_blank => true %>
     </div>
     <div class="row clearfix" id="row5">
@@ -75,3 +75,8 @@
     <%= f.button :submit, value: "ENREGISTRER" %>
   </div>
 <% end %>
+
+<!-- .select {|p| p.villages.count != 0}
+.select {|t| t.villages.count != 0}
+.select {|c| c.villages.count != 0}
+.select {|g| g.villages.count != 0} -->
