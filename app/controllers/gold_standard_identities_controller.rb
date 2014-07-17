@@ -24,16 +24,11 @@ class GoldStandardIdentitiesController < ApplicationController
   end
 
   def create
-    if params[:gold_standard_identity]["date_of_birth"].present?
-      params[:gold_standard_identity]["date_of_birth"] += "-01-01"
-    elsif (age = params[:gold_standard_identity]["age"]).present?
-      year = (2014 - age.to_i).to_s
-      params[:gold_standard_identity]["date_of_birth"] = year + "-01-01"
-    end
+    handle_age!
+
     @gold_standard_identity = GoldStandardIdentity.new(gold_standard_identity_params)
     @gold_standard_identity.recorded_by = session[:username]
     @gold_standard_identity.recorded_in_village = session[:location]
-
     if @gold_standard_identity.save
       flash[:status] = "Enregistrement reussi pour #{@gold_standard_identity.first_name} #{@gold_standard_identity.last_name}."
       flash[:status_color] = "success-green"
@@ -71,6 +66,17 @@ class GoldStandardIdentitiesController < ApplicationController
   end
 
   private
+  def handle_age!
+    @age = params[:gold_standard_identity]["age"]
+    @year_of_birth = params[:gold_standard_identity]["date_of_birth"]
+    if @year_of_birth.present?
+      params[:gold_standard_identity]["date_of_birth"] += "-01-01"
+    elsif @age.present?
+      year = (2014 - @age.to_i).to_s
+      params[:gold_standard_identity]["date_of_birth"] = year + "-01-01"
+    end
+  end
+
   def gold_standard_identity_params
     params.require(:gold_standard_identity).permit(
     :first_name, :last_name, :alternate_name, :nick_name, :sex, :date_of_birth,

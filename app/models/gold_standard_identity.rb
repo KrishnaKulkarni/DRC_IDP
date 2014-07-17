@@ -15,7 +15,8 @@ class GoldStandardIdentity < ActiveRecord::Base
   # Toggle true/false to turn off/on the validation
   validates_presence_of :first_name, :last_name, :sex, :household_size,
             :arrival_from_village, :province_id, :territory_id, :village_of_origin, message: "rempliseez cette case", if: "true"
-  # BUG**: validates_presence_of :date_of_birth, message: "rempliseez cette case", if: "true"
+  # Still haven't solved this bug
+  # validates_presence_of :date_of_birth, message: "rempliseez cette case", unless: "true"
   validates_presence_of :alternate_village, presence: true, message: "rempliseez cette case", if: "alternate_village_status=='1'"
   validates_presence_of :village_id, message: "rempliseez cette case", if: "alternate_village_status!='1'"
   validates_presence_of :head_of_household_first_name, :head_of_household_last_name,
