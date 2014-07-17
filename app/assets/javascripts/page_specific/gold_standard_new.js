@@ -80,7 +80,13 @@ $(function() {
           $('.gold_standard_identity_head_of_household_last_name').removeClass('blurred');
           $('.gold_standard_identity_head_of_household_alternate_name').removeClass('blurred');
           $('.gold_standard_identity_relation_to_head_of_household').removeClass('blurred');
+
         }
+
+        $('#gold_standard_identity_head_of_household_first_name').attr('disabled', isChecked ? "disabled" : false);
+        $('#gold_standard_identity_head_of_household_last_name').attr('disabled', isChecked ? "disabled" : false);
+        $('#gold_standard_identity_head_of_household_alternate_name').attr('disabled', isChecked ? "disabled" : false);
+        $('#gold_standard_identity_relation_to_head_of_household').attr('disabled', isChecked ? "disabled" : false);
     };
 
     $('#gold_standard_identity_head_of_household_status').change(setHouseholdStatus);

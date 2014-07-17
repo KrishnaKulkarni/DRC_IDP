@@ -55,6 +55,12 @@ a.navlink:hover {
   color: grey;
 }
 
+.blurredmenage {
+  -webkit-filter: blur(0.8px);
+  color: grey;
+  max-width: 100px;
+}
+
 .simple_form .field_with_errors .error {
   background-color: #f15e5e;
   border: 1px solid #d61313;
