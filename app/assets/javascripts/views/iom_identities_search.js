@@ -3,8 +3,7 @@ IdentityMatches.Views.IomIdentitiesSearch = Backbone.View.extend({
   tagName: "div",
 
   events: {
-    "click input.search-button" : "searchMatches",
-    "click input.register-button" : "registerMatches",
+    "click input.search-button" : "searchMatches"
   },
 
   initialize: function(options) {

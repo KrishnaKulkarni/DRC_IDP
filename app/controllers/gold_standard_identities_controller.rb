@@ -8,13 +8,15 @@ class GoldStandardIdentitiesController < ApplicationController
     render :find_matches
   end
 
-  def search_form
-    @gold_standard_identity = GoldStandardIdentity.new
-    render "_search_form", :layout => false
+  def match_results
+    candidates = IomIdentity.all
+    matches = generate_matches_list(gold_standard_identity_params, candidates)
+    render json: matches
   end
 
+# This method is only a helper to provide useful html to the reconciliation form  
   def search_fields
-    @gold_standard_identity = GoldStandardIdentity.new
+    @gold_standard_identity = GoldStandardIdentity.find(session[:last_registered_identity_id])
     render "_search_fields", :layout => false
   end
 
@@ -25,6 +27,7 @@ class GoldStandardIdentitiesController < ApplicationController
 
   def create
     handle_age!
+    clear_identity_cache
 
     @gold_standard_identity = GoldStandardIdentity.new(gold_standard_identity_params)
     @gold_standard_identity.recorded_by = session[:username]
@@ -51,21 +54,12 @@ class GoldStandardIdentitiesController < ApplicationController
   end
 
   def show
+    store_identity_cache(params[:id])
     render :show
   end
 
-  def test_page
-    @gold_standard_identity = GoldStandardIdentity.new
-    render '_search_form'
-  end
-
-  def match_results
-    candidates = IomIdentity.all
-    matches = generate_matches_list(gold_standard_identity_params, candidates)
-    render json: matches
-  end
-
   private
+
   def handle_age!
     @age = params[:gold_standard_identity]["age"]
     @year_of_birth = params[:gold_standard_identity]["date_of_birth"]

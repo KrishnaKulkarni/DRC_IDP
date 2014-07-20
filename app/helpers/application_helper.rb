@@ -1,5 +1,4 @@
 module ApplicationHelper
-  
   def authenticity_token
     <<-HTML.html_safe
     <input type="hidden"
@@ -7,7 +6,4 @@ module ApplicationHelper
     value="#{form_authenticity_token}">
     HTML
   end
-  
-  
-  
 end

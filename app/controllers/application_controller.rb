@@ -9,4 +9,12 @@ class ApplicationController < ActionController::Base
 	    redirect_to new_session_url unless session[:signed_in]
    	end
   end
+
+  def clear_identity_cache
+    session[:last_registered_identity_id] = nil
+  end
+
+  def store_identity_cache(id)
+    session[:last_registered_identity_id] =  id
+  end
 end
