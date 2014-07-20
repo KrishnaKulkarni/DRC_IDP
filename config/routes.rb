@@ -21,7 +21,7 @@ IDPApp::Application.routes.draw do
 
   resources :gold_standard_identities, only: [:new, :create, :index, :show]
   
-  resources :idp_trajectories, only: [:new]
+  resources :idp_trajectories, only: [:new, :create, :index, :show]
 
   resource  :session, only: [:new, :create, :destroy]
   get '/sign_out', to: 'sessions#destroy', as: 'sign_out'
