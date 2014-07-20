@@ -1,0 +1,11 @@
+<%= simple_form_for @idp_trajectory do |f| %>
+  <div class="inputs-container clearfix">
+    <div class="row clearfix" id="row1">
+      <%= f.input :stop_number, label: "Stop Number" %>
+      <%= f.input :arrival_date, label: "Date d'arrivee", start_year: Date.today.year - 90, end_year: Date.today.year, :include_blank => true %>
+      <%= f.input :mode_of_transport, label: "Mode of Transport" %>
+    </div>
+  </div>
+<% end %>
+
+<!-- , url: idp_trajectories_url do |f|  -->
