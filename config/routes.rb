@@ -13,7 +13,9 @@ IDPApp::Application.routes.draw do
   get '/search_form', to: 'gold_standard_identities#search_form', as: 'search_form'
   get '/search_fields', to: 'gold_standard_identities#search_fields', as: 'search_fields'
   post '/match_results', to: 'gold_standard_identities#match_results', as: 'match_results'
-  get '/test_page', to: 'gold_standard_identities#test_page'
+
+  get '/iom_identities/import', to: 'iom_identities#importing_page', as: 'iom_import'
+  post '/iom_identities/import', to: 'iom_identities#import', as: 'iom_importing_page'
 
   resources :gold_standard_matches, only: [:create]
 
