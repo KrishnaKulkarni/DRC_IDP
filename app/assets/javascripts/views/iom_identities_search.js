@@ -3,8 +3,7 @@ IdentityMatches.Views.IomIdentitiesSearch = Backbone.View.extend({
   tagName: "div",
 
   events: {
-    "click input.search-button" : "searchMatches",
-    "click input.register-button" : "registerMatches",
+    "click input.search-button" : "searchMatches"
   },
 
   initialize: function(options) {
@@ -23,7 +22,9 @@ IdentityMatches.Views.IomIdentitiesSearch = Backbone.View.extend({
       var indexView = new IdentityMatches.Views.IomIdentitiesIndex({
         collection: new IdentityMatches.Collections.IomIdentities(resp)
       });
-      $("#found-matches").html(indexView.render().$el)
+      $("#found-matches").html(indexView.render().$el);
+
+      $("#reconciliations-list").html("");
      }
    });
 

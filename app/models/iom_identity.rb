@@ -17,5 +17,21 @@ class IomIdentity < ActiveRecord::Base
   has_one :province, through: :territory, source: :province
   
   attr_accessor :alternate_village_status
-  
+
+  def self.import!(file)
+    succeeded = true
+    IomIdentity.transaction do
+      CSV.foreach(file.path, headers: true) do |row|
+        identity_hash = row.to_hash
+        identity_hash.delete('id')
+        identity_hash.delete_if { |attr, value| !IomIdentity.column_names.include?(attr) }
+        unless IomIdentity.create(identity_hash)
+          succeeded = false
+          raise "Importing error"
+        end
+      end # end CSV.foreach
+    end
+
+    succeeded
+  end # end self.import(file)
 end
