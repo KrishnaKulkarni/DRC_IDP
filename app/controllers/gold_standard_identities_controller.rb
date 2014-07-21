@@ -8,9 +8,13 @@ class GoldStandardIdentitiesController < ApplicationController
     render :find_matches
   end
 
+# This is also a helper for finidn matches on the reconciliation page
   def match_results
     candidates = IomIdentity.all
     matches = generate_matches_list(gold_standard_identity_params, candidates)
+    
+    current_gold_id = session[:last_registered_identity_id].to_i
+    matches.reject! { |match| GoldStandardMatch.match_exists?(current_gold_id, match.id) }
     render json: matches
   end
 

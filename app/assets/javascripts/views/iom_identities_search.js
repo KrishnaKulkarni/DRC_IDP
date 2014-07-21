@@ -22,7 +22,9 @@ IdentityMatches.Views.IomIdentitiesSearch = Backbone.View.extend({
       var indexView = new IdentityMatches.Views.IomIdentitiesIndex({
         collection: new IdentityMatches.Collections.IomIdentities(resp)
       });
-      $("#found-matches").html(indexView.render().$el)
+      $("#found-matches").html(indexView.render().$el);
+
+      $("#reconciliations-list").html("");
      }
    });
 
