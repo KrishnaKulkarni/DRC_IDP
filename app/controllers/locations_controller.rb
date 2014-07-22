@@ -1,4 +1,5 @@
 class LocationsController < ApplicationController
+
   def groups
     if params[:id].to_i == 0
       @locations = {

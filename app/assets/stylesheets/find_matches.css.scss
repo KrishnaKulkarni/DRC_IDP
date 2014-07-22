@@ -50,8 +50,16 @@ main.find-matches-page {
 
     li {
       border-bottom: 1px solid #ccc;
+      padding: 2px 2px;
       h3 {
         font-size: 16px;
+      }
+
+      div.identity-cell-row {
+        width: 50%;
+        float: left;
+        div.identity-cell-text {
+        }
       }
 
       font-size: 14px;
@@ -138,18 +146,16 @@ main.find-matches-page {
       height: 45%;
       border-bottom: 1px solid #777;
       font-size: 14px;
-
+      padding-left: 3px;
       h2 {
        font-size: 16px;
       }
 
 
       div.left-bio {
-        float: left;
       }
 
       div.right-bio {
-        float: left;
       }
     }
 
@@ -169,10 +175,18 @@ main.find-matches-page {
 
     section#household {
       height: 75%;
-
       ul#household-list {
        max-height: 413px;
        list-style: none;
+
+       h3 {
+        font-size: 16px;
+       }
+
+       div {
+        font-size: 94%;
+       }
+
       }
     }
 

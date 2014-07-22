@@ -30,6 +30,7 @@ IDPApp::Application.routes.draw do
   get 'locations/provinces/:id', to: 'locations#provinces'
 
   namespace :api, defaults: { format: :json } do
+    get '/locations/:location_type', to: 'locations#collections'
     resources :iom_identities, only: [:create, :destroy, :update, :show] do
       get '/household', to: 'iom_identities#household', as: 'household'
     end

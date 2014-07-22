@@ -2,16 +2,19 @@
   <% householdMembers.forEach(function(iomIdentity){ %>
     <a href="#/household_identities/<%= iomIdentity.id %>">
 
-      <li id="<%= iomIdentity.id %>">
-        <h3><%= iomIdentity.get("first_name") + " " + iomIdentity.get("last_name") %></h3>
-         <div>
-           <span>Sex: <%= iomIdentity.get("sex") %></span>
-           <span>  </span>
-           <span>Date-of-Birth: <%= iomIdentity.get("date_of_birth") %></span>
+      <li id="<%= iomIdentity.id %>" class="clearfix">
+          <h3><%= iomIdentity.get("first_name") + " " + iomIdentity.get("last_name") %></h3>
+         <div class="identity-cell-row">
+           <div class="identity-cell-text">Sex: <%= iomIdentity.get("sex") %></div>
+           <div class="identity-cell-text">Alt. Name: <%= iomIdentity.get("date_of_birth") %></div>
          </div>
-         <div>
-           <span>Province: <%= iomIdentity.get("province") %></span><span>  </span>
-           <span>Village: <%= iomIdentity.get("village") %></span>
+         <div class="identity-cell-row">
+          <div class="identity-cell-text">Village:
+            <%= IdentityMatches.Collections.villages.get(iomIdentity.get("village_id")).attributes.name %>
+          </div>
+          <div class="identity-cell-text">Province:
+            <%= IdentityMatches.Collections.provinces.get(iomIdentity.get("province_id")).attributes.name %>
+          </div>
          </div>
       </li>
     </a>
