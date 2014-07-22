@@ -13,10 +13,13 @@
 
 </div>
 <div class="right-bio">
-   <div>Province id: <%= iomIdentity.get("province_id") %></div>
-   <div>Territory id: <%= iomIdentity.get("territory_id") %></div>
-   <div>Group id: <%= iomIdentity.get("group_id") %></div>
-   <div>Collective id: <%= iomIdentity.get("collective_id") %></div>
-   <div>Village id: <%= iomIdentity.get("village_id") %></div>
+    <% var prId = iomIdentity.get("province_id") %><% var trId = iomIdentity.get("territory_id") %>
+    <% var clId = iomIdentity.get("collective_id") %><% var grId = iomIdentity.get("group_id") %>
+    <% var vlId = iomIdentity.get("village_id") %>
+   <div>Province: <%= prId && IdentityMatches.Collections.provinces.get(prId).attributes.name %></div>
+   <div>Territory: <%= trId && IdentityMatches.Collections.territories.get(trId).attributes.name %></div>
+   <div>Collective: <%= clId && IdentityMatches.Collections.collectives.get(clId).attributes.name %></div>
+   <div>Group: <%= grId && IdentityMatches.Collections.groups.get(grId).attributes.name %></div>
+   <div>Village: <%= vlId && IdentityMatches.Collections.villages.get(vlId).attributes.name %></div>
    <div>Alternate Village: <%= iomIdentity.get("alternate_village") %></div>
 </div>

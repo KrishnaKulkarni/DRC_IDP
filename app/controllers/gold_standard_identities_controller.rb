@@ -12,15 +12,16 @@ class GoldStandardIdentitiesController < ApplicationController
   def match_results
     candidates = IomIdentity.all
     matches = generate_matches_list(gold_standard_identity_params, candidates)
-    
+
     current_gold_id = session[:last_registered_identity_id].to_i
     matches.reject! { |match| GoldStandardMatch.match_exists?(current_gold_id, match.id) }
     render json: matches
   end
 
-# This method is only a helper to provide useful html to the reconciliation form  
+# This method is only a helper to provide useful html to the reconciliation form
   def search_fields
-    @gold_standard_identity = GoldStandardIdentity.find(session[:last_registered_identity_id])
+    @gold_standard_identity = GoldStandardIdentity.find_by(id: session[:last_registered_identity_id])
+    @gold_standard_identity ||= GoldStandardIdentity.new
     render "_search_fields", :layout => false
   end
 
