@@ -1,0 +1,19 @@
+<ul id="household-list">
+  <% householdMembers.forEach(function(iomIdentity){ %>
+    <a href="#/household_identities/<%= iomIdentity.id %>">
+
+      <li id="<%= iomIdentity.id %>">
+        <h3><%= iomIdentity.get("first_name") + " " + iomIdentity.get("last_name") %></h3>
+         <div>
+           <span>Sex: <%= iomIdentity.get("sex") %></span>
+           <span>  </span>
+           <span>Date-of-Birth: <%= iomIdentity.get("date_of_birth") %></span>
+         </div>
+         <div>
+           <span>Province: <%= iomIdentity.get("province") %></span><span>  </span>
+           <span>Village: <%= iomIdentity.get("village") %></span>
+         </div>
+      </li>
+    </a>
+  <% }); %>
+</ul>
