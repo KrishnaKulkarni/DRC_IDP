@@ -69,6 +69,9 @@ class GoldStandardIdentitiesController < ApplicationController
     @age = params[:gold_standard_identity]["age"]
     @year_of_birth = params[:gold_standard_identity]["date_of_birth"]
     if @year_of_birth.present?
+      if @year_of_birth.to_i < 100
+        @year_of_birth = (2014 - @year_of_birth.to_i).to_s
+      end
       params[:gold_standard_identity]["date_of_birth"] += "-01-01"
     elsif @age.present?
       year = (2014 - @age.to_i).to_s
@@ -79,11 +82,13 @@ class GoldStandardIdentitiesController < ApplicationController
   def gold_standard_identity_params
     params.require(:gold_standard_identity).permit(
     :first_name, :last_name, :alternate_name, :nick_name, :sex, :date_of_birth,
-    :other_first_name, :other_last_name, :other_alternate_name, :identity_card,
+    :other_first_name, :other_last_name, :other_alternate_name, :identity_card, :iom_identity_card,
     :village_id, :group_id, :collective_id, :territory_id, :province_id,
     :recorded_in_village_id, :recorded_by, :alternate_village, :alternate_village_status, :village_of_origin,
     :head_of_household_status, :head_of_household_first_name, :head_of_household_last_name,
     :head_of_household_alternate_name, :relation_to_head_of_household,
-    :household_size, :arrival_date, :arrival_from_village)
+    :head_of_household_two_first_name, :head_of_household_two_last_name,
+    :head_of_household_two_alternate_name, :relation_to_head_of_household_two,
+    :household_size, :arrival_date, :arrival_from_village, :arrival_from_type)
   end
 end
