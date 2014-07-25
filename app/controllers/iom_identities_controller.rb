@@ -5,7 +5,7 @@ class IomIdentitiesController < ApplicationController
 
   def import
     csv = params[:file]
-    if IomIdentity.import!(csv)
+    if Importers::Importer.import_file!(csv, IomIdentity)
       flash[:status] = "CSV successfully imported!"
       flash[:status_color] = "success-green"
     else
