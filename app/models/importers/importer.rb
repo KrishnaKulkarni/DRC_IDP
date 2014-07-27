@@ -35,7 +35,7 @@ class Importers::Importer
 
   def self.import_row(row, imported_model, log)
 
-    row = row.to_h
+    row = row.to_hash
     sanitized_row = permitted_attributes(row, imported_model)
     new_identity = imported_model.new(sanitized_row)
     is_successful = !!new_identity.save
