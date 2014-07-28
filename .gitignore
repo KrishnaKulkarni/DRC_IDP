@@ -23,3 +23,5 @@
 /exports/*.csv
 /imports/*.csv
 /imported/*.csv
+/import_logs/*.csv
+/compiled/*.csv
