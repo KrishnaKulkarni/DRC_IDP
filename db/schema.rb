@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140719174920) do
+ActiveRecord::Schema.define(version: 20140727215901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,8 @@ ActiveRecord::Schema.define(version: 20140719174920) do
     t.string   "mode_of_transport"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "recorded_by"
+    t.string   "recorded_in_village"
   end
 
   add_index "idp_trajectories", ["gold_standard_identity_id"], name: "index_idp_trajectories_on_gold_standard_identity_id", using: :btree
