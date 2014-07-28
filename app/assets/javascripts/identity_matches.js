@@ -6,15 +6,21 @@ window.IdentityMatches = {
 
   initialize: function() {
 
+    IdentityMatches.Collections.searchResults = new IdentityMatches.Collections.IomIdentities();
+    IdentityMatches.Collections.selectedMatches = new IdentityMatches.Collections.IomIdentities();
+    IdentityMatches.Collections.householdMembers = new IdentityMatches.Collections.IomIdentities();
+
+    // IdentityMatches.Collections.iomIdentities = new IdentityMatches.Collections.IomIdentities();
 
     // Search sub-view construction
     // var searchView = new IdentityMatches.Views.IomIdentitiesSearch();
     // $(".display-info-column").html(searchView.render().$el);
-    IdentityMatches.Collections.iomIdentities.fetch({
-      success: function() {
-        console.log("Successfully fetched current stored identities.");
-      }
-    });
+    
+    // IdentityMatches.Collections.iomIdentities.fetch({
+    //   success: function() {
+    //     console.log("Successfully fetched current stored identities.");
+    //   }
+    // });
 
     IdentityMatches.Collections.villages.fetch();
     IdentityMatches.Collections.groups.fetch();
