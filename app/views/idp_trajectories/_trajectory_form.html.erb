@@ -1,4 +1,4 @@
-<%= simple_form_for @idp_trajectory do |f| %>
+<%= simple_form_for @idp_trajectory, url: idp_trajectories_url do |f| %>
   <div class="inputs-container clearfix">
     <div class="row clearfix" id="row1">
       <%= f.input :stop_number, label: "Stop Number" %>
@@ -6,7 +6,7 @@
       <%= f.input :mode_of_transport, label: "Mode of Transport" %>
     </div>
 
-    <%= f.button :submit, value: "SUBMIT" %>
+    <%= f.button :submit, value: "Add Stop" %>
   </div>
 <% end %>
 

@@ -8,6 +8,10 @@ class IdpTrajectoriesController < ApplicationController
     render :new
   end
   
+  def show
+    render :show
+  end
+
   def create
     @gold_standard_identity = GoldStandardIdentity.last
 
@@ -16,7 +20,7 @@ class IdpTrajectoriesController < ApplicationController
     @idp_trajectory.recorded_in_village = session[:location]
     @idp_trajectory.gold_standard_identity_id = @gold_standard_identity[:id]
     if @idp_trajectory.save
-      flash[:status] = "Succesful enter of stop #{@idp_trajectory.stop_number}
+      flash[:status] = "Succesful entry of stop #{@idp_trajectory.stop_number}
                         pour #{@gold_standard_identity.first_name} #{@gold_standard_identity.last_name}."
       flash[:status_color] = "success-green"
 
@@ -24,7 +28,7 @@ class IdpTrajectoriesController < ApplicationController
       # @gold_standard_identities = GoldStandardIdentity.where("created_at > ?", Date.today)
       # File.open("exports/registered_identities_#{session[:username]}_C#{session[:computer_number]}_#{session[:location]}_#{Date.today}.csv",
       #  'w') { |file| file.write(@gold_standard_identities.as_csv) }
-      redirect_to gold_standard_identity_url(@gold_standard_identity)
+      redirect_to idp_trajectory_url(@idp_trajectory)
     else
       flash.now[:status] = "Erreur d'enregistrement"
       flash.now[:status_color] = "failure-red"
