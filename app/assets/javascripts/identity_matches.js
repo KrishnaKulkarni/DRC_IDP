@@ -10,8 +10,8 @@ window.IdentityMatches = {
     IdentityMatches.Collections.selectedMatches = new IdentityMatches.Collections.IomIdentities();
     IdentityMatches.Collections.householdMembers = new IdentityMatches.Collections.IomIdentities();
 
-    // IdentityMatches.Collections.iomIdentities = new IdentityMatches.Collections.IomIdentities();
-
+    IdentityMatches.Collections.iomIdentities = new IdentityMatches.Collections.IomIdentities();
+    IdentityMatches.Collections.iomIdentities.fetch();
     // Search sub-view construction
     // var searchView = new IdentityMatches.Views.IomIdentitiesSearch();
     // $(".display-info-column").html(searchView.render().$el);

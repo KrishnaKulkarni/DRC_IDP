@@ -19,15 +19,14 @@ IdentityMatches.Views.IomIdentitiesSearch = Backbone.View.extend({
      data: $( "#search-matches-form" ).serialize(),
      success: function(resp){
       console.log("Response ::", resp);
+      IdentityMatches.Collections.searchResults.set(resp);
 
-      IdentityMatches.Collections.searchResults.set(resp, function({
-        var indexView = new IdentityMatches.Views.IomIdentitiesIndex({
-          collection: IdentityMatches.Collections.searchResults
-        });
-        $("#found-matches").html(indexView.render().$el);
+      var indexView = new IdentityMatches.Views.IomIdentitiesIndex({
+        collection: IdentityMatches.Collections.searchResults
+      });
+      $("#found-matches").html(indexView.render().$el);
 
-        $("#reconciliations-list").html("");
-      }));
+      $("#reconciliations-list").html("");
      }
    });
 
