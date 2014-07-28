@@ -17,9 +17,13 @@ IDPApp::Application.routes.draw do
   get '/iom_identities/import', to: 'iom_identities#importing_page', as: 'iom_import'
   post '/iom_identities/import', to: 'iom_identities#import', as: 'iom_importing_page'
 
+  get '/trajectory_form', to: 'idp_trajectories#trajectory_form', as: 'trajectory_form'
+
   resources :gold_standard_matches, only: [:create]
 
   resources :gold_standard_identities, only: [:new, :create, :index, :show]
+  
+  resources :idp_trajectories, only: [:new, :create, :index, :show]
 
   resource  :session, only: [:new, :create, :destroy]
   get '/sign_out', to: 'sessions#destroy', as: 'sign_out'
