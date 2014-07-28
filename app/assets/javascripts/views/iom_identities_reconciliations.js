@@ -17,19 +17,18 @@ IdentityMatches.Views.IomIdentitiesReconciliations = Backbone.View.extend({
   },
 
   removeMatch: function(event) {
-    var li = $(event.target).closest("li");
-    li.parent("a").prependTo("#matches-list");
+    var $li = $(event.target).closest("li");
 
-    var id = li.prop('id');
+    var id = $li.prop('id');
 
     var identityToRemove = IdentityMatches.Collections.selectedMatches.get(id);
     IdentityMatches.Collections.selectedMatches.remove(identityToRemove);
+    $("#matches-list").find("li#"+ id).removeClass('already-selected');
 
     $("#create-reconciliations").children("#" + id).remove();
   },
 
   render: function() {
-    console.log("Selected render called");
     var renderedContent = this.template({ iomIdentities: this.collection });
     this.$el.html(renderedContent);
 

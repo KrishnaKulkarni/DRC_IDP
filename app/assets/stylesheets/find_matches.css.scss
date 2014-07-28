@@ -3,6 +3,7 @@ section.status-message#recon {
   width: 400px;
   margin: 30px auto;
   padding: 10px;
+  background: #eee;
 }
 
 section.success-green#recon{
@@ -65,12 +66,20 @@ main.find-matches-page {
       font-size: 14px;
     }
 
+    li.already-selected {
+      color: #666;
+    }
+
     li:hover {
       background: #ccc;
     }
 
     li.featured {
       background: #6698FF;
+    }
+
+    li.featured.already-selected {
+      background: #6B9DFF;
     }
   }
 

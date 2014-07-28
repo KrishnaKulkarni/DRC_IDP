@@ -11,23 +11,39 @@ IdentityMatches.Views.IomIdentitiesIndex = Backbone.View.extend({
 
   featureItem: function(event) {
     $("li.featured").removeClass("featured");
-    $(event.target).closest("li").addClass("featured");
+    var $li = $(event.target).closest("li");
+    var id = $li.prop('id');
+    $li.addClass("featured");
   },
 
   createMatch: function(event) {
-    var li = $(event.target).closest("li");
-    // li.parent("a").appendTo("#reconciliations-list");
-    var id = li.prop('id');
+    var $li = $(event.target).closest("li");
+    var id = $li.prop('id');
 
     var selectedIdentity = IdentityMatches.Collections.searchResults.get(id);
     IdentityMatches.Collections.selectedMatches.add(selectedIdentity);
+    $li.addClass('already-selected');
 
     var matchInput = "<input type='hidden' id='" + id +"' name='gold_standard_matches[" + id + "]'>";
     $("#create-reconciliations").append(matchInput);
   },
 
   render: function() {
-    var renderedContent = this.template({ iomIdentities: this.collection });
+    var selectedIds = IdentityMatches.Collections.selectedMatches.pluck("id");
+    var alreadySelected = IdentityMatches.Collections.searchResults.filter(function(identity){ return selectedIds.indexOf(identity.id) != -1 }); 
+    this.collection.forEach(function(identity){
+      if(selectedIds.indexOf(identity.id) != -1){
+        identity.alreadySelected = "already-selected";
+      }
+      else {
+        identity.alreadySelected = null;
+      }
+    });
+
+    var renderedContent = this.template({ 
+      iomIdentities: this.collection,
+      alreadySelected: alreadySelected
+     });
     this.$el.html(renderedContent);
 
     return this;
