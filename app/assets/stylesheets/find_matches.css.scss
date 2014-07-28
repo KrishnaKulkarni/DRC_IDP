@@ -68,6 +68,7 @@ main.find-matches-page {
 
     li.already-selected {
       color: #666;
+      background: #fff;
     }
 
     li:hover {
@@ -184,8 +185,23 @@ main.find-matches-page {
 
     section#household {
       height: 75%;
+
+      h4 {
+       font-size: 15px;
+       font-weight: normal;
+       margin: 0 0 5px 5px;
+       span {
+        margin-left: 10px;
+       }
+
+       span.selected {
+        font-weight: bold;
+       }
+
+      }
+
       ul#household-list {
-       max-height: 413px;
+       max-height: 373px;
        list-style: none;
 
        h3 {
