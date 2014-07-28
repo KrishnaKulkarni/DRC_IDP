@@ -9,8 +9,16 @@ IdentityMatches.Routers.MatchesRouter = Backbone.Router.extend({
   setUpViews: function() {
     var searchView = new IdentityMatches.Views.IomIdentitiesSearch({});
     $(".search-bar").html(searchView.render().$el);
-    var reconciliationsView = new IdentityMatches.Views.IomIdentitiesReconciliations({});
+    
+    var reconciliationsView = new IdentityMatches.Views.IomIdentitiesReconciliations({
+      collection: IdentityMatches.Collections.selectedMatches
+    });
     $("#matches").html(reconciliationsView.render().$el);
+
+     var householdView = new IdentityMatches.Views.IomIdentitiesHousehold({
+       collection: IdentityMatches.Collections.householdMembers
+     });
+     $("#household").html(householdView.render().$el);
   },
 
   searchMatchesForm: function() {
@@ -45,11 +53,13 @@ IdentityMatches.Routers.MatchesRouter = Backbone.Router.extend({
       url: "api/iom_identities/" + id + "/household",
       success: function(resp){
        console.log("Household Response ::", resp);
-       var householdView = new IdentityMatches.Views.IomIdentitiesHousehold({
-         collection: new IdentityMatches.Collections.IomIdentities(resp)
-       });
+       IdentityMatches.Collections.householdMembers.set(resp);
 
-       $("#household").html(householdView.render().$el);
+       // var householdView = new IdentityMatches.Views.IomIdentitiesHousehold({
+       //   collection: new IdentityMatches.Collections.IomIdentities(resp)
+       // });
+
+       // $("#household").html(householdView.render().$el);
       }
     });
   },
