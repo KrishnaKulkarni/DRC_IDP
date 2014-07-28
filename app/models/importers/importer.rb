@@ -15,7 +15,7 @@ class Importers::Importer
     import_succeeded = true
 
     if should_log
-      file_name = File.basename(csv_file.path)
+      file_name = File.basename(csv_file)
       log = File.open("import_logs/#{imported_model}_#{Date.today}_#{file_name}", 'w')
       log << "success,file_id,name,db_id,error_message,,\n"
     else

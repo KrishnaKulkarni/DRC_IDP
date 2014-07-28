@@ -21,4 +21,28 @@ main.manage-csvs {
    }
   }
 
+  a.clickable-tab {
+    text-decoration: none;
+    display: block;
+    width: 300px;
+    margin: auto;
+  }
+
+  section.clickable-tab {
+    margin-top: 50px;
+    background: #ccc;
+    text-align: center;
+    padding: 15px;
+  }
+
+  a.clickable-tab:hover {
+    color: #fff;
+    font-weight: 100;
+    text-decoration: underline;
+  }
+
+  section.clickable-tab:hover {
+    background: #666;
+  }
+
 }
