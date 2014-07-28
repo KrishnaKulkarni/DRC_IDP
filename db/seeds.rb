@@ -29,6 +29,7 @@ LOCATIONS = {
  'Collectivite' => 'Collective',
  'Territoire'   => 'Territory',
  'Province'     => 'Province'  
+ # 'Site'         => 'Site'
 }
 
 DESIRED_ATTRIBUTES = {
@@ -72,6 +73,7 @@ File.open('db/location_seeding_errors.txt', 'w') { |file| file.write(failure_tex
 User.create!(username: "Andrew")
 User.create!(username: "Toly")
 User.create!(username: "Hannah")
+User.create!(username: "John")
 User.create!(username: "Roger")
 User.create!(username: "Moise")
 User.create!(username: "Adelestine")

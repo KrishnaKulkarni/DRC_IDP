@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140721200722) do
+ActiveRecord::Schema.define(version: 20140728202052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,10 +93,20 @@ ActiveRecord::Schema.define(version: 20140721200722) do
     t.integer  "gold_standard_identity_id"
     t.integer  "stop_number"
     t.date     "arrival_date"
-    t.string   "village_id"
     t.string   "mode_of_transport"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "recorded_by"
+    t.string   "recorded_in_village"
+    t.integer  "village_id"
+    t.integer  "group_id"
+    t.integer  "collective_id"
+    t.integer  "territory_id"
+    t.integer  "province_id"
+    t.string   "alternate_village"
+    t.string   "stop_type"
+    t.string   "arrival_from_type"
+    t.string   "site_id"
   end
 
   add_index "idp_trajectories", ["gold_standard_identity_id"], name: "index_idp_trajectories_on_gold_standard_identity_id", using: :btree
@@ -159,6 +169,13 @@ ActiveRecord::Schema.define(version: 20140721200722) do
   add_index "reconciled_matches", ["master_dataset_id"], name: "index_reconciled_matches_on_master_dataset_id", using: :btree
   add_index "reconciled_matches", ["satellite_dataset"], name: "index_reconciled_matches_on_satellite_dataset", using: :btree
   add_index "reconciled_matches", ["satellite_dataset_id"], name: "index_reconciled_matches_on_satellite_dataset_id", using: :btree
+
+  create_table "sites", force: true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "territories", force: true do |t|
     t.integer  "province_id"
