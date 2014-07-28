@@ -9,7 +9,9 @@ IdentityMatches.Routers.MatchesRouter = Backbone.Router.extend({
   setUpViews: function() {
     var searchView = new IdentityMatches.Views.IomIdentitiesSearch({});
     $(".search-bar").html(searchView.render().$el);
-    var reconciliationsView = new IdentityMatches.Views.IomIdentitiesReconciliations({});
+    var reconciliationsView = new IdentityMatches.Views.IomIdentitiesReconciliations({
+      collection: IdentityMatches.Collections.selectedMatches
+    });
     $("#matches").html(reconciliationsView.render().$el);
   },
 
