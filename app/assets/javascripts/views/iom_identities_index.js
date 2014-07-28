@@ -2,7 +2,6 @@ IdentityMatches.Views.IomIdentitiesIndex = Backbone.View.extend({
   template: JST["iom_identities/index"],
 
   events: {
-    "click button.refresh" : "refresh",
     "click ul" : "featureItem",
     "dblclick ul" : "createMatch"
   },
@@ -10,30 +9,41 @@ IdentityMatches.Views.IomIdentitiesIndex = Backbone.View.extend({
   initialize: function(options) {
   },
 
-  refresh: function() {
-    this.collection.fetch({
-      success: this.render.bind(this)
-    });
-  },
-
   featureItem: function(event) {
-    console.log("Single click works");
-
     $("li.featured").removeClass("featured");
-    $(event.target).closest("li").addClass("featured");
+    var $li = $(event.target).closest("li");
+    var id = $li.prop('id');
+    $li.addClass("featured");
   },
 
   createMatch: function(event) {
-    console.log("Double click works");
-    var li = $(event.target).closest("li");
-    li.parent("a").appendTo("#reconciliations-list");
-    var id = li.prop('id');
+    var $li = $(event.target).closest("li");
+    var id = $li.prop('id');
+
+    var selectedIdentity = IdentityMatches.Collections.searchResults.get(id);
+    IdentityMatches.Collections.selectedMatches.add(selectedIdentity);
+    $li.addClass('already-selected');
+
     var matchInput = "<input type='hidden' id='" + id +"' name='gold_standard_matches[" + id + "]'>";
     $("#create-reconciliations").append(matchInput);
   },
 
   render: function() {
-    var renderedContent = this.template({ iomIdentities: this.collection });
+    var selectedIds = IdentityMatches.Collections.selectedMatches.pluck("id");
+    var alreadySelected = IdentityMatches.Collections.searchResults.filter(function(identity){ return selectedIds.indexOf(identity.id) != -1 }); 
+    this.collection.forEach(function(identity){
+      if(selectedIds.indexOf(identity.id) != -1){
+        identity.alreadySelected = "already-selected";
+      }
+      else {
+        identity.alreadySelected = null;
+      }
+    });
+
+    var renderedContent = this.template({ 
+      iomIdentities: this.collection,
+      alreadySelected: alreadySelected
+     });
     this.$el.html(renderedContent);
 
     return this;

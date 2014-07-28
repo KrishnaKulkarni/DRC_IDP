@@ -13,7 +13,9 @@ IDPApp::Application.routes.draw do
   get '/search_form', to: 'gold_standard_identities#search_form', as: 'search_form'
   get '/search_fields', to: 'gold_standard_identities#search_fields', as: 'search_fields'
   post '/match_results', to: 'gold_standard_identities#match_results', as: 'match_results'
-  get '/test_page', to: 'gold_standard_identities#test_page'
+
+  get '/iom_identities/import', to: 'iom_identities#importing_page', as: 'iom_import'
+  post '/iom_identities/import', to: 'iom_identities#import', as: 'iom_importing_page'
 
   get '/trajectory_form', to: 'idp_trajectories#trajectory_form', as: 'trajectory_form'
 
@@ -32,7 +34,10 @@ IDPApp::Application.routes.draw do
   get 'locations/provinces/:id', to: 'locations#provinces'
 
   namespace :api, defaults: { format: :json } do
-    resources :iom_identities, only: [:create, :destroy, :update, :show]
+    get '/locations/:location_type', to: 'locations#collections'
+    resources :iom_identities, only: [:create, :destroy, :update, :show] do
+      get '/household', to: 'iom_identities#household', as: 'household'
+    end
     resources :gold_standard_identities, only: [:create, :show, :index] do
       resources :iom_identities, only: [:index]
     end

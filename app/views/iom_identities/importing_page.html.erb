@@ -1,0 +1,29 @@
+<main class="manage-csvs">
+  <% if flash[:status] %>
+    <section class="status-message <%= flash[:status_color] %>">
+      <h2><%= flash[:status] %></h2>
+    </section>
+  <% end %>
+
+  <%= form_tag iom_import_url, multipart: true do %>
+    <h2>Import Iom Identities CSV</h2>
+    <%= file_field_tag :file %>
+    <input type="hidden" name="model_class" value="IomIdentity">
+    <p></p>
+    <%= submit_tag "Import CSV" %>
+  <% end %>
+
+  <%= form_tag iom_import_url, multipart: true do %>
+    <h2>Import LP Registered Identities CSV</h2>
+    <%= file_field_tag :file %>
+    <input type="hidden" name="model_class" value="GoldStandardIdentity">
+    <p></p>
+    <%= submit_tag "Import CSV" %>
+  <% end %>
+
+  <a href="<%= gold_standard_identities_url %>.csv" class="clickable-tab">
+    <section class="clickable-tab">
+      Download Current Registered Identities CSV
+    </section>
+  </a>
+</main>

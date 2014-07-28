@@ -7,34 +7,29 @@ IdentityMatches.Views.IomIdentitiesReconciliations = Backbone.View.extend({
   },
 
   initialize: function(options) {
-  },
-
-  refresh: function() {
-    this.collection.fetch({
-      success: this.render.bind(this)
-    });
+    this.listenTo(this.collection, "add remove", this.render);
   },
 
   featureItem: function(event) {
-    console.log("Single click works");
 
     $("li.featured").removeClass("featured");
     $(event.target).closest("li").addClass("featured");
   },
 
   removeMatch: function(event) {
- //   $(event.target).parent("a").addClass("move");
-    var li = $(event.target).closest("li");
-    li.parent("a").prependTo("#matches-list");
+    var $li = $(event.target).closest("li");
 
-    var id = li.prop('id');
+    var id = $li.prop('id');
+
+    var identityToRemove = IdentityMatches.Collections.selectedMatches.get(id);
+    IdentityMatches.Collections.selectedMatches.remove(identityToRemove);
+    $("#matches-list").find("li#"+ id).removeClass('already-selected');
+
     $("#create-reconciliations").children("#" + id).remove();
-    //    $(".move").appendTo("#matches-list");
-    //  $(".move").removeClass("move");
   },
 
   render: function() {
-    var renderedContent = this.template({});
+    var renderedContent = this.template({ iomIdentities: this.collection });
     this.$el.html(renderedContent);
 
     return this;

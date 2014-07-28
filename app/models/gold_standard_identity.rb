@@ -31,6 +31,10 @@ class GoldStandardIdentity < ActiveRecord::Base
   validates_format_of :other_last_name, with: /\A[a-zA-Z'\s]*\z/, message: "lettres uniquement", if: 'other_last_name.present?'
   validates_format_of :other_alternate_name, with: /\A[a-zA-Z'\s]*\z/, message: "lettres uniquement", if: 'other_alternate_name.present?'
   validates_format_of :head_of_household_alternate_name, with: /\A[a-zA-Z'\s]*\z/, message: "lettres uniquement", if: 'head_of_household_alternate_name.present?'
+  
+  # Not sure ho to do numeral-only validations
+  # validates_format_of :identity_carte, with: /\A[0-9]*\z/, message: "chiffres uniquement", if: 'alternate_name.present?'
+  # validates_format_of :iom_identity_carte, with: /\A[0-9]*\z/, message: "chiffres uniquement", if: 'alternate_name.present?'
 
   attr_accessor :alternate_village_status
   attr_accessor :head_of_household_status

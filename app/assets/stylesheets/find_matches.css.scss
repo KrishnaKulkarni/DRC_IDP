@@ -3,6 +3,7 @@ section.status-message#recon {
   width: 400px;
   margin: 30px auto;
   padding: 10px;
+  background: #eee;
 }
 
 section.success-green#recon{
@@ -37,7 +38,12 @@ main.find-matches-page {
   }
 
   ul#matches-list,
-  ul#reconciliations-list{
+  ul#reconciliations-list,
+  ul#household-list{
+
+    overflow: hidden;
+    overflow-y:scroll;
+
     a {
      text-decoration: none;
      color: #000;
@@ -45,11 +51,36 @@ main.find-matches-page {
 
     li {
       border-bottom: 1px solid #ccc;
+      padding: 2px 2px;
       h3 {
         font-size: 16px;
       }
 
+      div.identity-cell-row {
+        width: 50%;
+        float: left;
+        div.identity-cell-text {
+        }
+      }
+
       font-size: 14px;
+    }
+
+    li.already-selected {
+      color: #666;
+      background: #fff;
+    }
+
+    li:hover {
+      background: #ccc;
+    }
+
+    li.featured {
+      background: #6698FF;
+    }
+
+    li.featured.already-selected {
+      background: #6B9DFF;
     }
   }
 
@@ -114,17 +145,7 @@ main.find-matches-page {
       border-top: 1px solid #777;
 
       ul#matches-list {
-       overflow: hidden;
-       overflow-y:scroll;
        max-height: 275px;
-
-       li:hover {
-         background: #ccc;
-       }
-
-       li.featured {
-         background: #6698FF;
-       }
       }
     }
   }
@@ -135,36 +156,23 @@ main.find-matches-page {
       height: 45%;
       border-bottom: 1px solid #777;
       font-size: 14px;
-
+      padding-left: 3px;
       h2 {
        font-size: 16px;
       }
 
 
       div.left-bio {
-        float: left;
       }
 
       div.right-bio {
-        float: left;
       }
     }
 
     section#matches {
 
-
       ul {
-        overflow: hidden;
-        overflow-y:scroll;
         height: 255px;
-
-        li:hover {
-          background: #ccc;
-        }
-
-        li.featured {
-          background: #6698FF;
-        }
       }
 
     }
@@ -177,6 +185,34 @@ main.find-matches-page {
 
     section#household {
       height: 75%;
+
+      h4 {
+       font-size: 15px;
+       font-weight: normal;
+       margin: 0 0 5px 5px;
+       span {
+        margin-left: 10px;
+       }
+
+       span.selected {
+        font-weight: bold;
+       }
+
+      }
+
+      ul#household-list {
+       max-height: 373px;
+       list-style: none;
+
+       h3 {
+        font-size: 16px;
+       }
+
+       div {
+        font-size: 94%;
+       }
+
+      }
     }
 
     section#reconcile {
@@ -185,7 +221,7 @@ main.find-matches-page {
       font-size: 13px;
       p {
         margin-top: 0;
-       margin-left: 5px;
+        margin-left: 5px;
       }
 
       input.submit-button {

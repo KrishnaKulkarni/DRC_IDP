@@ -6,6 +6,7 @@
       <%= f.input :alternate_name, label: "Prenom" %>
       <%= f.input :nick_name, label: "Surnom" %>
       <%= f.input :identity_card, label: "Carte identite" %>
+      <%= f.input :iom_identity_card, label: "Carte IOM" %>
     </div>
     <div class="row clearfix" id="row2">
       <%= f.input :other_first_name, label: false, input_html: { placeholder: "Autre Nom"} %>
@@ -47,7 +48,7 @@
           <%= f.input :head_of_household_alternate_name, label: false, input_html: { placeholder: "Prenom", class: "menage" }, wrapper_html: { class: 'blurred' } %>
         </div>
         <div class="row clearfix">
-          <%= f.input :relation_to_head_of_household, label: "Relation familiale", wrapper_html: { class: 'blurred' }, collection: [ "Epouse", "Mere", "Pere", "Soeur", "Frere", "Non familiale", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine", "Autre" ] %>
+          <%= f.input :relation_to_head_of_household, label: "Relation familiale", wrapper_html: { class: 'blurred' }, collection: [ "Epouse", "Epoux", "Mere", "Pere", "Soeur", "Frere", "Fille", "Fils", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine", "Autre" ] %>
         </div>
         <div class="row clearfix">
           <%= f.input :head_of_household_two_first_name, label: "Chef menage", input_html: { placeholder: "Nom", class: "menage" } %>
@@ -55,7 +56,7 @@
           <%= f.input :head_of_household_two_alternate_name, label: false, input_html: { placeholder: "Prenom", class: "menage" } %>
         </div>
         <div class="row clearfix">
-          <%= f.input :relation_to_head_of_household_two, label: "Relation familiale", collection: [ "Epouse", "Mere", "Pere", "Soeur", "Frere", "Non familiale", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine", "Autre" ] %>
+          <%= f.input :relation_to_head_of_household_two, label: "Relation familiale", collection: [ "Epouse", "Epoux", "Mere", "Pere", "Soeur", "Frere", "Fille", "Fils", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine", "Autre" ] %>
         </div>
         <div class="row clearfix">
           <%= f.input :household_size, label: "Taille de menage", input_html: { max: 20, min: 1 }  %>
@@ -66,7 +67,10 @@
           <%= f.input :arrival_date, label: "Date d'arrivee", start_year: Date.today.year - 90, end_year: Date.today.year, :include_blank => true %>
         </div>
         <div class="row clearfix">
-          <%= f.input :arrival_from_village, label: "Village/Camp de provenance le plus recent" %>
+          <%= f.input :arrival_from_village, label: "Village/Site de provenance le plus recent" %>
+        </div>
+        <div class="row clearfix">  
+          <%= f.input :arrival_from_type, label: "Cet endroit est: ", collection: [ "Village", "Site des PDIs" ] %>
         </div>
       </section>
     </section>
