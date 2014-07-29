@@ -28,8 +28,8 @@ LOCATIONS = {
  'Groupement'   => 'Group',
  'Collectivite' => 'Collective',
  'Territoire'   => 'Territory',
- 'Province'     => 'Province'  
- # 'Site'         => 'Site'
+ 'Province'     => 'Province',  
+ 'Site'         => 'Site'
 }
 
 DESIRED_ATTRIBUTES = {

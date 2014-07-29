@@ -5,15 +5,21 @@ $(function() {
         var isChecked = $("#idp_trajectory_alternate_village_status").is(':checked');
         if(isChecked){
           $('.idp_trajectory_village_id').addClass('blurred');
+          $('.idp_trajectory_site_id').addClass('blurred');
           $('.idp_trajectory_alternate_village').removeClass('blurred');
+          $('.idp_trajectory_arrival_from_type').removeClass('blurred');
         }
         else {
           $('.idp_trajectory_village_id').removeClass('blurred');
+          $('.idp_trajectory_site_id').removeClass('blurred');
           $('.idp_trajectory_alternate_village').addClass('blurred');
+          $('.idp_trajectory_arrival_from_type').addClass('blurred');
         }
 
         $('#idp_trajectory_village_id').attr('disabled', isChecked ? "disabled" : false);
+        $('#idp_trajectory_site_id').attr('disabled', isChecked ? "disabled" : false);
         $('#idp_trajectory_alternate_village').attr('disabled', isChecked ? false : "disabled");
+        $('#idp_trajectory_arrival_from_type').attr('disabled', isChecked ? false : "disabled");
     }
     //Toggle visibility which inputs are disabled based on the checkbox
     $('#idp_trajectory_alternate_village_status').change(setVillageStatus);

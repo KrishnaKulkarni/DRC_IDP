@@ -14,12 +14,12 @@
 
       <%= f.input :village_id, collection: Village.all.order(:name), label_method: :name, value_method: :id, label: "Village" ,:include_blank => true %>
       <span id="ou">Ou</span>
-      <%= f.input :village_id, collection: Village.all.order(:name), label_method: :name, value_method: :id, label: "Village" ,:include_blank => true %>
+      <%= f.input :site_id, collection: Site.all.order(:name), label_method: :name, value_method: :id, label: "Site" ,:include_blank => true %>
     </div>
     <div class="row clearfix" id="row3">
       <%= f.input :alternate_village_status, label: "Ce endroit n'est pas sur la liste", as: :boolean  %>
-      <%= f.input :alternate_village, disabled: true, label: " : ", input_html: { placeholder: "Endroit"}, wrapper_html: { class: 'blurred' } %>
-      <%= f.input :arrival_from_type, label: "Cet endroit est: ", collection: [ "Village", "Site des PDIs" ] %>
+      <%= f.input :alternate_village, disabled: true, label: "Autre Endroit", wrapper_html: { class: 'blurred' } %>
+      <%= f.input :arrival_from_type, disabled: true, label: "Cet endroit est: ", wrapper_html: { class: 'blurred' }, collection: [ "Village", "Site des PDIs" ] %>
     </div>
 
     <%= f.button :submit, value: "Add Stop" %>
