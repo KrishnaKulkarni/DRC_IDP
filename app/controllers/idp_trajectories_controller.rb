@@ -8,6 +8,7 @@ class IdpTrajectoriesController < ApplicationController
     # ===========
     @idp_trajectory = IdpTrajectory.new(trajectory_attributes)
     @header = print_header
+    @prior_trajectories = @idp_trajectory.prior_trajectories
 
     render :new
   end
@@ -18,7 +19,6 @@ class IdpTrajectoriesController < ApplicationController
 
   def create
     @gold_standard_identity = GoldStandardIdentity.last
-    @p.i
     @idp_trajectory = IdpTrajectory.new(idp_trajectory_params)
     @idp_trajectory.recorded_by = session[:username]
     @idp_trajectory.recorded_in_village = session[:location]
@@ -32,7 +32,7 @@ class IdpTrajectoriesController < ApplicationController
       @idp_trajectories = IdpTrajectory.where("created_at > ?", Date.today)
       File.open("exports/idp_trajectory_stops_#{session[:username]}_C#{session[:computer_number]}_#{session[:location]}_#{Date.today}.csv",
        'w') { |file| file.write(@idp_trajectories.as_csv) }
-
+    
       # A method for storing the newly created trajectory. Defined below in this file.
       store_trajectory_in_cache(@idp_trajectory)
 
@@ -42,6 +42,18 @@ class IdpTrajectoriesController < ApplicationController
       flash.now[:status_color] = "failure-red"
       render :new
     end
+  end
+
+  def edit
+    @idp_trajectory = IdpTrajectory.find(params[:id])
+    @header = print_header
+    @prior_trajectories = @idp_trajectory.prior_trajectories
+
+    render :edit
+  end
+
+  def update
+    
   end
 
   def trajectory_form
@@ -58,7 +70,7 @@ class IdpTrajectoriesController < ApplicationController
 
   private
   def store_trajectory_in_cache(idp_trajectory)
-    session[:last_trajectory] = idp_trajectory
+    session[:last_trajectory_id] = idp_trajectory.id
   end
 
   def trajectory_attributes
@@ -69,7 +81,7 @@ class IdpTrajectoriesController < ApplicationController
     # our first new trajectory after having created a gold standard identity, and (C) we are jumping straight to
     # this form.
 
-    if session[:last_trajectory]
+    if session[:last_trajectory_id]
       attributes_via_last_trajectory
     elsif session[:last_registered_identity_id]
       attributes_via_gold_standard_identity
@@ -79,10 +91,16 @@ class IdpTrajectoriesController < ApplicationController
   end
 
   def attributes_via_last_trajectory
-    new_attributes = session[:last_trajectory].attributes
-      .slice('province_id', 'territory_id', 'arrival_date', 'stop_number')
+    new_attributes = IdpTrajectory.find(session[:last_trajectory_id]).attributes
+      .slice('province_id', 'territory_id', 'arrival_date',
+       'stop_number', 'gold_standard_identity_id')
     new_attributes['stop_number'] += 1
     new_attributes
+  end
+
+  def attributes_via_gold_standard_identity
+    GoldStandardIdentity.find(session[:last_registered_identity_id]).attributes
+    .slice("province_id", "territory_id", "gold_standard_identity_id").merge({"stop_number" => 1 })
   end
 
   def print_header
@@ -93,10 +111,5 @@ class IdpTrajectoriesController < ApplicationController
       first_name, last_name = "Unregistered", "Person"
     end
     "Add a Stop pour #{first_name} #{last_name}"
-  end
-
-  def attributes_via_gold_standard_identity
-    GoldStandardIdentity.find(session[:last_registered_identity_id]).attributes
-    .slice("province_id", "territory_id").merge({"stop_number" => 1 })
   end
 end

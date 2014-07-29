@@ -1,4 +1,4 @@
-class  IdpTrajectory < ActiveRecord::Base
+class IdpTrajectory < ActiveRecord::Base
 
 	attr_reader :length_stay, :alternate_village_status
 
@@ -13,6 +13,11 @@ class  IdpTrajectory < ActiveRecord::Base
           csv << item.attributes.values_at(*column_names)
         end
     end
+  end
+
+  def prior_trajectories
+    IdpTrajectory.where(gold_standard_identity_id: self.gold_standard_identity_id)
+      .order(stop_number: :asc)
   end
   
 end

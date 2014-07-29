@@ -26,4 +26,11 @@
   </div>
 <% end %>
 
+  <section class="trajectory-chain">
+    <% @prior_trajectories.each do |trajectory| %>
+      <a href="<%= edit_idp_trajectory_url(trajectory) %>">
+        <%= trajectory.stop_number %>
+      </a>
+    <% end %>
+  </section>
 <!-- , url: idp_trajectories_url do |f|  -->
