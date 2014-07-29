@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 
   def clear_identity_cache
     session[:last_registered_identity_id] = nil
+    session[:last_trajectory_id] = nil
   end
 
   def clear_cache

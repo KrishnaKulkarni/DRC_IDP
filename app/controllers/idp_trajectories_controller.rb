@@ -23,6 +23,8 @@ class IdpTrajectoriesController < ApplicationController
     @idp_trajectory.recorded_by = session[:username]
     @idp_trajectory.recorded_in_village = session[:location]
     @idp_trajectory.gold_standard_identity_id = session["last_registered_identity_id"]
+    @idp_trajectory.departure_date = handle_length_stay!(@idp_trajectory.departure_date)
+
     if @idp_trajectory.save
       flash[:status] = "Succesful entry of Stop ##{@idp_trajectory.stop_number}
                         pour #{@gold_standard_identity.first_name} #{@gold_standard_identity.last_name}."
@@ -53,7 +55,7 @@ class IdpTrajectoriesController < ApplicationController
   end
 
   def update
-    
+
   end
 
   def trajectory_form
@@ -61,9 +63,31 @@ class IdpTrajectoriesController < ApplicationController
     render "_trajectory_form", :layout => false
   end
   
+  def handle_length_stay!(dep_date)
+    @length_stay = params[:idp_trajectory]["length_stay"]
+    @departure_date = dep_date
+
+    if @length_stay.present?
+      @departure_date = IdpTrajectory.last["departure_date"] + @length_stay.to_i
+    end
+    @departure_date
+  end
+
+  def generate_link_text
+    @link_text
+    if alternate_village != nil
+      @link_text = alternate_village
+    elsif site_id == nil
+      @link_text = Village.where("id = #{trajectory.village_id}")[0]["name"]
+    elsif village_id == nil
+      @link_text = Site.where("id = #{trajectory.site_id}")[0]["name"]
+    end
+    @link_text
+  end
+
   def idp_trajectory_params
     params.require(:idp_trajectory).permit(
-    :stop_number, :arrival_date, :mode_of_transport,
+    :stop_number, :departure_date, :mode_of_transport,
     :village_id, :group_id, :collective_id, :territory_id, :province_id,
     :alternate_village, :alternate_village_status)
   end
@@ -92,7 +116,7 @@ class IdpTrajectoriesController < ApplicationController
 
   def attributes_via_last_trajectory
     new_attributes = IdpTrajectory.find(session[:last_trajectory_id]).attributes
-      .slice('province_id', 'territory_id', 'arrival_date',
+      .slice('province_id', 'territory_id', 'departure_date',
        'stop_number', 'gold_standard_identity_id')
     new_attributes['stop_number'] += 1
     new_attributes
@@ -100,7 +124,7 @@ class IdpTrajectoriesController < ApplicationController
 
   def attributes_via_gold_standard_identity
     GoldStandardIdentity.find(session[:last_registered_identity_id]).attributes
-    .slice("province_id", "territory_id", "gold_standard_identity_id").merge({"stop_number" => 1 })
+    .slice("province_id", "territory_id", "gold_standard_identity_id").merge({"stop_number" => 0 })
   end
 
   def print_header
@@ -110,6 +134,6 @@ class IdpTrajectoriesController < ApplicationController
     else
       first_name, last_name = "Unregistered", "Person"
     end
-    "Add a Stop pour #{first_name} #{last_name}"
+    "Enregister un arret pour #{first_name} #{last_name}"
   end
 end

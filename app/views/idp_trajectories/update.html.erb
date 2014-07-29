@@ -1,0 +1,23 @@
+<main class="new-gold-standard">
+  <% if flash[:status] %>
+    <section class="status-message <%= flash[:status_color] %>">
+      <h2><%= flash[:status] %></h2>
+    </section>  
+  <% end %>
+
+  <a class="back-to-registration" href="<%= new_idp_trajectory_url %>">
+  <section class="back-to-registration">
+    Add Another Trajectory Stop
+  </section>
+  </a>  
+  <a class="back-to-registration" href="<%= new_gold_standard_identity_url %>">
+  <section class="back-to-registration">
+    Complete Long Form,<br>Register Another Identity
+  </section>
+  </a> 
+  <a class="back-to-registration" href="<%= find_matches_url %>">
+  <section class="back-to-registration">
+    Complete Long Form,<br>Proceed to Reconciliation
+  </section>
+  </a> 
+</main>
