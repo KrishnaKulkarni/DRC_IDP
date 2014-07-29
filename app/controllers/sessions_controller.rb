@@ -19,9 +19,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:username], session[:computer_number] =  nil, nil
-    session[:signed_in], session[:location] = nil, nil
-    clear_identity_cache
+    clear_cache
     redirect_to new_session_url
   end
 

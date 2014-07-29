@@ -14,6 +14,13 @@ class ApplicationController < ActionController::Base
     session[:last_registered_identity_id] = nil
   end
 
+  def clear_cache
+    session.keys.reject { |key| ["session_id", "_csrf_token"].include? key }
+      .each do |key|
+        session.delete(key)
+      end
+  end
+
   def store_identity_cache(id)
     session[:last_registered_identity_id] =  id
   end
