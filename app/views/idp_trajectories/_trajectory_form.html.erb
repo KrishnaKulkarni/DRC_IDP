@@ -1,7 +1,7 @@
-<%= simple_form_for @idp_trajectory, url: idp_trajectories_url do |f| %>
+<%= simple_form_for @idp_trajectory do |f| %>
   <div class="inputs-container clearfix">
     <div class="row clearfix" id="row1">
-      <%= f.input :stop_number, as: :integer, label: "Nombre le arret" %>
+      <%= f.input :stop_number, as: :integer, label: "Numero d'arret" %>
       <%= f.input :province_id, collection: Province.all.order(:name), label_method: :name, value_method: :id, label: "Province" ,:include_blank => true %>
       <%= f.input :territory_id, collection: Territory.all.order(:name), label_method: :name, value_method: :id, label: "Territoire" ,:include_blank => true %>
 
@@ -10,7 +10,7 @@
       <%= f.input :site_id, collection: Site.all.order(:name), label_method: :name, value_method: :id, label: "Site" ,:include_blank => true %>
     </div>
     <div class="row clearfix" id="row2">
-      <%= f.input :alternate_village_status, label: "Ce endroit n'est pas sur la liste", as: :boolean  %>
+      <%= f.input :alternate_village_status, label: "Cet endroit n'est pas sur la liste", as: :boolean  %>
       <%= f.input :alternate_village, disabled: true, label: "Autre Endroit", wrapper_html: { class: 'blurred' } %>
       <%= f.input :arrival_from_type, label: "Cet endroit est: ", collection: [ "Maison", "Site des PDIs", "Ecole", "Eglise", "Bush", "Route", "Autre"] %>
     </div>
@@ -21,15 +21,18 @@
       <%= f.input :mode_of_transport, label: "Mode de transport", collection: ["Pied", "Velo", "Voiture", "Bus", "Moto"] %>
     </div>
 
-    <%= f.button :submit, value: "ENREGISTER ARRET" %>
+    <%= f.button :submit, value: "ENREGISTRER ARRET" %>
   </div>
-<% end %>
-
-  <section class="trajectory-chain">
+  <div class="inputs-container clearfix">
+    <section class="trajectory-chain">
     <% @prior_trajectories.each do |trajectory| %>
       <a href="<%= edit_idp_trajectory_url(trajectory) %>">
-        <%= trajectory.stop_number%>: <%= generate_link_text %><br>
+        <%= trajectory.stop_number%>: <%= generate_location_text(trajectory) %> - <%= generate_date_text(trajectory) %><br>
       </a>
     <% end %>
   </section>
+  </div>
+<% end %>
+
+  
 <!-- , url: idp_trajectories_url do |f|  -->

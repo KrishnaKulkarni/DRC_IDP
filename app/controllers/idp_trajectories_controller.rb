@@ -55,7 +55,30 @@ class IdpTrajectoriesController < ApplicationController
   end
 
   def update
+    @gold_standard_identity = GoldStandardIdentity.last
+    @idp_trajectory = IdpTrajectory.find(params[:id])
+    @idp_trajectory.recorded_by = session[:username]
+    @idp_trajectory.recorded_in_village = session[:location]
+    @idp_trajectory.gold_standard_identity_id = session["last_registered_identity_id"]
+    @idp_trajectory.departure_date = handle_length_stay!(@idp_trajectory.departure_date)
 
+    if @idp_trajectory.update(idp_trajectory_params)
+      flash[:status] = "Succesful edit of Stop ##{@idp_trajectory.stop_number}
+                        pour #{@gold_standard_identity.first_name} #{@gold_standard_identity.last_name}."
+      flash[:status_color] = "success-green"
+
+      # # These lines update today's csv
+      @idp_trajectories = IdpTrajectory.where("created_at > ?", Date.today)
+      File.open("exports/idp_trajectory_stops_#{session[:username]}_C#{session[:computer_number]}_#{session[:location]}_#{Date.today}.csv",
+       'w') { |file| file.write(@idp_trajectories.as_csv) }
+
+
+      redirect_to idp_trajectory_url(@idp_trajectory)
+    else
+      flash.now[:status] = "Erreur d'enregistrement"
+      flash.now[:status_color] = "failure-red"
+      render :edit
+    end
   end
 
   def trajectory_form
@@ -87,8 +110,8 @@ class IdpTrajectoriesController < ApplicationController
 
   def idp_trajectory_params
     params.require(:idp_trajectory).permit(
-    :stop_number, :departure_date, :mode_of_transport,
-    :village_id, :group_id, :collective_id, :territory_id, :province_id,
+    :stop_number, :departure_date, :mode_of_transport, :arrival_from_type,
+    :village_id, :site_id, :territory_id, :province_id,
     :alternate_village, :alternate_village_status)
   end
 
@@ -116,7 +139,7 @@ class IdpTrajectoriesController < ApplicationController
 
   def attributes_via_last_trajectory
     new_attributes = IdpTrajectory.find(session[:last_trajectory_id]).attributes
-      .slice('province_id', 'territory_id', 'departure_date',
+      .slice('province_id', 'departure_date',
        'stop_number', 'gold_standard_identity_id')
     new_attributes['stop_number'] += 1
     new_attributes
@@ -124,7 +147,7 @@ class IdpTrajectoriesController < ApplicationController
 
   def attributes_via_gold_standard_identity
     GoldStandardIdentity.find(session[:last_registered_identity_id]).attributes
-    .slice("province_id", "territory_id", "gold_standard_identity_id").merge({"stop_number" => 0 })
+    .slice("province_id", "gold_standard_identity_id").merge({"stop_number" => 0 })
   end
 
   def print_header

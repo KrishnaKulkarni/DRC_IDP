@@ -4,6 +4,10 @@ class IdpTrajectory < ActiveRecord::Base
 
 	belongs_to :identity, inverse_of: :idp_trajectories
 
+  # Toggle true/false to turn off/on the validation
+  # validates_presence_of :stop_number, :province_id, :territory_id, :arrival_from_type, :mode_of_transport,
+  #                              message: "rempliseez cette case", if: "true"
+
 	attr_accessor :alternate_village_status
 
   def self.as_csv
