@@ -23,16 +23,18 @@
 
     <%= f.button :submit, value: "ENREGISTRER ARRET" %>
   </div>
-  <div class="inputs-container clearfix">
-    <section class="trajectory-chain">
+
+
+    <section class="trajectory-chain clearfix">
     <% @prior_trajectories.each do |trajectory| %>
-      <a href="<%= edit_idp_trajectory_url(trajectory) %>">
-        <%= trajectory.stop_number%>: <%= generate_location_text(trajectory) %> - <%= generate_date_text(trajectory) %><br>
-      </a>
+      <div class="traj-link-wrapper">
+        <a class="trajectory-link" href="<%= edit_idp_trajectory_url(trajectory) %>">
+          <%= trajectory.stop_number%>: <%= generate_location_text(trajectory) %> - <%= generate_date_text(trajectory) %><br>
+        </a>
+      </div>
     <% end %>
   </section>
-  </div>
 <% end %>
 
-  
+
 <!-- , url: idp_trajectories_url do |f|  -->

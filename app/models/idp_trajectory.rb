@@ -21,7 +21,7 @@ class IdpTrajectory < ActiveRecord::Base
 
   def prior_trajectories
     IdpTrajectory.where(gold_standard_identity_id: self.gold_standard_identity_id)
-      .order(stop_number: :asc)
+    .where("stop_number < ?", self.stop_number).order(stop_number: :asc)
   end
   
 end

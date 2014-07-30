@@ -2,7 +2,7 @@ class IdpTrajectoriesController < ApplicationController
   include MatchAlgorithm
 
   before_filter :ensure_signed_in!
-  
+
   def new
     # Refactored your lines. See the private methods defined below/elsewhere.
     # ===========
@@ -26,7 +26,7 @@ class IdpTrajectoriesController < ApplicationController
     @idp_trajectory.departure_date = handle_length_stay!(@idp_trajectory.departure_date)
 
     if @idp_trajectory.save
-      flash[:status] = "Succesful entry of Stop ##{@idp_trajectory.stop_number}
+      flash[:status] = "Successful entry of Stop ##{@idp_trajectory.stop_number}
                         pour #{@gold_standard_identity.first_name} #{@gold_standard_identity.last_name}."
       flash[:status_color] = "success-green"
 
@@ -34,7 +34,7 @@ class IdpTrajectoriesController < ApplicationController
       @idp_trajectories = IdpTrajectory.where("created_at > ?", Date.today)
       File.open("exports/idp_trajectory_stops_#{session[:username]}_C#{session[:computer_number]}_#{session[:location]}_#{Date.today}.csv",
        'w') { |file| file.write(@idp_trajectories.as_csv) }
-    
+
       # A method for storing the newly created trajectory. Defined below in this file.
       store_trajectory_in_cache(@idp_trajectory)
 
@@ -85,7 +85,7 @@ class IdpTrajectoriesController < ApplicationController
     @idp_trajectory = IdpTrajectory.new
     render "_trajectory_form", :layout => false
   end
-  
+
   def handle_length_stay!(dep_date)
     @length_stay = params[:idp_trajectory]["length_stay"]
     @departure_date = dep_date
