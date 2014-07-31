@@ -22,6 +22,30 @@ $(function() {
     $('#idp_trajectory_alternate_village_status').change(setVillageStatus);
     setVillageStatus();
 
+    // var setSiteDropdownStatus = function(){
+
+    //     var isSiteVisible = $("#idp_trajectory_village_id").hasValue;
+    //     if(isSiteVisible){
+    //       $('.idp_trajectory_site_id').addClass('blurred');
+    //     }
+    //     $('#idp_trajectory_site_id').attr('disabled', isChecked ? "disabled" : false);
+    // }
+    // //Toggle visibility which inputs are disabled based on the checkbox
+    // $('#idp_trajectory_site_id').change(setSiteDropdownStatus);
+    // setSiteDropdownStatus();
+
+    // var setVillageDropdownStatus = function(){
+
+    //     var isVillageVisible = $("#idp_trajectory_site_id").hasValue;
+    //     if(isVillageVisible){
+    //       $('.idp_trajectory_village_id').addClass('blurred');
+    //     }
+    //     $('#idp_trajectory_village_id').attr('disabled', isChecked ? "disabled" : false);
+    // }
+    // //Toggle visibility which inputs are disabled based on the checkbox
+    // $('#idp_trajectory_village_id').change(setVillageDropdownStatus);
+    // setVillageDropdownStatus();
+
    	 $( "#idp_trajectory_group_id" ).change(function () {
    		    var value = $(this).val()
    		  	$.ajax({

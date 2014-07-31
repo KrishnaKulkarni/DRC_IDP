@@ -16,8 +16,20 @@
   </section>
   </a> 
   
-</main>
+  <br><br><br>
+  <center>
+  <section class="trajectory-chain clearfix">
+    <% @prior_trajectories.order(stop_number: :asc).each do |trajectory| %>
+      <div class="traj-link-wrapper">
+        <a class="trajectory-link" href="<%= edit_idp_trajectory_url(trajectory) %>">
+          <%= trajectory.stop_number%>: <%= generate_location_text(trajectory) %> - <%= generate_date_text(trajectory) %><br>
+        </a>
+      </div>
+    <% end %>
+  </section>
+  </center>
 
+</main>
 <!-- <a class="back-to-registration" href="<%= find_matches_url %>">
   <section class="back-to-registration">
     Complete Long Form,<br>Proceed to Reconciliation

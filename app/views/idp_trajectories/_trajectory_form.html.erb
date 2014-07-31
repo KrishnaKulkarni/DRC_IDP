@@ -1,7 +1,7 @@
 <%= simple_form_for @idp_trajectory do |f| %>
   <div class="inputs-container clearfix">
     <div class="row clearfix" id="row1">
-      <%= f.input :stop_number, as: :integer, label: "Numero d'arret" %>
+      <%= f.input :stop_number, as: :integer, label: "Numero d'arret", :readonly => true %>
       <%= f.input :province_id, collection: Province.all.order(:name), label_method: :name, value_method: :id, label: "Province" ,:include_blank => true %>
       <%= f.input :territory_id, collection: Territory.all.order(:name), label_method: :name, value_method: :id, label: "Territoire" ,:include_blank => true %>
 
@@ -12,16 +12,18 @@
     <div class="row clearfix" id="row2">
       <%= f.input :alternate_village_status, label: "Cet endroit n'est pas sur la liste", as: :boolean  %>
       <%= f.input :alternate_village, disabled: true, label: "Autre Endroit", wrapper_html: { class: 'blurred' } %>
-      <%= f.input :arrival_from_type, label: "Cet endroit est: ", collection: [ "Maison", "Site des PDIs", "Ecole", "Eglise", "Bush", "Route", "Autre"] %>
+      <%= f.input :is_temporary_site, label: "Cet endroit est: ", collection: ["Pas un site", "Site temporaire", "Site permenant"] %>
+      <%= f.input :arrival_from_type, label: "Lieu de dormir: ", collection: [ "Maison", "Hut", "Hangar", "Ecole", "Eglise", "Hopital", "Bush", "Route", "Autre"] %>
     </div>
     <div class="row clearfix" id="row3">
       <%= f.input :departure_date, label: "Date de depart", start_year: Date.today.year - 20, end_year: Date.today.year %>
       <span id="ou">Ou</span>
       <%= f.input :length_stay, as: :integer, input_html: { value: @length_stay, max: 100, min: 1 }, label: "Duree de sejour en jours"  %>
-      <%= f.input :mode_of_transport, label: "Mode de transport", collection: ["Pied", "Velo", "Voiture", "Bus", "Moto"] %>
+      <%= f.input :mode_of_transport, label: "Mode de transport a endroit suivant", collection: ["Pied", "Velo", "Voiture", "Bus", "Camion", "Moto", "Tshukudu" "Avion", "Autre"] %>
     </div>
 
     <%= f.button :submit, value: "ENREGISTRER ARRET" %>
+
   </div>
 
 

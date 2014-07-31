@@ -4,8 +4,6 @@ class IdpTrajectoriesController < ApplicationController
   before_filter :ensure_signed_in!
 
   def new
-    # Refactored your lines. See the private methods defined below/elsewhere.
-    # ===========
     @idp_trajectory = IdpTrajectory.new(trajectory_attributes)
     @header = print_header
     @prior_trajectories = @idp_trajectory.prior_trajectories
@@ -14,6 +12,9 @@ class IdpTrajectoriesController < ApplicationController
   end
 
   def show
+    @prior_trajectory = IdpTrajectory.find_by(id: session[:last_trajectory_id])
+    @prior_trajectories = IdpTrajectory.where(gold_standard_identity_id: @prior_trajectory.gold_standard_identity_id)
+
     render :show
   end
 
@@ -29,12 +30,13 @@ class IdpTrajectoriesController < ApplicationController
       flash[:status] = "Successful entry of Stop ##{@idp_trajectory.stop_number}
                         pour #{@gold_standard_identity.first_name} #{@gold_standard_identity.last_name}."
       flash[:status_color] = "success-green"
-
       # # These lines update today's csv
-      @idp_trajectories = IdpTrajectory.where("created_at > ?", Date.today)
+      @idp_trajectories = IdpTrajectory.where(created_at: Date.today).where(recorded_by: session[:username]).where(recorded_in_village: session[:location])
+      @p.p
+      @idp_trajectories = @idp_trajectories.order(id: :asc)
       File.open("exports/idp_trajectory_stops_#{session[:username]}_C#{session[:computer_number]}_#{session[:location]}_#{Date.today}.csv",
        'w') { |file| file.write(@idp_trajectories.as_csv) }
-
+      
       # A method for storing the newly created trajectory. Defined below in this file.
       store_trajectory_in_cache(@idp_trajectory)
 
@@ -49,7 +51,7 @@ class IdpTrajectoriesController < ApplicationController
   def edit
     @idp_trajectory = IdpTrajectory.find(params[:id])
     @header = print_header
-    @prior_trajectories = @idp_trajectory.prior_trajectories
+    @prior_trajectories = @idp_trajectory.all_trajectories
 
     render :edit
   end
@@ -68,10 +70,10 @@ class IdpTrajectoriesController < ApplicationController
       flash[:status_color] = "success-green"
 
       # # These lines update today's csv
-      @idp_trajectories = IdpTrajectory.where("created_at > ?", Date.today)
+      @idp_trajectories = IdpTrajectory.where(created_at: Date.today).where(recorded_by: session[:username]).where(recorded_in_village: session[:location])
+      @idp_trajectories = @idp_trajectories.order(id: :asc)
       File.open("exports/idp_trajectory_stops_#{session[:username]}_C#{session[:computer_number]}_#{session[:location]}_#{Date.today}.csv",
        'w') { |file| file.write(@idp_trajectories.as_csv) }
-
 
       redirect_to idp_trajectory_url(@idp_trajectory)
     else
@@ -112,7 +114,7 @@ class IdpTrajectoriesController < ApplicationController
     params.require(:idp_trajectory).permit(
     :stop_number, :departure_date, :mode_of_transport, :arrival_from_type,
     :village_id, :site_id, :territory_id, :province_id,
-    :alternate_village, :alternate_village_status)
+    :alternate_village, :alternate_village_status, :is_temporary_site)
   end
 
   private

@@ -93,8 +93,9 @@ main.new-gold-standard {
       }
 
     }
+  }
 
-    section.trajectory-chain {
+  section.trajectory-chain {
       border: 2px solid #777;
       padding: 10px;
       width: 800px;
@@ -103,6 +104,7 @@ main.new-gold-standard {
 
       div.traj-link-wrapper {
        float: left;
+       margin-top: 5px;
       }
 
       a.trajectory-link {
@@ -133,5 +135,4 @@ main.new-gold-standard {
         content: none;
       }
     }
-  }
 }
