@@ -42,7 +42,7 @@ class GoldStandardIdentitiesController < ApplicationController
       flash[:status_color] = "success-green"
 
       # These lines update today's csv
-      @gold_standard_identities = GoldStandardIdentity.where(created_at: Date.today).where(recorded_by: session[:username]).where(recorded_in_village: session[:location])
+      @gold_standard_identities = GoldStandardIdentity.where("created_at > ?", Date.today).where("recorded_by = ?", session[:username]).where("recorded_in_village = ?", session[:location])
       File.open("exports/registered_identities_#{session[:username]}_C#{session[:computer_number]}_#{session[:location]}_#{Date.today}.csv",
        'w') { |file| file.write(@gold_standard_identities.as_csv) }
       redirect_to gold_standard_identity_url(@gold_standard_identity)

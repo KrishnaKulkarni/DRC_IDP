@@ -31,7 +31,7 @@ class IdpTrajectoriesController < ApplicationController
                         pour #{@gold_standard_identity.first_name} #{@gold_standard_identity.last_name}."
       flash[:status_color] = "success-green"
       # # These lines update today's csv
-      @idp_trajectories = IdpTrajectory.where(created_at: Date.today).where(recorded_by: session[:username]).where(recorded_in_village: session[:location])
+      @idp_trajectories = IdpTrajectory.where("created_at > ?", Date.today).where("recorded_by = ?", session[:username]).where("recorded_in_village = ?", session[:location])
       @idp_trajectories = @idp_trajectories.order(id: :asc)
       File.open("exports/idp_trajectory_stops_#{session[:username]}_C#{session[:computer_number]}_#{session[:location]}_#{Date.today}.csv",
        'w') { |file| file.write(@idp_trajectories.as_csv) }
@@ -69,7 +69,7 @@ class IdpTrajectoriesController < ApplicationController
       flash[:status_color] = "success-green"
 
       # # These lines update today's csv
-      @idp_trajectories = IdpTrajectory.where(created_at: Date.today).where(recorded_by: session[:username]).where(recorded_in_village: session[:location])
+      @idp_trajectories = IdpTrajectory.where("created_at > ?", Date.today).where("recorded_by = ?", session[:username]).where("recorded_in_village = ?", session[:location])
       @idp_trajectories = @idp_trajectories.order(id: :asc)
       File.open("exports/idp_trajectory_stops_#{session[:username]}_C#{session[:computer_number]}_#{session[:location]}_#{Date.today}.csv",
        'w') { |file| file.write(@idp_trajectories.as_csv) }
