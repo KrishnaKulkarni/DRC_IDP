@@ -19,7 +19,7 @@
       <%= f.input :departure_date, label: "Date de depart", start_year: Date.today.year - 20, end_year: Date.today.year %>
       <span id="ou">Ou</span>
       <%= f.input :length_stay, as: :integer, input_html: { value: @length_stay, max: 100, min: 1 }, label: "Duree de sejour en jours"  %>
-      <%= f.input :mode_of_transport, label: "Mode de transport a endroit suivant", collection: ["Pied", "Velo", "Voiture", "Bus", "Camion", "Moto", "Tshukudu" "Avion", "Autre"] %>
+      <%= f.input :mode_of_transport, label: "Mode de transport a endroit suivant", collection: ["Pied", "Velo", "Voiture", "Bus", "Camion", "Moto", "Tshukudu", "Avion", "Autre"] %>
     </div>
 
     <%= f.button :submit, value: "ENREGISTRER ARRET" %>
