@@ -62,17 +62,6 @@
           <%= f.input :household_size, label: "Taille de menage", input_html: { max: 20, min: 1 }  %>
         </div>
       </section>
-      <section class="arrival-info">
-        <div class="row clearfix">
-          <%= f.input :arrival_date, label: "Date d'arrivee", start_year: Date.today.year - 20, end_year: Date.today.year %>
-        </div>
-        <div class="row clearfix">
-          <%= f.input :arrival_from_village, label: "Village/Site de provenance le plus recent" %>
-        </div>
-        <div class="row clearfix">  
-          <%= f.input :arrival_from_type, label: "Cet endroit est: ", collection: [ "Village", "Site des PDIs" ] %>
-        </div>
-      </section>
     </section>
 
 
@@ -84,3 +73,10 @@
 .select {|t| t.villages.count != 0}
 .select {|c| c.villages.count != 0}
 .select {|g| g.villages.count != 0} -->
+
+
+<!--            :arrival_date, label: "Date d'arrivee", start_year: Date.today.year - 20, end_year: Date.today.year
+
+          :arrival_from_village, label: "Village/Site de provenance le plus recent"
+
+          :arrival_from_type, label: "Cet endroit est: ", collection: [ "Village", "Site des PDIs" ] -->

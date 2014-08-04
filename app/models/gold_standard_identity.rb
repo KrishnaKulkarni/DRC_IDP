@@ -14,7 +14,7 @@ class GoldStandardIdentity < ActiveRecord::Base
 
   # Toggle true/false to turn off/on the validation
   validates_presence_of :first_name, :last_name, :sex, :household_size,
-            :arrival_from_village, :province_id, :territory_id, :village_of_origin, message: "rempliseez cette case", if: "true"
+                   :province_id, :territory_id, :village_of_origin, message: "rempliseez cette case", if: "true"
   # Still haven't solved this bug
   # validates_presence_of :date_of_birth, message: "rempliseez cette case", unless: "true"
   validates_presence_of :alternate_village, presence: true, message: "rempliseez cette case", if: "alternate_village_status=='1'"
@@ -38,6 +38,8 @@ class GoldStandardIdentity < ActiveRecord::Base
 
   attr_accessor :alternate_village_status
   attr_accessor :head_of_household_status
+
+  before_save :sanitize_all_blank_attributes
 
   #Alter implementation appropriately later
   def iom_identity_matches
@@ -86,5 +88,14 @@ class GoldStandardIdentity < ActiveRecord::Base
   private
   def match_score(iom_identity)
     3.5
+  end
+
+  def sanitize_all_blank_attributes
+    self.class.column_names.each do |attribute_name|
+      attribute_reader_symbol = attribute_name.to_sym
+      attribute_writer_symbol = "#{attribute_name}=".to_sym
+
+      self.send(attribute_writer_symbol, nil)  if self.send(attribute_reader_symbol).blank?
+    end
   end
 end

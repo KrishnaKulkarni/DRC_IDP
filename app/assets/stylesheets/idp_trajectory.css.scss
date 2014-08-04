@@ -14,28 +14,6 @@ main.new-gold-standard {
     font-weight: normal;
   }
 
-  section.status-message {
-    display: block;
-    width: 400px;
-    margin: 10px auto;
-    background: #ccc;
-    padding: 10px;
-
-    h2 {
-      text-align: center;
-      font-size: 18px;
-      font-weight: 100;
-    }
-  }
-
-  section.success-green {
-    background: #77CF61;
-  }
-
-  section.failure-red {
-    background: red;
-  }
-
   form {
 
     div.inputs-container {
@@ -91,12 +69,6 @@ main.new-gold-standard {
 
         }
 
-        div.gold_standard_identity_alternate_village,
-        div.gold_standard_identity_village_of_origin,
-        div.gold_standard_identity_relation_to_head_of_household,
-        div.gold_standard_identity_relation_to_head_of_household_two,
-        div.gold_standard_identity_household_size,
-        div.gold_standard_identity_arrival_from_type,
         div.idp_trajectory_alternate_village{
           label {
            display: inline;
@@ -104,73 +76,14 @@ main.new-gold-standard {
           }
         }
 
-        div.gold_standard_identity_arrival_date{
-         select {
-           max-width: 130px;
-         }
-        }
-
-        div.gold_standard_identity_province_id,
-        div.gold_standard_identity_territory_id,
-        div.gold_standard_identity_collective_id,
-        div.gold_standard_identity_group_id,
-        div.gold_standard_identity_village_id,
         div.idp_trajectory_province_id,
         div.idp_trajectory_territory_id,
         div.idp_trajectory_collective_id,
         div.idp_trajectory_group_id,
-        div.idp_trajectory_village_id{
+        div.idp_trajectory_village_id {
          select {
            width: 130px;
          }
-        }
-
-        div.gold_standard_identity_alternate_village {
-          margin-right: 45px;
-        }
-
-        div.gold_standard_identity_identity_card {
-          margin-left: 75px;
-          input[type="text"] {
-           width: 110px;
-          }
-        }
-
-        div.gold_standard_identity_iom_identity_card {
-          input[type="text"] {
-           width: 70px;
-          }
-        }
-      }
-
-      section.more-identity-information {
-        border-top: 1px solid #777;
-        padding-top: 10px;
-
-        section.household-info {
-         float: left;
-         width: 50%;
-         border-right: 1px solid #777;
-
-         div.gold_standard_identity_head_of_household_last_name {
-          margin-top: 18px;
-         }
-
-         div.gold_standard_identity_head_of_household_alternate_name {
-          margin-top: 18px;
-         }
-
-         div.gold_standard_identity_head_of_household_two_last_name {
-          margin-top: 18px;
-         }
-
-         div.gold_standard_identity_head_of_household_two_alternate_name {
-          margin-top: 18px;
-         }
-        }
-        section.arrival-info {
-          float: left;
-          padding-left: 15px;
         }
       }
 
@@ -180,30 +93,46 @@ main.new-gold-standard {
       }
 
     }
-
   }
 
-  a.back-to-registration {
-    text-decoration: none;
-    display: block;
-    width: 300px;
-    margin: auto;
-  }
+  section.trajectory-chain {
+      border: 2px solid #777;
+      padding: 10px;
+      width: 800px;
+      margin: auto;
+      margin-top: 25px;
 
-  section.back-to-registration {
-    margin-top: 50px;
-    background: #ccc;
-    text-align: center;
-    padding: 15px;
-  }
+      div.traj-link-wrapper {
+       float: left;
+       margin-top: 5px;
+      }
 
-  a.back-to-registration:hover {
-    color: #fff;
-    font-weight: 100;
-    text-decoration: underline;
-  }
+      a.trajectory-link {
+        display: block;
+        float: left;
+        padding: 5px;
+        border: 1px solid blue;
+        text-decoration: none;
+        color: black;
+      }
 
-  section.back-to-registration:hover {
-    background: #666;
-  }
+      a.trajectory-link:hover {
+        background: #6DB3F6;
+      }
+
+      div.traj-link-wrapper:after {
+        content: "→";
+        font-size: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      div.traj-link-wrapper:first-child {
+        margin-left: 15px;
+      }
+
+      div.traj-link-wrapper:last-child:after {
+        content: none;
+      }
+    }
 }

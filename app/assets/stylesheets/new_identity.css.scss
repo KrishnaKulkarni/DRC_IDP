@@ -97,17 +97,28 @@ main.new-gold-standard {
         div.gold_standard_identity_relation_to_head_of_household_two,
         div.gold_standard_identity_household_size,
         div.gold_standard_identity_arrival_from_type,
-        div.idp_trajectory_alternate_village,
-        div.idp_trajectory_arrival_from_type{
+        div.idp_trajectory_alternate_village{
           label {
            display: inline;
            margin-right: 5px;
           }
         }
 
-        div.idp_trajectory_mode_of_transport{
+        div.idp_trajectory_arrival_from_type{
+           margin-left: 30px;
+        }
+
+        div.idp_trajectory_alternate_village_status{
+           margin-top: 12px;
+        }
+
+        div.idp_trajectory_alternate_village{
+           margin-top: 10px;
+        }
+
+        div.idp_trajectory_length_stay{
           label {
-           margin-right: 100px;
+           margin-right: 93px;
           }
         }
 
@@ -121,17 +132,36 @@ main.new-gold-standard {
         div.gold_standard_identity_territory_id,
         div.gold_standard_identity_collective_id,
         div.gold_standard_identity_group_id,
-        div.gold_standard_identity_village_id,
-        div.idp_trajectory_province_id,
-        div.idp_trajectory_village_id,
-        div.idp_trajectory_site_id{
+        div.gold_standard_identity_village_id{
          select {
            width: 130px;
          }
         }
 
+        div.idp_trajectory_stop_number{
+          margin-right: 60px;
+          input[type="text"] {
+           width: 10px;
+         }
+        }
+
+        div.idp_trajectory_province_id,
+        div.idp_trajectory_village_id,
+        div.idp_trajectory_site_id{
+         select {
+           width: 110px;
+         }
+        }
+
         div.idp_trajectory_territory_id{
-          margin-right: 92px;
+          margin-right: 53px;
+          select {
+           width: 110px;
+          }
+        }
+
+        div.idp_trajectory_alternate_village{
+          margin-right: 32px;
         }
 
         div.gold_standard_identity_alternate_village {

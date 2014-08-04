@@ -1,0 +1,14 @@
+# encoding: utf-8
+
+<main class="new-gold-standard">
+  <h1><%= @header %></h1>
+  <% if flash[:status] %>
+    <section class="status-message <%= flash[:status_color] %>">
+      <h2><%= flash[:status] %></h2>
+    </section>
+  <% end %>
+  <%= render 'trajectory_form' %>
+</main>
+
+
+<%= javascript_include_tag "page_specific/idp_trajectory_new", "data-turbolinks-track" => true %>
