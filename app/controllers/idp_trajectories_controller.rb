@@ -42,6 +42,7 @@ class IdpTrajectoriesController < ApplicationController
     else
       flash.now[:status] = "Erreur d'enregistrement"
       flash.now[:status_color] = "failure-red"
+      @prior_trajectories = @idp_trajectory.prior_trajectories
       render :new
     end
   end
