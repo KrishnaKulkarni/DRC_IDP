@@ -10,6 +10,8 @@ class IdpTrajectory < ActiveRecord::Base
 
 	attr_accessor :alternate_village_status
 
+  before_save :sanitize_all_blank_attributes
+
   def self.as_csv
     CSV.generate do |csv|
         csv << column_names
@@ -28,4 +30,19 @@ class IdpTrajectory < ActiveRecord::Base
     IdpTrajectory.where(gold_standard_identity_id: self.gold_standard_identity_id).order(stop_number: :asc)
   end
 
+  private
+
+# This method will make sure every attribute that is currently set to a blank string (e.g. "")
+# will instead be set to nil. This cleans up after erroneous blank string inputs that sometimes come
+# in as a result of the form.
+  def sanitize_all_blank_attributes
+    self.class.column_names.each do |attribute_name|
+      attribute_reader_symbol = attribute_name.to_sym
+      attribute_writer_symbol = "#{attribute_name}=".to_sym
+
+      # The 'send' method allows you to call call a method on a object by
+      # passing that methods name (converted to a symbol)  as an argument.
+      self.send(attribute_writer_symbol, nil)  if self.send(attribute_reader_symbol).blank?
+    end
+  end
 end

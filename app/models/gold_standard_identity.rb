@@ -39,6 +39,8 @@ class GoldStandardIdentity < ActiveRecord::Base
   attr_accessor :alternate_village_status
   attr_accessor :head_of_household_status
 
+  before_save :sanitize_all_blank_attributes
+
   #Alter implementation appropriately later
   def iom_identity_matches
     IomIdentity.all.select { |iom_identity| match_score(iom_identity) >= 3.5 }
@@ -86,5 +88,14 @@ class GoldStandardIdentity < ActiveRecord::Base
   private
   def match_score(iom_identity)
     3.5
+  end
+
+  def sanitize_all_blank_attributes
+    self.class.column_names.each do |attribute_name|
+      attribute_reader_symbol = attribute_name.to_sym
+      attribute_writer_symbol = "#{attribute_name}=".to_sym
+
+      self.send(attribute_writer_symbol, nil)  if self.send(attribute_reader_symbol).blank?
+    end
   end
 end
