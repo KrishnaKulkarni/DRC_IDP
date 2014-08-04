@@ -52,7 +52,6 @@ end
 group :development do
   gem 'binding_of_caller'
   gem 'better_errors'
-  gem 'pry-rails'
 end
 
 
@@ -60,3 +59,23 @@ end
 # https://github.com/plataformatec/simple_form
 gem 'simple_form'
 gem 'ejs'
+
+# Stuff for doing tests
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem "rspec-rails"
+  gem 'pry-rails'
+end
+
+group :test do
+  gem 'capybara-webkit'
+  gem 'shoulda-matchers', require: false
+  gem 'capybara'
+  gem 'launchy'
+  gem 'cucumber'
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
+  gem 'fakeweb'
+  gem 'timecop'
+end
+
