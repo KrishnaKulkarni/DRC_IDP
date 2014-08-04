@@ -17,7 +17,7 @@ class GoldStandardIdentity < ActiveRecord::Base
                    :province_id, :territory_id, :village_of_origin, message: "rempliseez cette case", if: "true"
   # Still haven't solved this bug
   # validates_presence_of :date_of_birth, message: "rempliseez cette case", unless: "true"
-  validates_presence_of :alternate_village, presence: true, message: "rempliseez cette case", if: "alternate_village_status=='1'"
+  validates_presence_of :alternate_village, presence: true, message: "rempliseez cette case", if: "alternate_village_status =='1'"
   validates_presence_of :village_id, message: "rempliseez cette case", if: "alternate_village_status!='1'"
   validates_presence_of :head_of_household_first_name, :head_of_household_last_name,
             :relation_to_head_of_household, message: "rempliseez cette case", if: "head_of_household_status!='1'"
@@ -31,10 +31,9 @@ class GoldStandardIdentity < ActiveRecord::Base
   validates_format_of :other_last_name, with: /\A[a-zA-Z'\s]*\z/, message: "lettres uniquement", if: 'other_last_name.present?'
   validates_format_of :other_alternate_name, with: /\A[a-zA-Z'\s]*\z/, message: "lettres uniquement", if: 'other_alternate_name.present?'
   validates_format_of :head_of_household_alternate_name, with: /\A[a-zA-Z'\s]*\z/, message: "lettres uniquement", if: 'head_of_household_alternate_name.present?'
-  
-  # Not sure ho to do numeral-only validations
-  # validates_format_of :identity_carte, with: /\A[0-9]*\z/, message: "chiffres uniquement", if: 'alternate_name.present?'
-  # validates_format_of :iom_identity_carte, with: /\A[0-9]*\z/, message: "chiffres uniquement", if: 'alternate_name.present?'
+
+  validates_numericality_of :identity_carte, message: "chiffres uniquement", if: 'alternate_name.present?'
+  validates_numericality_of :iom_identity_carte, message: "chiffres uniquement", if: 'alternate_name.present?'
 
   attr_accessor :alternate_village_status
   attr_accessor :head_of_household_status

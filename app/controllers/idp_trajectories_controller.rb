@@ -1,6 +1,4 @@
 class IdpTrajectoriesController < ApplicationController
-  include MatchAlgorithm
-
   before_filter :ensure_signed_in!
 
   def new
@@ -36,7 +34,7 @@ class IdpTrajectoriesController < ApplicationController
       @idp_trajectories = @idp_trajectories.order(id: :asc)
       File.open("exports/idp_trajectory_stops_#{session[:username]}_C#{session[:computer_number]}_#{session[:location]}_#{Date.today}.csv",
        'w') { |file| file.write(@idp_trajectories.as_csv) }
-      
+
       # A method for storing the newly created trajectory. Defined below in this file.
       store_trajectory_in_cache(@idp_trajectory)
 
