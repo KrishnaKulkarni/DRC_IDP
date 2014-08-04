@@ -20,6 +20,7 @@ class IdpTrajectoriesController < ApplicationController
 
   def create
     @gold_standard_identity = GoldStandardIdentity.last
+
     @idp_trajectory = IdpTrajectory.new(idp_trajectory_params)
     @idp_trajectory.recorded_by = session[:username]
     @idp_trajectory.recorded_in_village = session[:location]
