@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe IdpTrajectory do 
+describe IdpTrajectory do
 
   describe "factory" do
     it "should have a valid factory" do
@@ -23,11 +23,15 @@ describe IdpTrajectory do
           expect(idp_trajectory).to_not be_valid
         end
 
+        it "should not persist a new trajectory to the database" do
+          expect { idp_trajectory.save }.to_not change { IdpTrajectory.count }
+        end
+
         it "should have an error message attached to each attribute" do
           idp_trajectory.save
-          expect(error_messages['village_id']).to eq("must choose a village, site, or alternate_village")
-          expect(error_messages['site_id']).to eq("must choose a village, site, or alternate_village")
-          expect(error_messages['alternate_village']).to eq("must choose a village, site, or alternate_village")
+          expect(error_messages[:village_id]).to eq(["must choose a village, site, or alternate_village"])
+          expect(error_messages[:site_id]).to eq(["must choose a village, site, or alternate_village"])
+          expect(error_messages[:alternate_village]).to eq(["must choose a village, site, or alternate_village"])
         end
       end
 
