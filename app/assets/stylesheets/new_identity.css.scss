@@ -180,6 +180,16 @@ main.new-gold-standard {
            width: 70px;
           }
         }
+
+        div.gold_standard_identity_year_of_birth,
+        div.gold_standard_identity_month_of_birth {
+          margin-right: 3px;
+
+          span.error {
+            max-width: 67px;
+            margin-top: 3px
+          }
+        }
       }
 
       section.more-identity-information {
