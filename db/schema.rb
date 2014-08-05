@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140731213418) do
+ActiveRecord::Schema.define(version: 20140805030901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,9 @@ ActiveRecord::Schema.define(version: 20140731213418) do
     t.string   "identity_card"
     t.string   "iom_identity_card"
     t.string   "arrival_from_type"
+    t.integer  "year_of_birth"
+    t.integer  "month_of_birth"
+    t.integer  "day_of_birth"
   end
 
   add_index "gold_standard_identities", ["first_name"], name: "index_gold_standard_identities_on_first_name", using: :btree

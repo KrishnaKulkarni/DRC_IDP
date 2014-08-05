@@ -15,11 +15,11 @@
     </div>
     <div class="row clearfix" id="row3">
       <%= f.input :sex, label: "Sexe", collection: ["Male", "Female"] %>
-      <%= f.input :date_of_birth,  as: :integer, input_html: { value: @year_of_birth, max: 2014, min: 1920 },
-       # start_year: Date.today.year - 90,  # end_year: Date.today.year,
-                          discard_day: true, discard_month: true,
-                          order: [:year, :month, :day], :include_blank => true,
-                          label: "Date de naissance" %>
+      <div id="dob-wrapper">
+        <%= f.input :year_of_birth, as: :integer, input_html: { max: 2014, min: 1920 }, label: "Annee" %>
+        <%= f.input :month_of_birth, as: :integer, input_html: { max: 12, min: 1 }, label: "Mois" %>
+        <%= f.input :day_of_birth, as: :integer, input_html: { max: 12, min: 1 }, label: "Jour de Naissance" %>
+      </div>
       <span id="ou">Ou</span>
       <%= f.input :age, as: :integer, input_html: { value: @age, max: 100, min: 0 }, label: "Age"  %>
     </div>

@@ -31,12 +31,13 @@ class GoldStandardIdentitiesController < ApplicationController
   end
 
   def create
-    handle_age!
     clear_identity_cache
 
     @gold_standard_identity = GoldStandardIdentity.new(gold_standard_identity_params)
+    handle_age!
     @gold_standard_identity.recorded_by = session[:username]
     @gold_standard_identity.recorded_in_village = session[:location]
+
     if @gold_standard_identity.save
       flash[:status] = "Enregistrement reussi pour #{@gold_standard_identity.first_name} #{@gold_standard_identity.last_name}."
       flash[:status_color] = "success-green"
@@ -67,21 +68,16 @@ class GoldStandardIdentitiesController < ApplicationController
 
   def handle_age!
     @age = params[:gold_standard_identity]["age"]
-    @year_of_birth = params[:gold_standard_identity]["date_of_birth"]
-    if @year_of_birth.present?
-      if @year_of_birth.to_i < 100
-        @year_of_birth = (2014 - @year_of_birth.to_i).to_s
-      end
-      params[:gold_standard_identity]["date_of_birth"] += "-01-01"
-    elsif @age.present?
-      year = (2014 - @age.to_i).to_s
-      params[:gold_standard_identity]["date_of_birth"] = year + "-01-01"
+    @age = @age.present? && @age.to_i
+
+    if @gold_standard_identity.year_of_birth.blank? && @age
+      @gold_standard_identity.year_of_birth = 2014 - @age
     end
   end
 
   def gold_standard_identity_params
     params.require(:gold_standard_identity).permit(
-    :first_name, :last_name, :alternate_name, :nick_name, :sex, :date_of_birth,
+    :first_name, :last_name, :alternate_name, :nick_name, :sex, :day_of_birth, :month_of_birth, :year_of_birth,
     :other_first_name, :other_last_name, :other_alternate_name, :identity_card, :iom_identity_card,
     :village_id, :group_id, :collective_id, :territory_id, :province_id,
     :recorded_in_village_id, :recorded_by, :alternate_village, :alternate_village_status, :village_of_origin,
