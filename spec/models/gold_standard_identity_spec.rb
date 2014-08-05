@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe GoldStandardIdentity do 
+describe GoldStandardIdentity do
 
   describe "factory" do
     it "should have a valid factory" do
@@ -18,21 +18,23 @@ describe GoldStandardIdentity do
 
   describe "callbacks" do
     describe "sanitizing blank strings" do
-      it "converts blank-string attributes to nil just before validations are run" 
+      it "converts blank-string attributes to nil just before validations are run"
     end
 
     describe "synchronizing date_of_birth with with day_, month_, and year_of_birth" do
-      let!(:database_identity) { FactoryGirl.create(:gold_standard_identity, date_of_birth: dob) }
-      let(:new_identity) do 
+      let!(:database_identity) { FactoryGirl.create(:gold_standard_identity, first_name: "John", date_of_birth: dob) }
+      let(:new_identity) do
         FactoryGirl.build(:gold_standard_identity, first_name: "Joseph", day_of_birth: day,
-         month_of_birth: month, year_of_birth: year) 
+         month_of_birth: month, year_of_birth: year)
       end
+      let(:dob) { nil }
+
 
       context "when date_of_birth is present" do
         let(:dob) { Date.new(1990, 5, 19) }
 
         it "assigns day_, month_, and year_of_birth appropriately upon initializing a found GoldStandardIdentity" do
-          found_identity = GoldStandardIdentity.last
+          found_identity = GoldStandardIdentity.find_by(first_name: "John")
           expect(found_identity.year_of_birth).to eq(1990)
           expect(found_identity.month_of_birth).to eq(5)
           expect(found_identity.day_of_birth).to eq(19)
@@ -40,10 +42,8 @@ describe GoldStandardIdentity do
       end
 
       context "when date_of_birth is blank" do
-        let(:dob) { nil }
-
         it "leaves day_, month_, and year_of_birth untouched" do
-          found_identity = GoldStandardIdentity.last
+          found_identity = GoldStandardIdentity.find_by(first_name: "John")
           expect(found_identity.year_of_birth).to eq(1989)
           expect(found_identity.month_of_birth).to be_nil
           expect(found_identity.day_of_birth).to be_nil

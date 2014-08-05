@@ -12,7 +12,9 @@ FactoryGirl.define do
     alternate_village nil
     head_of_household_status "1"
     village_of_origin "Goma"
-
+    day_of_birth nil
+    month_of_birth nil
+    year_of_birth 1989
     date_of_birth nil
   end
 end
