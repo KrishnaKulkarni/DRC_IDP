@@ -55,7 +55,7 @@ group :development do
 end
 
 
-# Makes creating forms way simpler 
+# Makes creating forms way simpler
 # https://github.com/plataformatec/simple_form
 gem 'simple_form'
 gem 'ejs'
@@ -68,14 +68,14 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara-webkit'
+#  gem 'capybara'
+#  gem 'capybara-webkit'
+#  gem 'launchy'
+  # gem 'cucumber'
+  # gem 'cucumber-rails', require: false
+  # gem 'fakeweb'
   gem 'shoulda-matchers', require: false
-  gem 'capybara'
-  gem 'launchy'
-  gem 'cucumber'
-  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
-  gem 'fakeweb'
   gem 'timecop'
 end
 
