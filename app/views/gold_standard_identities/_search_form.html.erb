@@ -14,7 +14,7 @@
       <%= f.input :other_alternate_name, label: false, input_html: { placeholder: "Autre Prenom",} %>
     </div>
     <div class="row clearfix" id="row3">
-      <%= f.input :sex, label: "Sexe", collection: ["Male", "Female"] %>
+      <%= f.input :sex, label: "Sexe", collection: ["Male", "Female"], input_html: { class: "chosen-select" }  %>
       <div id="dob-wrapper">
         <%= f.input :year_of_birth, as: :integer, input_html: { max: 2014, min: 1920 }, label: "Annee" %>
         <%= f.input :month_of_birth, as: :integer, input_html: { max: 12, min: 1 }, label: "Mois" %>
@@ -24,11 +24,11 @@
       <%= f.input :age, as: :integer, input_html: { value: @age, max: 100, min: 0 }, label: "Age"  %>
     </div>
     <div class="row clearfix" id="row4">
-      <%= f.input :province_id, collection: Province.all.order(:name), label_method: :name, value_method: :id, label: "Province" ,:include_blank => true %>
-      <%= f.input :territory_id, collection: Territory.all.order(:name), label_method: :name, value_method: :id, label: "Territoire" ,:include_blank => true %>
-      <%= f.input :collective_id, collection: Collective.all.order(:name), label_method: :name, value_method: :id, label: "Collectivite" ,:include_blank => true %>
-      <%= f.input :group_id, collection: Group.all.order(:name), label_method: :name, value_method: :id, label: "Groupement" ,:include_blank => true %>
-      <%= f.input :village_id, collection: Village.all.order(:name), label_method: :name, value_method: :id, label: "Village" ,:include_blank => true %>
+      <%= f.input :province_id, collection: Province.all.order(:name), label_method: :name, value_method: :id, label: "Province" ,:include_blank => true, input_html: { class: "chosen-select" } %>
+      <%= f.input :territory_id, collection: Territory.all.order(:name), label_method: :name, value_method: :id, label: "Territoire" ,:include_blank => true, input_html: { class: "chosen-select" }  %>
+      <%= f.input :collective_id, collection: Collective.all.order(:name), label_method: :name, value_method: :id, label: "Collectivite" ,:include_blank => true, input_html: { class: "chosen-select" }  %>
+      <%= f.input :group_id, collection: Group.all.order(:name), label_method: :name, value_method: :id, label: "Groupement" ,:include_blank => true, input_html: { class: "chosen-select" }  %>
+      <%= f.input :village_id, collection: Village.all.order(:name), label_method: :name, value_method: :id, label: "Village" ,:include_blank => true, input_html: { class: "chosen-select" }  %>
     </div>
     <div class="row clearfix" id="row5">
       <%= f.input :alternate_village_status, label: "Ce village n'est pas sur la liste", as: :boolean  %>
@@ -48,7 +48,7 @@
           <%= f.input :head_of_household_alternate_name, label: false, input_html: { placeholder: "Prenom", class: "menage" }, wrapper_html: { class: 'blurred' } %>
         </div>
         <div class="row clearfix">
-          <%= f.input :relation_to_head_of_household, label: "Relation familiale", wrapper_html: { class: 'blurred' }, collection: [ "Epouse", "Epoux", "Mere", "Pere", "Soeur", "Frere", "Fille", "Fils", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine", "Autre" ] %>
+          <%= f.input :relation_to_head_of_household, label: "Relation familiale", wrapper_html: { class: 'blurred' }, collection: [ "Epouse", "Epoux", "Mere", "Pere", "Soeur", "Frere", "Fille", "Fils", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine", "Autre" ], input_html: { class: "chosen-select" }  %>
         </div>
         <div class="row clearfix">
           <%= f.input :head_of_household_two_first_name, label: "Chef menage", input_html: { placeholder: "Nom", class: "menage" } %>
@@ -56,7 +56,7 @@
           <%= f.input :head_of_household_two_alternate_name, label: false, input_html: { placeholder: "Prenom", class: "menage" } %>
         </div>
         <div class="row clearfix">
-          <%= f.input :relation_to_head_of_household_two, label: "Relation familiale", collection: [ "Epouse", "Epoux", "Mere", "Pere", "Soeur", "Frere", "Fille", "Fils", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine", "Autre" ] %>
+          <%= f.input :relation_to_head_of_household_two, label: "Relation familiale", collection: [ "Epouse", "Epoux", "Mere", "Pere", "Soeur", "Frere", "Fille", "Fils", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine", "Autre" ], input_html: { class: "chosen-select" }  %>
         </div>
         <div class="row clearfix">
           <%= f.input :household_size, label: "Taille de menage", input_html: { max: 20, min: 1 }  %>

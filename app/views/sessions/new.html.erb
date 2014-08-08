@@ -10,8 +10,8 @@
 
 		<div class="input">
 		 <label for="username">Nom</label>
-		 <select id="username" name="username">
-		   <option value=" ">S'il vous plaît choisir</option>
+		 <select class="chosen-select" data-placeholder="S'il vous plaît choisir" id="username" name="username">
+		   <option></option>
        <% @users.each do |user| %>
         <option value="<%= user.id %>"><%= user.username %></option>
        <% end %>
@@ -20,8 +20,8 @@
 
 		<div class="input">
 		  <label for="computer">Nombre d'ordinateurs</label>
-    	 <select id="computer_number" name="computer_number">
-	       <option value=" ">S'il vous plaît choisir</option>
+    	 <select class="chosen-select" data-placeholder="S'il vous plaît choisir" id="computer_number" name="computer_number">
+  		   <option></option>
          <% 8.times do |i| %>
            <option value="<%= i + 1 %>">Ordinateur #<%= i + 1 %></option>
          <% end %>
@@ -30,8 +30,8 @@
 
 		<div class="input">
 		  <label for="location">Emplacement</label>
-    	 <select id="location" name="location">
-	       <option value=" ">S'il vous plaît choisir</option>
+    	 <select class="chosen-select" data-placeholder="S'il vous plaît choisir" id="location" name="location">
+  		   <option></option>
          <% ["Training", "Bulengo", "Buhimba", "Lac Vert", "Mgungu 1", "Mgunga 3", "Nzulo"].each do |location| %>
            <option value="<%= location %>"><%= location %></option>
          <% end %>

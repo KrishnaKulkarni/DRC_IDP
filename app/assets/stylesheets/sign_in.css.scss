@@ -17,7 +17,7 @@ main.sign-in {
 
   form.sign-in-form {
     width: 300px;
-    height: 270px;
+    height: 280px;
     margin: auto;
     margin-top: 25px;
     border: 3px solid #777;
@@ -45,8 +45,9 @@ main.sign-in {
       right: 5px;
     }
 
-
+    a.chosen-single {
+      width: 160px;
+    }
   }
-
 
 }
