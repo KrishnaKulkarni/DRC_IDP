@@ -1,6 +1,6 @@
 class CreateDepartureReasons < ActiveRecord::Migration
   def change
-    create_table :departure_reasons do |t|
+    create_table :reasons do |t|
       t.string    :departure_reason
       
       t.timestamps

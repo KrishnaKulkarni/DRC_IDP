@@ -72,7 +72,7 @@ File.open('db/location_seeding_errors.txt', 'w') { |file| file.write(failure_tex
 # -- REFERNCE CSVS --
 
 LISTS = {
- 'DepartureReason'      => 'DepartureReason'
+ 'Reason'      => 'Reason'
 }
 
 DESIRED_ATTRIBUTES = {
