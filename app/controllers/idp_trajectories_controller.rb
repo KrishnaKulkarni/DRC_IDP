@@ -49,7 +49,7 @@ class IdpTrajectoriesController < ApplicationController
 
   def edit
     @idp_trajectory = IdpTrajectory.find(params[:id])
-    @header = print_header
+    @header = print_edit_header
     @prior_trajectories = @idp_trajectory.all_trajectories
 
     render :edit
@@ -64,7 +64,7 @@ class IdpTrajectoriesController < ApplicationController
     @idp_trajectory.departure_date = handle_length_stay!(@idp_trajectory.departure_date)
 
     if @idp_trajectory.update(idp_trajectory_params)
-      flash[:status] = "Succesful edit of Stop ##{@idp_trajectory.stop_number}
+      flash[:status] = "Successful edit of Stop ##{@idp_trajectory.stop_number}
                         pour #{@gold_standard_identity.first_name} #{@gold_standard_identity.last_name}."
       flash[:status_color] = "success-green"
 
@@ -80,6 +80,20 @@ class IdpTrajectoriesController < ApplicationController
       flash.now[:status_color] = "failure-red"
       render :edit
     end
+  end
+
+  def destroy
+    idp_trajectory = IdpTrajectory.find(params[:id])
+    session[:last_trajectory_id] = idp_trajectory.highest_connected_trajectory
+    if session[:last_trajectory_id] 
+      session[:last_trajectory_id] -= 1
+    else
+      session[:last_trajectory_id] = 0
+    end
+    idp_trajectory.remove_from_chain!
+    flash[:status], flash[:status_color] = "Successful deletion of a stop", "success-green"
+
+    redirect_to new_idp_trajectory_url
   end
 
   def trajectory_form
@@ -159,5 +173,15 @@ class IdpTrajectoriesController < ApplicationController
       first_name, last_name = "Unregistered", "Person"
     end
     "Enregister un arret pour #{first_name} #{last_name}"
+  end
+
+  def print_edit_header
+    if lrii = session[:last_registered_identity_id]
+      gsi = GoldStandardIdentity.find(lrii)
+      first_name, last_name = gsi.first_name, gsi.last_name
+    else
+      first_name, last_name = "Unregistered", "Person"
+    end
+    "Editing Stop ##{@idp_trajectory.stop_number} for #{first_name} #{last_name}"
   end
 end

@@ -28,8 +28,24 @@ class IdpTrajectory < ActiveRecord::Base
     .where("stop_number < ?", self.stop_number).order(stop_number: :asc)
   end
 
+  def later_trajectories
+    IdpTrajectory.where(gold_standard_identity_id: self.gold_standard_identity_id)
+    .where("stop_number > ?", self.stop_number).order(stop_number: :asc)
+  end
+
   def all_trajectories
     IdpTrajectory.where(gold_standard_identity_id: self.gold_standard_identity_id).order(stop_number: :asc)
+  end
+
+  def remove_from_chain!
+    self.later_trajectories.each do |traj|
+      traj.update(stop_number: traj.stop_number - 1)
+    end
+    self.destroy
+  end
+
+  def highest_connected_trajectory
+    self.later_trajectories.last
   end
 
   private

@@ -24,8 +24,8 @@
 
     <button><a class="styled-button" href="<%= gold_standard_identity_url(session[:last_registered_identity_id] || 0)%>">CANCEL</a></button>
 
-    <%= f.button :submit, value: "ENREGISTRER ARRET" %>
-
+    <% submit_value = is_updating ? "UPDATE STOP" : "ENREGISTRER ARRET" %>
+    <%= f.button :submit, value: submit_value %>
   </div>
 
 
