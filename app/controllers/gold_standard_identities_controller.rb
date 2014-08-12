@@ -46,6 +46,8 @@ class GoldStandardIdentitiesController < ApplicationController
       @gold_standard_identities = GoldStandardIdentity.where("created_at > ?", Date.today).where("recorded_by = ?", session[:username]).where("recorded_in_village = ?", session[:location])
       File.open("exports/registered_identities_#{session[:username]}_C#{session[:computer_number]}_#{session[:location]}_#{Date.today}.csv",
        'w') { |file| file.write(@gold_standard_identities.as_csv) }
+
+      store_identity_cache(@gold_standard_identity.id)
       redirect_to gold_standard_identity_url(@gold_standard_identity)
     else
       flash.now[:status] = "Erreur d'enregistrement"
@@ -60,7 +62,6 @@ class GoldStandardIdentitiesController < ApplicationController
   end
 
   def show
-    store_identity_cache(params[:id])
     render :show
   end
 

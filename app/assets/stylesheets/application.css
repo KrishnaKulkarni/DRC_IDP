@@ -110,3 +110,13 @@ section.success-green {
 section.failure-red {
   background: red;
 }
+
+.styled-button {
+  text-decoration: none;
+  font-size: 13px;
+  color: #000;
+}
+
+.styled-button:active {
+  color: red;
+}

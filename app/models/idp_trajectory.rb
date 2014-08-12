@@ -2,7 +2,7 @@ class IdpTrajectory < ActiveRecord::Base
 
 	attr_reader :length_stay, :alternate_village_status
 
-	belongs_to :identity, inverse_of: :idp_trajectories
+	belongs_to :gold_standard_identity, inverse_of: :idp_trajectories
 
   # Toggle true/false to turn off/on the validation
   # validates_presence_of :stop_number, :province_id, :territory_id, :arrival_from_type, :mode_of_transport,
