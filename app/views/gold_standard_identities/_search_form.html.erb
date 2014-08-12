@@ -6,7 +6,7 @@
       <%= f.input :alternate_name, label: "Prenom" %>
       <%= f.input :nick_name, label: "Surnom" %>
       <%= f.input :identity_card, label: "Carte identite" %>
-      <%= f.input :iom_identity_card, label: "Carte IOM" %>
+      <%= f.input :iom_identity_card, label: "Carte ONG" %>
     </div>
     <div class="row clearfix" id="row2">
       <%= f.input :other_first_name, label: false, input_html: { placeholder: "Autre Nom"} %>
@@ -14,11 +14,13 @@
       <%= f.input :other_alternate_name, label: false, input_html: { placeholder: "Autre Prenom",} %>
     </div>
     <div class="row clearfix" id="row3">
-      <%= f.input :sex, label: "Sexe", collection: ["Male", "Female"], input_html: { class: "chosen-select" }  %>
+      <%= f.input :sex, label: "Sexe", collection: ["Male", "Female"] %>
+      
       <div id="dob-wrapper">
+        <span id="date">Date de naissance:</span>
         <%= f.input :year_of_birth, as: :integer, input_html: { max: 2014, min: 1920 }, label: "Annee" %>
         <%= f.input :month_of_birth, as: :integer, input_html: { max: 12, min: 1 }, label: "Mois" %>
-        <%= f.input :day_of_birth, as: :integer, input_html: { max: 12, min: 1 }, label: "Jour de Naissance" %>
+        <%= f.input :day_of_birth, as: :integer, input_html: { max: 12, min: 1 }, label: "Jour" %>
       </div>
       <span id="ou">Ou</span>
       <%= f.input :age, as: :integer, input_html: { value: @age, max: 100, min: 0 }, label: "Age"  %>

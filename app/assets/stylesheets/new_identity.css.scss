@@ -49,10 +49,18 @@ main.new-gold-standard {
 
         span#ou {
          float: left;
-         margin-right: 15px;
+         margin-right: 20px;
          padding-top: 10px;
          font-size: 17px;
          font-weight: bold;
+        }
+
+        span#date {
+         float: left;
+         margin-right: 15px;
+         margin-left: 32px;
+         padding-top: 10px;
+         font-size: 15px;
         }
 
         div.input {
