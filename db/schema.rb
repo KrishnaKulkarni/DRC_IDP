@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140805030901) do
+ActiveRecord::Schema.define(version: 20140812225915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,12 @@ ActiveRecord::Schema.define(version: 20140805030901) do
     t.integer  "territory_id"
     t.string   "code"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "departure_reasons", force: true do |t|
+    t.string   "departure_reason"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -111,6 +117,7 @@ ActiveRecord::Schema.define(version: 20140805030901) do
     t.string   "site_id"
     t.date     "departure_date"
     t.string   "is_temporary_site"
+    t.integer  "departure_reason_id"
   end
 
   add_index "idp_trajectories", ["gold_standard_identity_id"], name: "index_idp_trajectories_on_gold_standard_identity_id", using: :btree

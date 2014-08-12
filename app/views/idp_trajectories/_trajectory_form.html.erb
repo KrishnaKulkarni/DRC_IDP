@@ -16,6 +16,9 @@
       <%= f.input :arrival_from_type, label: "Lieu de dormir: ", collection: [ "Maison", "Hut", "Hangar", "Ecole", "Eglise", "Hopital", "Bush", "Route", "Autre"] %>
     </div>
     <div class="row clearfix" id="row3">
+      <%= f.input :departure_reason_id, collection: DepartureReason.all, label_method: :name, value_method: :id, label: "Departure Reason" ,:include_blank => true %>
+    </div>
+    <div class="row clearfix" id="row4">
       <%= f.input :departure_date, label: "Date de depart", start_year: Date.today.year - 20, end_year: Date.today.year %>
       <span id="ou">Ou</span>
       <%= f.input :length_stay, as: :integer, input_html: { value: @length_stay, max: 100, min: 1 }, label: "Duree de sejour en jours"  %>
