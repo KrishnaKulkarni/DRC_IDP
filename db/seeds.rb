@@ -69,34 +69,33 @@ File.open('db/location_seeding_errors.txt', 'w') { |file| file.write(failure_tex
 
 # -- LOCATIONS END --
 
-# -- REFERNCE CSVS --
+# -- REFERENCE CSVS --
 
 LISTS = {
- 'DepartureReason'      => 'DepartureReason'
+  'DepartureReason' => 'DepartureReason'
 }
 
-DESIRED_ATTRIBUTES = {
-  "id"                  => :id,
-  "departure_reason"    => :departure_reason
-}
+DESIRED_ATTRIBUTES = [
+ "id",
+ "departure_reason"
+]
+
 failure_text = ""
 
-LISTS.each do |(french_loc, english_loc)|
-  # puts "-------#{english_loc}------"
-  file = File.open("resources/#{french_loc}List.csv")
+LISTS.each do |(list_name, model_name)|
+  file = File.open("resources/#{list_name}List.csv")
   CSV.foreach(file.path, headers: true) do |row|
-    french_loc_values = row.to_hash
-    english_loc_values = {}
-    DESIRED_ATTRIBUTES.each do |(french_attr, english_attr)|
-      if(french_loc_values[french_attr])
-        english_loc_values[english_attr] = french_loc_values[french_attr]
+    all_csv_row_values = row.to_hash
+    desired_values = {}
+    DESIRED_ATTRIBUTES.each do |attribute_name|
+      if(all_csv_row_values[attribute_name])
+        desired_values[attribute_name] = all_csv_row_values[attribute_name]
       end
     end
     
-    # puts "--ID: #{french_loc_values['id']}"
-    create_succeeded = english_loc.constantize.create(english_loc_values)
+    create_succeeded = model_name.constantize.create(desired_values)
     unless(create_succeeded)
-      failure_text << "#{english_loc} : #{french_loc_values['id']} : #{french_loc_values['nom']}\n"
+      failure_text << "#{model_name} : #{all_csv_row_values['id']}\n"
     end
   end
   
