@@ -8,6 +8,9 @@ class IdpTrajectory < ActiveRecord::Base
   # validates_presence_of :stop_number, :province_id, :territory_id, :arrival_from_type, :mode_of_transport,
   #                            message: "rempliseez cette case", if: "true"
   validates_presence_of :stop_number, :province_id, message: "rempliseez cette case"
+  validates_presence_of :is_temporary_site, :arrival_from_type,
+                        :departure_reason_id, :mode_of_transport, message: "rempliseez cette case"
+
   validate :village_or_site_or_alt_village_is_present
 
   attr_accessor :alternate_village_status

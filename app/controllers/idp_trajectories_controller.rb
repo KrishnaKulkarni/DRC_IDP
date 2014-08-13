@@ -117,7 +117,7 @@ class IdpTrajectoriesController < ApplicationController
     params.require(:idp_trajectory).permit(
     :stop_number, :departure_date, :mode_of_transport, :arrival_from_type,
     :village_id, :site_id, :territory_id, :province_id,
-    :alternate_village, :alternate_village_status, :is_temporary_site)
+    :alternate_village, :alternate_village_status, :is_temporary_site, :departure_reason_id)
   end
 
   private

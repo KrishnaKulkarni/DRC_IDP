@@ -39,8 +39,8 @@ class GoldStandardIdentity < ActiveRecord::Base
   validates_format_of :other_alternate_name, with: /\A[a-zA-Z'\s]*\z/, message: "lettres uniquement", if: 'other_alternate_name.present?'
   validates_format_of :head_of_household_alternate_name, with: /\A[a-zA-Z'\s]*\z/, message: "lettres uniquement", if: 'head_of_household_alternate_name.present?'
 
-  validates_numericality_of :identity_carte, message: "chiffres uniquement", if: 'alternate_name.present?'
-  validates_numericality_of :iom_identity_carte, message: "chiffres uniquement", if: 'alternate_name.present?'
+  validates_numericality_of :identity_card, message: "chiffres uniquement", if: 'identity_card.present?'
+  validates_numericality_of :iom_identity_card, message: "chiffres uniquement", if: 'iom_identity_card.present?'
 
   before_save :sanitize_all_blank_attributes
   before_save :synch_dob_to_dob_components

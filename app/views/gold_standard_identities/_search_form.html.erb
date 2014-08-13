@@ -25,11 +25,11 @@
       <%= f.input :age, as: :integer, input_html: { value: @age, max: 100, min: 0 }, label: "Age"  %>
     </div>
     <div class="row clearfix" id="row4">
-      <%= f.input :province_id, collection: Province.all.order(:name), label_method: :name, value_method: :id, label: "Province" ,:include_blank => true, input_html: { class: "chosen-select" } %>
-      <%= f.input :territory_id, collection: Territory.all.order(:name), label_method: :name, value_method: :id, label: "Territoire" ,:include_blank => true, input_html: { class: "chosen-select" }  %>
-      <%= f.input :collective_id, collection: Collective.all.order(:name), label_method: :name, value_method: :id, label: "Collectivite" ,:include_blank => true, input_html: { class: "chosen-select" }  %>
-      <%= f.input :group_id, collection: Group.all.order(:name), label_method: :name, value_method: :id, label: "Groupement" ,:include_blank => true, input_html: { class: "chosen-select" }  %>
-      <%= f.input :village_id, collection: Village.all.order(:name), label_method: :name, value_method: :id, label: "Village" ,:include_blank => true, input_html: { class: "chosen-select" }  %>
+      <%= f.input :province_id, collection: Province.all.order(:name), label_method: :name, value_method: :id, label: "Province" ,:include_blank => true %>
+      <%= f.input :territory_id, collection: Territory.all.order(:name), label_method: :name, value_method: :id, label: "Territoire" ,:include_blank => true  %>
+      <%= f.input :collective_id, collection: Collective.all.order(:name), label_method: :name, value_method: :id, label: "Collectivite" ,:include_blank => true  %>
+      <%= f.input :group_id, collection: Group.all.order(:name), label_method: :name, value_method: :id, label: "Groupement" ,:include_blank => true  %>
+      <%= f.input :village_id, collection: Village.all.order(:name), label_method: :name, value_method: :id, label: "Village" ,:include_blank => true  %>
     </div>
     <div class="row clearfix" id="row5">
       <%= f.input :alternate_village_status, label: "Ce village n'est pas sur la liste", as: :boolean  %>
@@ -49,7 +49,7 @@
           <%= f.input :head_of_household_alternate_name, label: false, input_html: { placeholder: "Prenom", class: "menage" }, wrapper_html: { class: 'blurred' } %>
         </div>
         <div class="row clearfix">
-          <%= f.input :relation_to_head_of_household, label: "Relation familiale", wrapper_html: { class: 'blurred' }, collection: [ "Epouse", "Epoux", "Mere", "Pere", "Soeur", "Frere", "Fille", "Fils", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine", "Autre" ], input_html: { class: "chosen-select" }  %>
+          <%= f.input :relation_to_head_of_household, label: "Relation familiale", wrapper_html: { class: 'blurred' }, collection: [ "Epouse", "Epoux", "Mere", "Pere", "Soeur", "Frere", "Fille", "Fils", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine", "Autre" ]  %>
         </div>
         <div class="row clearfix">
           <%= f.input :head_of_household_two_first_name, label: "Chef menage", input_html: { placeholder: "Nom", class: "menage" } %>
@@ -57,7 +57,7 @@
           <%= f.input :head_of_household_two_alternate_name, label: false, input_html: { placeholder: "Prenom", class: "menage" } %>
         </div>
         <div class="row clearfix">
-          <%= f.input :relation_to_head_of_household_two, label: "Relation familiale", collection: [ "Epouse", "Epoux", "Mere", "Pere", "Soeur", "Frere", "Fille", "Fils", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine", "Autre" ], input_html: { class: "chosen-select" }  %>
+          <%= f.input :relation_to_head_of_household_two, label: "Relation familiale", collection: [ "Epouse", "Epoux", "Mere", "Pere", "Soeur", "Frere", "Fille", "Fils", "Grandmere", "Grandpere", "Tante", "Oncle", "Cousin", "Cousine", "Autre" ]  %>
         </div>
         <div class="row clearfix">
           <%= f.input :household_size, label: "Taille de menage", input_html: { max: 20, min: 1 }  %>
@@ -69,15 +69,3 @@
     <%= f.button :submit, value: "ENREGISTRER" %>
   </div>
 <% end %>
-
-<!-- .select {|p| p.villages.count != 0}
-.select {|t| t.villages.count != 0}
-.select {|c| c.villages.count != 0}
-.select {|g| g.villages.count != 0} -->
-
-
-<!--            :arrival_date, label: "Date d'arrivee", start_year: Date.today.year - 20, end_year: Date.today.year
-
-          :arrival_from_village, label: "Village/Site de provenance le plus recent"
-
-          :arrival_from_type, label: "Cet endroit est: ", collection: [ "Village", "Site des PDIs" ] -->
