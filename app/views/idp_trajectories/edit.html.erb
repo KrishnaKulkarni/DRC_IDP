@@ -8,7 +8,7 @@
     </section>
   <% end %>
   <section class="extra-button-container clearfix">
-    <button class="cancel-button"><a class="styled-button" href="<%= gold_standard_identity_url(session[:last_registered_identity_id] || 0)%>">CANCEL</a>
+    <button class="cancel-button"><a class="styled-button" href="<%= idp_trajectory_url(params[:id])%>">CANCEL</a>
     </button>
     <%= button_to "DELETE STOP", {action: "destroy", id: @idp_trajectory.id}, method: :delete, data: { confirm: "Are you sure?" }, form_class: "delete-button" %>
   </section>

@@ -1,12 +1,16 @@
 id,departure_reason
-1,Advances of armed groups – departing during attack
-2,Advances of armed groups – departing before attack
-3,Harassment
-4,Personal Economic Hardship
-5,Imposed Economic Hardship: taxation, looting of goods, seizure of land
-6,Food Crisis
-7,Aid Crisis
-8,Medical Crisis
-9,Inter-community Conflict
-10,Same as Previous Reason
-11,Other
+1,1. Avancé des forces armées – départ pendant l’attaque
+2,2. Avancé des forces armées – départ avant l’attaque
+3,3. Avancé des forces armées – départ quelque jours après l’attaque
+4,4. Avoir peur d`un harcelement qui peut etre comis par des forces armées qui viennent 
+5,5. Manque de nourriture ou d’aide (sans connaissance d’une meilleure source d’aide)
+6,6. Connaissance d’une meilleure source d’aide autre part
+7,7. On nous a demandé de quiter l'endroit, ou il n`y avait pas assez d`espace
+8,8. Harcèlement par les forces armées: physique, sexuel or psychologique
+9,9. Difficulté économique à cause des forces armées: imposition, pillage, conflit sur la terre
+10,10. Urgence médicale: Cherchant meilleurs soins médicaux
+11,11. Catastrophe naturelle
+12,12. Problèmes personnels: épreuves économiques, communautaires, ou familiales
+13,13. Harcèlement par la collectivité locale
+14,14. Seulement pour le transit
+15,15. Autre raison
