@@ -7,6 +7,10 @@
       <h2><%= flash[:status] %></h2>
     </section>
   <% end %>
+  <section class="extra-button-container clearfix">
+    <button class="cancel-button"><a class="styled-button" href="<%= gold_standard_identity_url(session[:last_registered_identity_id] || 0)%>">CANCEL</a>
+    </button>
+  </section>
   <%= render 'trajectory_form', is_updating: false  %>
 </main>
 

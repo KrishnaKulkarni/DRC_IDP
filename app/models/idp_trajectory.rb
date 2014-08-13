@@ -45,7 +45,7 @@ class IdpTrajectory < ActiveRecord::Base
   end
 
   def highest_connected_trajectory
-    self.later_trajectories.last
+    self.later_trajectories.last || self
   end
 
   private

@@ -22,8 +22,6 @@
       <%= f.input :mode_of_transport, label: "Mode de transport a endroit suivant", collection: ["Pied", "Velo", "Voiture", "Bus", "Camion", "Moto", "Tshukudu", "Avion", "Autre"] %>
     </div>
 
-    <button><a class="styled-button" href="<%= gold_standard_identity_url(session[:last_registered_identity_id] || 0)%>">CANCEL</a></button>
-
     <% submit_value = is_updating ? "UPDATE STOP" : "ENREGISTRER ARRET" %>
     <%= f.button :submit, value: submit_value %>
   </div>
