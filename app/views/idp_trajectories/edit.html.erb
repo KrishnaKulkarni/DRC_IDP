@@ -7,7 +7,12 @@
       <h2><%= flash[:status] %></h2>
     </section>
   <% end %>
-  <%= render 'trajectory_form' %>
+  <section class="extra-button-container clearfix">
+    <button class="cancel-button"><a class="styled-button" href="<%= gold_standard_identity_url(session[:last_registered_identity_id] || 0)%>">CANCEL</a>
+    </button>
+    <%= button_to "DELETE STOP", {action: "destroy", id: @idp_trajectory.id}, method: :delete, data: { confirm: "Are you sure?" }, form_class: "delete-button" %>
+  </section>
+  <%= render 'trajectory_form', is_updating: true %>
 </main>
 
 

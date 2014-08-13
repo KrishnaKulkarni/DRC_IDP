@@ -10,9 +10,8 @@ class IdpTrajectoriesController < ApplicationController
   end
 
   def show
-    @prior_trajectory = IdpTrajectory.find_by(id: session[:last_trajectory_id])
-    @prior_trajectories = IdpTrajectory.where(gold_standard_identity_id: @prior_trajectory.gold_standard_identity_id)
-
+    trajectory = IdpTrajectory.find(params[:id])
+    @prior_trajectories = trajectory.gold_standard_identity.idp_trajectories
     render :show
   end
 
@@ -35,9 +34,6 @@ class IdpTrajectoriesController < ApplicationController
       File.open("exports/idp_trajectory_stops_#{session[:username]}_C#{session[:computer_number]}_#{session[:location]}_#{Date.today}.csv",
        'w') { |file| file.write(@idp_trajectories.as_csv) }
 
-      # A method for storing the newly created trajectory. Defined below in this file.
-      store_trajectory_in_cache(@idp_trajectory)
-
       redirect_to idp_trajectory_url(@idp_trajectory)
     else
       flash.now[:status] = "Erreur d'enregistrement"
@@ -49,7 +45,7 @@ class IdpTrajectoriesController < ApplicationController
 
   def edit
     @idp_trajectory = IdpTrajectory.find(params[:id])
-    @header = print_header
+    @header = print_edit_header
     @prior_trajectories = @idp_trajectory.all_trajectories
 
     render :edit
@@ -64,7 +60,7 @@ class IdpTrajectoriesController < ApplicationController
     @idp_trajectory.departure_date = handle_length_stay!(@idp_trajectory.departure_date)
 
     if @idp_trajectory.update(idp_trajectory_params)
-      flash[:status] = "Succesful edit of Stop ##{@idp_trajectory.stop_number}
+      flash[:status] = "Successful edit of Stop ##{@idp_trajectory.stop_number}
                         pour #{@gold_standard_identity.first_name} #{@gold_standard_identity.last_name}."
       flash[:status_color] = "success-green"
 
@@ -80,6 +76,14 @@ class IdpTrajectoriesController < ApplicationController
       flash.now[:status_color] = "failure-red"
       render :edit
     end
+  end
+
+  def destroy
+    idp_trajectory = IdpTrajectory.find(params[:id])
+    idp_trajectory.remove_from_chain!
+    flash[:status], flash[:status_color] = "Successful deletion of a stop", "success-green"
+
+    redirect_to new_idp_trajectory_url
   end
 
   def trajectory_form
@@ -117,9 +121,6 @@ class IdpTrajectoriesController < ApplicationController
   end
 
   private
-  def store_trajectory_in_cache(idp_trajectory)
-    session[:last_trajectory_id] = idp_trajectory.id
-  end
 
   def trajectory_attributes
     # Note that the checks about gold_standard_identity_id matching the id of the last gold standard identity
@@ -129,26 +130,27 @@ class IdpTrajectoriesController < ApplicationController
     # our first new trajectory after having created a gold standard identity, and (C) we are jumping straight to
     # this form.
 
-    if session[:last_trajectory_id]
-      attributes_via_last_trajectory
-    elsif session[:last_registered_identity_id]
+
+    if session[:last_registered_identity_id]
       attributes_via_gold_standard_identity
     else
       {}
     end
   end
 
-  def attributes_via_last_trajectory
-    new_attributes = IdpTrajectory.find(session[:last_trajectory_id]).attributes
-      .slice('province_id', 'departure_date',
-       'stop_number', 'gold_standard_identity_id')
-    new_attributes['stop_number'] += 1
-    new_attributes
+  def attributes_via_gold_standard_identity
+    gsi = GoldStandardIdentity.find(session[:last_registered_identity_id])
+    gsi.attributes.slice("province_id")
+      .merge({"gold_standard_identity_id" => gsi.id })
+      .merge(stop_number_assignment(gsi))
   end
 
-  def attributes_via_gold_standard_identity
-    GoldStandardIdentity.find(session[:last_registered_identity_id]).attributes
-    .slice("province_id", "gold_standard_identity_id").merge({"stop_number" => 0 })
+  def stop_number_assignment(gsi)
+    if last_traj = gsi.idp_trajectories.last.try(:highest_connected_trajectory)
+      {"stop_number" => last_traj.stop_number + 1 }
+    else
+      {"stop_number" => 0 }
+    end
   end
 
   def print_header
@@ -159,5 +161,15 @@ class IdpTrajectoriesController < ApplicationController
       first_name, last_name = "Unregistered", "Person"
     end
     "Enregister un arret pour #{first_name} #{last_name}"
+  end
+
+  def print_edit_header
+    if lrii = session[:last_registered_identity_id]
+      gsi = GoldStandardIdentity.find(lrii)
+      first_name, last_name = gsi.first_name, gsi.last_name
+    else
+      first_name, last_name = "Unregistered", "Person"
+    end
+    "Editing Stop ##{@idp_trajectory.stop_number} for #{first_name} #{last_name}"
   end
 end

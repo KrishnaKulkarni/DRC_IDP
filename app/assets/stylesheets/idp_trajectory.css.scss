@@ -140,4 +140,21 @@ main.new-gold-standard {
         content: none;
       }
     }
+
+    section.extra-button-container {
+      padding: 10px;
+      width: 800px;
+      margin: auto;
+
+      button.cancel-button {
+       float: left;
+      }
+
+      form.delete-button {
+        float: right;
+        input[type="submit"] {
+          font-size: 16px;
+        }
+      }
+    }
 }

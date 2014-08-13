@@ -81,7 +81,7 @@ a.navlink:hover {
 section.current-status {
   position: absolute;
   top: 35px;
-  left: 10px;s
+  left: 10px;
 }
 
 .current-status p {
@@ -109,4 +109,14 @@ section.success-green {
 
 section.failure-red {
   background: red;
+}
+
+.styled-button {
+  text-decoration: none;
+  font-size: 13px;
+  color: #000;
+}
+
+.styled-button:active {
+  color: red;
 }

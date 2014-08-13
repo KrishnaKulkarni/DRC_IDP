@@ -15,6 +15,7 @@ class GoldStandardIdentity < ActiveRecord::Base
   has_one :collective, through: :group, source: :collective
   has_one :territory, through: :collective, source: :territory
   has_one :province, through: :territory, source: :province
+  has_many :idp_trajectories
 
   # Toggle true/false to turn off/on the validation
   validates_presence_of :first_name, :last_name, :sex, :household_size,

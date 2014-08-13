@@ -22,8 +22,8 @@
       <%= f.input :mode_of_transport, label: "Mode de transport a endroit suivant", collection: ["Pied", "Velo", "Voiture", "Bus", "Camion", "Moto", "Tshukudu", "Avion", "Autre"] %>
     </div>
 
-    <%= f.button :submit, value: "ENREGISTRER ARRET" %>
-
+    <% submit_value = is_updating ? "UPDATE STOP" : "ENREGISTRER ARRET" %>
+    <%= f.button :submit, value: submit_value %>
   </div>
 
 
