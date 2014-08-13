@@ -15,9 +15,8 @@
     </div>
     <div class="row clearfix" id="row3">
       <%= f.input :sex, label: "Sexe", collection: ["Male", "Female"] %>
-      
+      <span id="date">Date de naissance:</span>
       <div id="dob-wrapper">
-        <span id="date">Date de naissance:</span>
         <%= f.input :year_of_birth, as: :integer, input_html: { max: 2014, min: 1920 }, label: "Annee" %>
         <%= f.input :month_of_birth, as: :integer, input_html: { max: 12, min: 1 }, label: "Mois" %>
         <%= f.input :day_of_birth, as: :integer, input_html: { max: 12, min: 1 }, label: "Jour" %>

@@ -68,15 +68,15 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara'
-  gem 'capybara-webkit'
-  gem 'launchy'
-  gem 'cucumber'
-  gem 'cucumber-rails', require: false
-  gem 'fakeweb'
-  gem 'shoulda-matchers', require: false
-  gem 'database_cleaner'
-  gem 'timecop'
-  gem 'selenium-webdriver'
+#   gem 'capybara'
+#   gem 'capybara-webkit'
+#   gem 'launchy'
+#   gem 'cucumber'
+#   gem 'cucumber-rails', require: false
+#   gem 'fakeweb'
+#   gem 'shoulda-matchers', require: false
+#   gem 'database_cleaner'
+#   gem 'timecop'
+#   gem 'selenium-webdriver'
 end
 

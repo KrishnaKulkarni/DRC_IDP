@@ -2,12 +2,12 @@
   <div class="inputs-container clearfix">
     <div class="row clearfix" id="row1">
       <%= f.input :stop_number, as: :integer, label: "Numero d'arret", :readonly => true %>
-      <%= f.input :province_id, collection: Province.all.order(:name), label_method: :name, value_method: :id, label: "Province" ,:include_blank => true %>
-      <%= f.input :territory_id, collection: Territory.all.order(:name), label_method: :name, value_method: :id, label: "Territoire" ,:include_blank => true %>
+      <%= f.input :province_id, collection: Province.all.order(:name), label_method: :name, value_method: :id, label: "Province" ,:include_blank => true, input_html: { class: "chosen-select" } %>
+      <%= f.input :territory_id, collection: Territory.all.order(:name), label_method: :name, value_method: :id, label: "Territoire" ,:include_blank => true, input_html: { class: "chosen-select" } %>
 
-      <%= f.input :village_id, collection: Village.all.order(:name), label_method: :name, value_method: :id, label: "Village" ,:include_blank => true %>
+      <%= f.input :village_id, collection: Village.all.order(:name), label_method: :name, value_method: :id, label: "Village" ,:include_blank => true, input_html: { class: "chosen-select" } %>
       <span id="ou">Ou</span>
-      <%= f.input :site_id, collection: Site.all.order(:name), label_method: :name, value_method: :id, label: "Site" ,:include_blank => true %>
+      <%= f.input :site_id, collection: Site.all.order(:name), label_method: :name, value_method: :id, label: "Site" ,:include_blank => true, input_html: { class: "chosen-select" } %>
     </div>
     <div class="row clearfix" id="row2">
       <%= f.input :alternate_village_status, label: "Cet endroit n'est pas sur la liste", as: :boolean  %>
@@ -16,7 +16,7 @@
       <%= f.input :arrival_from_type, label: "Lieu de dormir: ", collection: [ "Maison", "Hut", "Hangar", "Ecole", "Eglise", "Hopital", "Bush", "Route", "Autre"] %>
     </div>
     <div class="row clearfix" id="row3">
-      <%= f.input :departure_reason_id, collection: DepartureReason.all, label_method: :name, value_method: :id, label: "Departure Reason" ,:include_blank => true %>
+      <%= f.input :departure_reason_id, collection: DepartureReason.all, label_method: :departure_reason, value_method: :id, label: "Departure Reason" ,:include_blank => true %>
     </div>
     <div class="row clearfix" id="row4">
       <%= f.input :departure_date, label: "Date de depart", start_year: Date.today.year - 20, end_year: Date.today.year %>
