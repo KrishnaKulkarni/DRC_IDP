@@ -32,8 +32,8 @@
 		  <label for="location">Emplacement</label>
     	 <select class="chosen-select" data-placeholder="S'il vous plaît choisir" id="location" name="location">
   		   <option></option>
-         <% ["Training", "Bulengo", "Buhimba", "Lac Vert", "Mgungu 1", "Mgunga 3", "Nzulo"].each do |location| %>
-           <option value="<%= location %>"><%= location %></option>
+         <% Site.all.order(:name).each do |location| %>
+           <option value="<%= location.name %>"><%= location.name %></option>
          <% end %>
     	 </select>
 	  </div>

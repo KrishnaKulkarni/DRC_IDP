@@ -69,6 +69,43 @@ File.open('db/location_seeding_errors.txt', 'w') { |file| file.write(failure_tex
 
 # -- LOCATIONS END --
 
+# -- REFERENCE CSVS --
+
+LISTS = {
+  'DepartureReason' => 'DepartureReason'
+}
+
+DESIRED_ATTRIBUTES = [
+ "id",
+ "departure_reason"
+]
+
+failure_text = ""
+
+LISTS.each do |(list_name, model_name)|
+  file = File.open("resources/#{list_name}List.csv")
+  CSV.foreach(file.path, headers: true) do |row|
+    all_csv_row_values = row.to_hash
+    desired_values = {}
+    DESIRED_ATTRIBUTES.each do |attribute_name|
+      if(all_csv_row_values[attribute_name])
+        desired_values[attribute_name] = all_csv_row_values[attribute_name]
+      end
+    end
+    
+    create_succeeded = model_name.constantize.create(desired_values)
+    unless(create_succeeded)
+      failure_text << "#{model_name} : #{all_csv_row_values['id']}\n"
+    end
+  end
+  
+  file.close
+end
+
+File.open('db/location_seeding_errors.txt', 'w') { |file| file.write(failure_text) }
+
+# -- REFERNCE CSVS END --
+
 # -- USERS ---
 User.create!(username: "Andrew")
 User.create!(username: "Toly")
